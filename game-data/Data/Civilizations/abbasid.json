@@ -1,0 +1,140 @@
+{
+  "id": "abbasid",
+  "nameKey": "civ.abbasid.name",
+  "descKey": "civ.abbasid.desc",
+  "colorPrimary": "#000000",
+  "colorSecondary": "#FFD700",
+  "playstyle": "camel-economic-wings",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "camel-debuff-aura",
+      "nameKey": "bonus.abbasid.camel_debuff",
+      "desc": "Camel units emit an aura that reduces nearby enemy cavalry attack speed by 20%."
+    },
+    {
+      "id": "house-of-wisdom-wings",
+      "nameKey": "bonus.abbasid.house_of_wisdom",
+      "desc": "The House of Wisdom supports 4 upgradeable Wings (Economic, Military, Trade, Culture) each granting empire-wide bonuses when researched."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "golden-mosque",
+        "nameKey": "Abbasid Golden Mosque",
+        "bonus": "Produces Scholars for free over time. Each Scholar garrisoned here generates +1 gold per second passively."
+      },
+      {
+        "id": "spice-roads",
+        "nameKey": "Abbasid Spice Roads",
+        "bonus": "All trade routes generate +30% more gold. Unlocks a unique Camel Caravan trade unit that cannot be converted."
+      }
+    ],
+    "age3": [
+      {
+        "id": "medical-center",
+        "nameKey": "Abbasid Medical Center",
+        "bonus": "All friendly units within 20 tiles regenerate 1 HP per second. Units heal 50% faster when out of combat."
+      },
+      {
+        "id": "grand-bazaar",
+        "nameKey": "Abbasid Grand Bazaar",
+        "bonus": "Resource conversion trades at 1:1 ratio (normally 2:1). Unlocks excess resource conversion every 30 seconds automatically."
+      }
+    ],
+    "age4": [
+      {
+        "id": "house-of-wisdom-age4",
+        "nameKey": "Abbasid House of Wisdom (Imperial)",
+        "bonus": "All four Wings can be upgraded to their Imperial tier, granting doubled bonuses. Acts as an additional Town Center."
+      },
+      {
+        "id": "saharan-trade-network",
+        "nameKey": "Abbasid Saharan Trade Network",
+        "bonus": "Trade income doubled. Each active trader generates +0.5 gold per second regardless of route distance."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "camel-rider",
+      "age": 2,
+      "cost": { "food": 100, "gold": 20 },
+      "hp": 170,
+      "attack": 14,
+      "range": 0,
+      "speed": 1.45,
+      "armorType": "medium",
+      "special": "Passive debuff aura reduces enemy cavalry attack speed by 20% in a 3-tile radius. Resistant to conversion by Monks."
+    },
+    {
+      "id": "camel-archer",
+      "age": 3,
+      "cost": { "food": 80, "gold": 60 },
+      "hp": 130,
+      "attack": 16,
+      "range": 5,
+      "speed": 1.5,
+      "armorType": "light",
+      "special": "Can fire arrows while moving at full effectiveness. Applies the camel debuff aura on nearby enemy cavalry."
+    },
+    {
+      "id": "ghulam",
+      "age": 3,
+      "cost": { "food": 120, "gold": 40 },
+      "hp": 200,
+      "attack": 20,
+      "range": 0,
+      "speed": 1.2,
+      "armorType": "heavy",
+      "special": "Elite infantry with bonus damage against archers. Can briefly shield nearby friendly units from ranged attacks."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "wing-economic",
+      "age": 2,
+      "cost": { "food": 150, "gold": 100 },
+      "effect": "Economic Wing: Farms generate +2 food per minute. All Mill technologies are free."
+    },
+    {
+      "id": "wing-military",
+      "age": 2,
+      "cost": { "food": 200, "gold": 100 },
+      "effect": "Military Wing: All units gain +1 armor. Barracks and Stable production speed increased by 15%."
+    },
+    {
+      "id": "wing-trade",
+      "age": 3,
+      "cost": { "food": 100, "gold": 200 },
+      "effect": "Trade Wing: Trade route gold generation increased by +50%. Traders gain +20% movement speed."
+    },
+    {
+      "id": "wing-culture",
+      "age": 3,
+      "cost": { "food": 150, "gold": 150 },
+      "effect": "Culture Wing: All technologies research 25% faster. Scholars are produced for free every 60 seconds."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  },
+  "wings": {
+    "economic": {
+      "bonus": "Farms generate +2 food per minute, and all Mill technologies are free."
+    },
+    "military": {
+      "bonus": "All units gain +1 armor."
+    },
+    "trade": {
+      "bonus": "Trade gold generation increased by +50%."
+    },
+    "culture": {
+      "bonus": "All research technologies complete 25% faster."
+    }
+  }
+}

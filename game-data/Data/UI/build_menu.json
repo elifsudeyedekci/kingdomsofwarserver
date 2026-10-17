@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "source": "D:/AOE4_EXTRACTED/RAW/ReferenceAttributes/instances/hotkeys/hotkey_binding/villager_build_menu/age_1..4 + modular_hotkeys (build_menu_age_1..4 contexts). CONFIRMED: the villager build menu has four pages (one per age bucket) and every building has a fixed key; keys are remappable in the reference.",
+  "note": "Entries only list buildings that exist in KoW. skippedReference lists reference buildings KoW does not have (not invented). Slot = position of the key in the command grid Q W E R / A S D F / Z X C V.",
+  "grid": "QWERASDFZXCV",
+  "pages": [
+    {
+      "page": 1,
+      "entries": [
+        {
+          "building": "aqueduct",
+          "key": "V",
+          "ref": "build_aqueduct_byz"
+        },
+        {
+          "building": "barracks",
+          "key": "S",
+          "ref": "build_barracks"
+        },
+        {
+          "building": "cistern",
+          "key": "F",
+          "ref": "build_cistern_byz"
+        },
+        {
+          "building": "hojo-clan-daimyo-estate",
+          "key": "T",
+          "ref": "build_daimyo_estate_hojo_jpn_ha_sen"
+        },
+        {
+          "building": "oda-clan-daimyo-estate",
+          "key": "G",
+          "ref": "build_daimyo_estate_oda_jpn_ha_sen"
+        },
+        {
+          "building": "takeda-clan-daimyo-estate",
+          "key": "B",
+          "ref": "build_daimyo_estate_takeda_jpn_ha_sen"
+        },
+        {
+          "building": "dock",
+          "key": "D",
+          "ref": "build_dock"
+        },
+        {
+          "building": "farm",
+          "key": "A",
+          "ref": "build_farm"
+        },
+        {
+          "building": "house",
+          "key": "Q",
+          "ref": "build_house"
+        },
+        {
+          "building": "hunting-cabin",
+          "key": "W",
+          "ref": "build_hunting_cabin"
+        },
+        {
+          "building": "lumber-camp",
+          "key": "E",
+          "ref": "build_lumber_camp"
+        },
+        {
+          "building": "matsuri",
+          "key": "W",
+          "ref": "build_matsuri_jpn_ha_sen"
+        },
+        {
+          "building": "military-school",
+          "key": "F",
+          "ref": "build_military_school_ott"
+        },
+        {
+          "building": "mill",
+          "key": "W",
+          "ref": "build_mill"
+        },
+        {
+          "building": "mining-camp",
+          "key": "R",
+          "ref": "build_mining_camp"
+        },
+        {
+          "building": "ovoo",
+          "key": "Q",
+          "ref": "build_ovoo"
+        },
+        {
+          "building": "wall-wood",
+          "key": "X",
+          "ref": "build_palisade"
+        },
+        {
+          "building": "pasture",
+          "key": "A",
+          "ref": "build_pasture"
+        },
+        {
+          "building": "pit-mine",
+          "key": "F",
+          "ref": "build_pit_mine_mal"
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "entries": [
+        {
+          "building": "archery-range",
+          "key": "A",
+          "ref": "build_archery_range"
+        },
+        {
+          "building": "blacksmith",
+          "key": "Q",
+          "ref": "build_blacksmith"
+        },
+        {
+          "building": "fortress",
+          "key": "D",
+          "ref": "build_fortress_tem"
+        },
+        {
+          "building": "grassland",
+          "key": "D",
+          "ref": "build_grassland_jin"
+        },
+        {
+          "building": "market",
+          "key": "W",
+          "ref": "build_market"
+        },
+        {
+          "building": "mercenary-house",
+          "key": "D",
+          "ref": "build_mercenary_house_byz"
+        },
+        {
+          "building": "stable",
+          "key": "S",
+          "ref": "build_stable"
+        },
+        {
+          "building": "town-center",
+          "key": "E",
+          "ref": "build_town_center"
+        },
+        {
+          "building": "gate",
+          "key": "C",
+          "ref": "build_wall_gate"
+        },
+        {
+          "building": "tower",
+          "key": "Z",
+          "ref": "build_wall_tower"
+        },
+        {
+          "building": "wall-stone",
+          "key": "X",
+          "ref": "build_wall"
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "entries": [
+        {
+          "building": "keep",
+          "key": "Z",
+          "ref": "build_keep"
+        },
+        {
+          "building": "monastery",
+          "key": "Q",
+          "ref": "build_monastery"
+        },
+        {
+          "building": "siege-workshop",
+          "key": "A",
+          "ref": "build_siege_workshop"
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "entries": [
+        {
+          "building": "university",
+          "key": "Q",
+          "ref": "build_university"
+        },
+        {
+          "building": "wonder",
+          "key": "Z",
+          "ref": "build_wonder"
+        }
+      ]
+    }
+  ],
+  "skippedReference": [
+    "age_1/astronomical_clocktower_chi=G",
+    "age_1/barbican_of_the_sun_chi=T",
+    "age_1/daimyo_estate_jpn_ha_sen=F",
+    "age_1/ger=W",
+    "age_1/golden_tent_mon_ha_gol=V",
+    "age_1/great_wall_chi=B",
+    "age_1/house_of_wisdom=F",
+    "age_1/imperial_academy_chi=T",
+    "age_1/imperial_palace_chi=G",
+    "age_1/jiangnan_tower_chi_ha_01=T",
+    "age_1/meditation_gardens_chi_ha_01=T",
+    "age_1/mosque_sultanate=F",
+    "age_1/mount_lu_academy_chi_ha_01=G",
+    "age_1/olive_grove_byz=A",
+    "age_1/outpost=Z",
+    "age_1/palisade_gate=C",
+    "age_1/shaolin_temple_chi_ha_01=G",
+    "age_1/spirit_way_chi=B",
+    "age_1/stable_mongols=F",
+    "age_1/stockyard_mon_ha_gol=A",
+    "age_1/stronghold_byz_ha_mac=S",
+    "age_1/temple_of_the_sun_chi_ha_01=B",
+    "age_1/varangian_warcamp_byz_ha_mac=F",
+    "age_1/village=F",
+    "age_1/wooden_fortress=Z",
+    "age_1/zhu_xi_library_chi_ha_01=B",
+    "age_2/granary=D",
+    "age_2/manor_lan=D",
+    "age_2/passive_trait_byz_ha_mac=Q",
+    "age_2/ranch_mal=D",
+    "age_2/tughlaqabad_fort_sul_ha_tug=D",
+    "age_3/pagoda=S",
+    "age_4/keep_jpn=A"
+  ]
+}

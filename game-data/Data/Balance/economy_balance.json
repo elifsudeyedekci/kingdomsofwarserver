@@ -1,0 +1,32 @@
+{
+  "resourceNodes": {
+    "food": {"gatherRatePerSecond": 0.5, "depletionAmount": 750, "respawnSeconds": 600},
+    "wood": {"gatherRatePerSecond": 0.6, "depletionAmount": 500, "respawnSeconds": 0},
+    "gold": {"gatherRatePerSecond": 0.3, "depletionAmount": 400, "respawnSeconds": 0},
+    "stone": {"gatherRatePerSecond": 0.25, "depletionAmount": 300, "respawnSeconds": 0}
+  },
+  "startingResources": {"food": 200, "wood": 150, "gold": 100, "stone": 0},
+  "populationCaps": {"house": 10, "village": 20, "maxTotal": 200},
+  "carryCapacity": {
+    "villager": {"food": 10, "wood": 10, "gold": 10, "stone": 10},
+    "trader": {"gold": 30},
+    "fishing-boat": {"food": 15}
+  },
+  "marketExchangeRates": {
+    "foodToGold": 0.5, "woodToGold": 0.4, "stoneToGold": 0.6,
+    "goldToFood": 1.8, "goldToWood": 2.2, "goldToStone": 1.5
+  },
+  "veteranUpgradeCosts": {
+    "tier1": {"food": 100, "gold": 50},
+    "tier2": {"food": 200, "gold": 150},
+    "tier3": {"food": 350, "gold": 300}
+  },
+  "technologyCosts": {
+    "economyTier1": {"food": 75, "wood": 75},
+    "economyTier2": {"food": 150, "gold": 100},
+    "economyTier3": {"food": 250, "gold": 200},
+    "militaryTier1": {"gold": 75, "food": 50},
+    "militaryTier2": {"gold": 150, "food": 100},
+    "militaryTier3": {"gold": 300, "food": 200}
+  }
+}

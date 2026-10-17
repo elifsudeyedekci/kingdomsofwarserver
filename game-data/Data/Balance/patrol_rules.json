@@ -1,0 +1,78 @@
+{
+  "stances": {
+    "patrol": {
+      "description": "Unit walks between two waypoints and auto-attacks enemies within aggro radius",
+      "autoAttack": true,
+      "movesFromPosition": true,
+      "minDistanceTiles": 2,
+      "maxDistanceTiles": 20,
+      "aggroRadiusTiles": 6,
+      "returnToPatrolAfterCombatTicks": 100,
+      "retreatBelowHpPercent": 0.2,
+      "waypointReachedThresholdTiles": 0.5,
+      "loopPatrolPath": true
+    },
+    "guard": {
+      "description": "Unit holds position and attacks enemies that enter guard radius",
+      "autoAttack": true,
+      "movesFromPosition": true,
+      "guardRadiusTiles": 5,
+      "leashRadiusTiles": 10,
+      "returnToGuardPositionAfterCombatTicks": 60,
+      "retreatBelowHpPercent": 0.2
+    },
+    "aggressive": {
+      "description": "Unit actively seeks and chases enemies within vision range",
+      "autoAttack": true,
+      "movesFromPosition": true,
+      "seekRadiusTiles": 10,
+      "chaseRadiusTiles": 15,
+      "giveUpChaseAfterTicks": 200,
+      "retreatBelowHpPercent": 0.2
+    },
+    "defensive": {
+      "description": "Unit only attacks when it has been attacked by an enemy",
+      "autoAttack": true,
+      "movesFromPosition": false,
+      "responseRadiusTiles": 3,
+      "counterAttackDurationTicks": 80,
+      "retreatBelowHpPercent": 0.2
+    },
+    "hold_position": {
+      "description": "Unit does not move but fires at enemies within attack range",
+      "autoAttack": true,
+      "movesFromPosition": false,
+      "attacksEnemiesInRange": true,
+      "retreatBelowHpPercent": 0.0
+    }
+  },
+  "formationPatrolRules": {
+    "enabled": true,
+    "maintainFormationDuringPatrol": true,
+    "formationSpacingTiles": 1.5,
+    "maxFormationSize": 20,
+    "reformAfterCombatTicks": 60,
+    "allowedFormationTypes": ["line", "column", "box", "wedge"],
+    "defaultFormationType": "line"
+  },
+  "navalPatrolRules": {
+    "enabled": true,
+    "aggroRadiusTiles": 6,
+    "minDistanceTiles": 2,
+    "maxDistanceTiles": 20,
+    "waterOnlyPathfinding": true,
+    "returnToPatrolAfterCombatTicks": 100,
+    "retreatBelowHpPercent": 0.2,
+    "guardRadiusTiles": 5,
+    "leashRadiusTiles": 10,
+    "seekRadiusTiles": 10,
+    "chaseRadiusTiles": 15
+  },
+  "globalPatrolSettings": {
+    "maxWaypointsPerUnit": 8,
+    "pathfindingUpdateIntervalTicks": 5,
+    "stuckDetectionTicks": 40,
+    "stuckResolutionAttempts": 3,
+    "abandonPatrolIfStuckAfterAttempts": true
+  }
+}

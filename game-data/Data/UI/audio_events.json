@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "note": "Data-driven feedback audio. 'sound' is a ProceduralAudioLibrary.SoundId name today; swap the mapping (or add a clip id) to use licensed/own audio without code changes. cooldown = minimum seconds between plays of this event; priority: higher wins when several events fire in the same frame; pitchJitter = random pitch variation +-.",
+  "events": [
+    { "event": "select_unit",     "sound": "UnitSelect",        "volume": 0.55, "cooldown": 0.10, "priority": 2, "pitchJitter": 0.06 },
+    { "event": "select_multi",    "sound": "MultiSelect",       "volume": 0.55, "cooldown": 0.10, "priority": 2, "pitchJitter": 0.04 },
+    { "event": "select_building", "sound": "BuildingSelect",    "volume": 0.55, "cooldown": 0.10, "priority": 2, "pitchJitter": 0.03 },
+    { "event": "cmd_move",        "sound": "UnitMove",          "volume": 0.60, "cooldown": 0.12, "priority": 3, "pitchJitter": 0.08 },
+    { "event": "cmd_attack",      "sound": "UnitAttackCommand", "volume": 0.70, "cooldown": 0.12, "priority": 4, "pitchJitter": 0.06 },
+    { "event": "cmd_gather",      "sound": "UnitGather",        "volume": 0.60, "cooldown": 0.12, "priority": 3, "pitchJitter": 0.06 },
+    { "event": "cmd_build",       "sound": "BuildingQueued",    "volume": 0.70, "cooldown": 0.10, "priority": 3, "pitchJitter": 0.00 },
+    { "event": "cmd_produce",     "sound": "BuildingQueued",    "volume": 0.55, "cooldown": 0.05, "priority": 2, "pitchJitter": 0.05 },
+    { "event": "cmd_cancel",      "sound": "QueueCancel",       "volume": 0.60, "cooldown": 0.05, "priority": 2, "pitchJitter": 0.00 },
+    { "event": "cmd_research",    "sound": "BuildingQueued",    "volume": 0.65, "cooldown": 0.10, "priority": 2, "pitchJitter": 0.00 },
+    { "event": "cmd_stop",        "sound": "ButtonClick",       "volume": 0.45, "cooldown": 0.10, "priority": 1, "pitchJitter": 0.05 },
+    { "event": "cmd_garrison",    "sound": "UnitMove",          "volume": 0.55, "cooldown": 0.12, "priority": 2, "pitchJitter": 0.05 },
+    { "event": "unit_trained",    "sound": "UnitTrained",       "volume": 0.65, "cooldown": 0.15, "priority": 3, "pitchJitter": 0.05 },
+    { "event": "denied",          "sound": "CommandDenied",     "volume": 0.70, "cooldown": 0.25, "priority": 5, "pitchJitter": 0.00 },
+    { "event": "notification",    "sound": "Notification",      "volume": 0.60, "cooldown": 0.30, "priority": 3, "pitchJitter": 0.00 },
+    { "event": "attack_alert",    "sound": "UnderAttack",       "volume": 0.90, "cooldown": 8.00, "priority": 6, "pitchJitter": 0.00 }
+  ]
+}

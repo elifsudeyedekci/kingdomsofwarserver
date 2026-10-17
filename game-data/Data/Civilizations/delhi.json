@@ -1,0 +1,120 @@
+{
+  "id": "delhi",
+  "nameKey": "civ.delhi.name",
+  "descKey": "civ.delhi.desc",
+  "colorPrimary": "#00856F",
+  "colorSecondary": "#FFFFFF",
+  "playstyle": "free-tech-elephant",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "free-technologies",
+      "nameKey": "bonus.delhi.free_technologies",
+      "desc": "All technologies are researched for free but take significantly longer. Each Scholar garrisoned in a Mosque reduces research time by 25%."
+    },
+    {
+      "id": "scholar-speed",
+      "nameKey": "bonus.delhi.scholar_speed",
+      "desc": "Scholars garrisoned in Mosques grant +25% research speed each, up to a maximum of 4 Scholars per Mosque."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "dome-of-faith",
+        "nameKey": "Delhi Dome of the Faith",
+        "bonus": "Produces Scholars at half the normal cost. Each Scholar trained here arrives already garrisoned in the nearest Mosque."
+      },
+      {
+        "id": "tower-of-victory",
+        "nameKey": "Delhi Tower of Victory",
+        "bonus": "Nearby military units gain +15% attack speed after winning a battle. Buff lasts 30 seconds."
+      }
+    ],
+    "age3": [
+      {
+        "id": "compound-of-defender",
+        "nameKey": "Delhi Compound of the Defender",
+        "bonus": "All defensive structures gain +50% HP and fire arrows 25% faster. Acts as a Garrison for 10 units."
+      },
+      {
+        "id": "house-of-learning",
+        "nameKey": "Delhi House of Learning",
+        "bonus": "Research speed is doubled globally. Unique technologies only available at this landmark unlock advanced elephant upgrades."
+      }
+    ],
+    "age4": [
+      {
+        "id": "palace-of-sultan",
+        "nameKey": "Delhi Palace of the Sultan",
+        "bonus": "Periodically spawns a free War Elephant or Tower War Elephant. Elephant units produced 30% faster."
+      },
+      {
+        "id": "hisar-academy",
+        "nameKey": "Delhi Hisar Academy",
+        "bonus": "All buildings (including economic structures) passively generate food over time based on type."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "war-elephant",
+      "age": 3,
+      "cost": { "food": 400, "gold": 200 },
+      "hp": 900,
+      "attack": 35,
+      "range": 0,
+      "speed": 0.9,
+      "armorType": "heavy",
+      "special": "Tramples nearby infantry on charge, dealing area damage. Towers can be mounted for ranged defense."
+    },
+    {
+      "id": "tower-war-elephant",
+      "age": 4,
+      "cost": { "food": 500, "gold": 300 },
+      "hp": 1100,
+      "attack": 40,
+      "range": 5,
+      "speed": 0.85,
+      "armorType": "heavy",
+      "special": "Carries a tower with 4 garrisoned archer slots, firing arrows while moving. Crushes siege equipment on contact."
+    },
+    {
+      "id": "scholar",
+      "age": 1,
+      "cost": { "gold": 100 },
+      "hp": 60,
+      "attack": 0,
+      "range": 0,
+      "speed": 1.0,
+      "armorType": "unarmored",
+      "special": "Non-combatant. Garrisoning in a Mosque reduces all research time by 25%. Can heal nearby units."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "forced-march",
+      "age": 3,
+      "cost": { "food": 0, "gold": 0 },
+      "effect": "Elephant units gain +20% movement speed. Free technology, takes 180 seconds base research time."
+    },
+    {
+      "id": "armored-beasts",
+      "age": 4,
+      "cost": { "food": 0, "gold": 0 },
+      "effect": "War Elephants and Tower War Elephants gain +200 HP and +3 armor. Free technology, takes 300 seconds base."
+    },
+    {
+      "id": "piety",
+      "age": 2,
+      "cost": { "food": 0, "gold": 0 },
+      "effect": "Mosques can garrison 2 additional Scholars each. Free technology, takes 90 seconds base research time."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  }
+}

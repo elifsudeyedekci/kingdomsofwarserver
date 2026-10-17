@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kingdoms-of-war-ingress
+  namespace: kingdoms-of-war
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+spec:
+  tls:
+  - hosts:
+    - api.kingdoms-of-war.com
+    - admin.kingdoms-of-war.com
+    - kingdoms-of-war.com
+    secretName: kingdoms-of-war-tls
+  rules:
+  - host: api.kingdoms-of-war.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: admin-backend
+            port:
+              number: 3001
+  - host: admin.kingdoms-of-war.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: admin-panel
+            port:
+              number: 3000
+  - host: kingdoms-of-war.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: landing-website
+            port:
+              number: 3002

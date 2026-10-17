@@ -1,0 +1,30 @@
+{
+	email {$ACME_EMAIL}
+}
+
+(secure) {
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		X-Content-Type-Options nosniff
+		-Server
+	}
+	encode zstd gzip
+}
+
+{$API_DOMAIN} {
+	import secure
+	request_body {
+		max_size 12MB
+	}
+	reverse_proxy backend:3001 {
+		flush_interval -1
+		transport http {
+			response_header_timeout 40s
+		}
+	}
+}
+
+{$PANEL_DOMAIN} {
+	import secure
+	reverse_proxy panel:3000
+}

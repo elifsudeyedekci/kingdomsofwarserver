@@ -1,0 +1,148 @@
+{
+  "mapSizes": {
+    "small": {
+      "widthTiles": 128,
+      "heightTiles": 128,
+      "maxPlayers": 4,
+      "recommendedPlayers": 2
+    },
+    "medium": {
+      "widthTiles": 192,
+      "heightTiles": 192,
+      "maxPlayers": 6,
+      "recommendedPlayers": 4
+    },
+    "large": {
+      "widthTiles": 256,
+      "heightTiles": 256,
+      "maxPlayers": 8,
+      "recommendedPlayers": 6
+    }
+  },
+  "terrainTypes": {
+    "grass": {
+      "passable": true,
+      "movementSpeedMultiplier": 1.0,
+      "buildable": true,
+      "gatherableResource": null
+    },
+    "forest": {
+      "passable": true,
+      "movementSpeedMultiplier": 0.75,
+      "buildable": false,
+      "gatherableResource": "wood"
+    },
+    "water": {
+      "passable": false,
+      "movementSpeedMultiplier": 0.0,
+      "buildable": false,
+      "gatherableResource": null,
+      "navalPassable": true,
+      "navalMovementSpeedMultiplier": 1.0
+    },
+    "mountain": {
+      "passable": false,
+      "movementSpeedMultiplier": 0.0,
+      "buildable": false,
+      "gatherableResource": "stone"
+    },
+    "desert": {
+      "passable": true,
+      "movementSpeedMultiplier": 0.85,
+      "buildable": true,
+      "gatherableResource": null
+    },
+    "snow": {
+      "passable": true,
+      "movementSpeedMultiplier": 0.7,
+      "buildable": true,
+      "gatherableResource": null
+    },
+    "swamp": {
+      "passable": true,
+      "movementSpeedMultiplier": 0.5,
+      "buildable": false,
+      "gatherableResource": null
+    }
+  },
+  "resourceSpawnRules": {
+    "small": {
+      "foodNodeCount": 12,
+      "woodNodeCount": 16,
+      "goldNodeCount": 8,
+      "stoneNodeCount": 6,
+      "minimumDistanceBetweenNodesTiles": 8
+    },
+    "medium": {
+      "foodNodeCount": 20,
+      "woodNodeCount": 28,
+      "goldNodeCount": 14,
+      "stoneNodeCount": 10,
+      "minimumDistanceBetweenNodesTiles": 10
+    },
+    "large": {
+      "foodNodeCount": 32,
+      "woodNodeCount": 44,
+      "goldNodeCount": 22,
+      "stoneNodeCount": 16,
+      "minimumDistanceBetweenNodesTiles": 12
+    }
+  },
+  "startingPositionRules": {
+    "minimumPlayerDistanceTiles": {
+      "small": 40,
+      "medium": 60,
+      "large": 80
+    },
+    "spawnProtectionRadiusTiles": 12,
+    "resourceGuaranteedWithinRadiusTiles": 10,
+    "forestGuaranteedWithinRadiusTiles": 8
+  },
+  "chokepointRules": {
+    "maxPassableTileRatioInCorridor": 0.35,
+    "minCorridorWidthTiles": 3,
+    "maxCorridorWidthTiles": 10
+  },
+  "elevationRules": {
+    "highGroundAttackBonus": 0.15,
+    "highGroundVisibilityBonusTiles": 2,
+    "movementSpeedModifierPerTerrainType": {
+      "grass": 1.0,
+      "forest": 0.75,
+      "water": 0.0,
+      "mountain": 0.0,
+      "desert": 0.85,
+      "snow": 0.7,
+      "swamp": 0.5
+    }
+  },
+  "fogOfWar": {
+    "initialRevealRadiusTiles": 3,
+    "scoutRevealRadiusTiles": 8,
+    "villagerRevealRadiusTiles": 4,
+    "militaryUnitRevealRadiusTiles": 5,
+    "buildingRevealRadiusTiles": 6,
+    "townCenterRevealRadiusTiles": 8
+  },
+  "sacredSiteRules": {
+    "countPerMapSize": {
+      "small": 2,
+      "medium": 3,
+      "large": 5
+    },
+    "minimumDistanceFromSpawnTiles": 20,
+    "minimumDistanceBetweenSitesTiles": 30,
+    "captureRadiusTiles": 3,
+    "captureTimeSeconds": 60
+  },
+  "relicRules": {
+    "countPerMapSize": {
+      "small": 2,
+      "medium": 3,
+      "large": 5
+    },
+    "placementStrategy": "map_center_cluster",
+    "centerClusterRadiusTiles": 15,
+    "minimumDistanceBetweenRelicsTiles": 8
+  }
+}

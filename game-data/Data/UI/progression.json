@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "note": "Local progression definitions (data-driven). kind: achievement (lifetime totals), challenge (single-match goal), mastery (per-civilisation win tiers). metric names are implemented in UI/Profile/Progression.cs; unknown metrics are ignored. No rewards are granted (no fake economy): unlocking only records the milestone in the local profile.",
+  "items": [
+    { "id": "first_victory", "kind": "achievement", "title": "First Blood", "desc": "Win your first match.", "metric": "total_wins", "target": 1 },
+    { "id": "veteran", "kind": "achievement", "title": "Veteran", "desc": "Win 10 matches.", "metric": "total_wins", "target": 10 },
+    { "id": "conqueror", "kind": "achievement", "title": "Conqueror", "desc": "Win 50 matches.", "metric": "total_wins", "target": 50 },
+    { "id": "regular", "kind": "achievement", "title": "Regular", "desc": "Play 25 matches.", "metric": "total_matches", "target": 25 },
+    { "id": "builder", "kind": "achievement", "title": "Master Builder", "desc": "Construct 100 buildings.", "metric": "total_built", "target": 100 },
+    { "id": "destroyer", "kind": "achievement", "title": "Siegebreaker", "desc": "Destroy 50 enemy buildings.", "metric": "total_destroyed", "target": 50 },
+    { "id": "scholar", "kind": "achievement", "title": "Scholar", "desc": "Research 25 technologies.", "metric": "total_techs", "target": 25 },
+    { "id": "tycoon", "kind": "achievement", "title": "Tycoon", "desc": "Gather 100,000 resources.", "metric": "total_gathered", "target": 100000 },
+    { "id": "explorer", "kind": "achievement", "title": "Explorer", "desc": "Play 3 different civilisations.", "metric": "distinct_civs", "target": 3 },
+    { "id": "swift", "kind": "challenge", "title": "Swift Victory", "desc": "Win a match in 10 minutes or less.", "metric": "fastest_win_sec", "target": 600, "lowerIsBetter": true },
+    { "id": "blitz", "kind": "challenge", "title": "Blitz", "desc": "Win a match in 7 minutes or less.", "metric": "fastest_win_sec", "target": 420, "lowerIsBetter": true },
+    { "id": "warlord", "kind": "challenge", "title": "Warlord", "desc": "Defeat 100 enemy units in one match.", "metric": "max_kills_match", "target": 100 },
+    { "id": "horde", "kind": "challenge", "title": "Horde", "desc": "Train 150 units in one match.", "metric": "max_trained_match", "target": 150 },
+    { "id": "hard_win", "kind": "challenge", "title": "Against the Odds", "desc": "Win against a Hard (or harder) computer opponent.", "metric": "wins_difficulty", "arg": "2", "target": 1 },
+    { "id": "civ_mastery", "kind": "mastery", "title": "Civilisation Mastery", "desc": "Win matches with a civilisation to raise its mastery level.", "metric": "wins_civ", "tiers": [1, 3, 10, 25, 50] }
+  ]
+}

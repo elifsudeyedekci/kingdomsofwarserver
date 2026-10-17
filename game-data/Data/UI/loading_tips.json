@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "note": "Loading-screen tips (data-driven). Every tip describes a control or mechanic that exists in THIS game; add localisation keys later.",
+  "tips": [
+    "Press H to select your Town Center and jump the camera to it.",
+    "Press . (period) to select an idle villager. Press it again to cycle through them.",
+    "Hold Shift while giving orders to queue them one after another.",
+    "Ctrl + a number key creates a control group. Press the number to recall it, twice to centre the camera on it.",
+    "F1, F2 and F3 select your military, economy and tech buildings. Press again to cycle through them.",
+    "TAB cycles through the unit types of a mixed selection.",
+    "Backspace centres the camera on your selection.",
+    "Space jumps the camera to the last place you were attacked.",
+    "Alt + mouse movement rotates the camera. Ctrl + Q / E rotates it with the keyboard.",
+    "Keep your Town Center producing villagers: a strong economy wins long games.",
+    "Garrison villagers in a building or ring the Town Bell when raiders arrive.",
+    "Advancing to the next Age unlocks new buildings, units and technologies.",
+    "Double-click a unit to select every unit of the same type on screen.",
+    "All keyboard shortcuts can be changed in Settings > Controls."
+  ]
+}

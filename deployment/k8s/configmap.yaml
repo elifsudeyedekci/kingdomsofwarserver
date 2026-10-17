@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: kingdoms-of-war
+data:
+  NODE_ENV: "production"
+  NEXT_TELEMETRY_DISABLED: "1"
+  POSTGRES_DB: "kingdoms_of_war"
+  POSTGRES_USER: "kowuser"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  NEXT_PUBLIC_API_URL: "http://api.kingdoms-of-war.com/api"

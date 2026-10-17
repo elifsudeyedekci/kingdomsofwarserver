@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source": "D:/AOE4_EXTRACTED/RAW/ReferenceAttributes/instances/camera/default_autodeclinate_mp.xml (default multiplayer RTS camera, module cam_module_autodeclinate + input pan modules). CONFIRMED values copied from the reference attribute file; read-only source.",
+  "distance": 81, "distanceMin": 36, "distanceMax": 81,
+  "worldScale": 0.7,
+  "yaw": 135,
+  "pitchMin": 40, "pitchMax": 55,
+  "fovNear": 41.1, "fovFar": 43.6,
+  "clipNear": 1, "clipFar": 3600,
+  "orbitSpeed": 20, "tiltRateMouse": 100, "yawRateMouse": 150, "distanceRateWheel": 5,
+  "keyboardPanMagnitude": 225, "screenEdgePanMagnitude": 200, "mousePanMagnitude": 100, "mousePanCap": 40,
+  "panEaseInSeconds": 0.25, "panEaseOutSeconds": 0.2,
+  "note": "pitch 'autodeclinate': pitchMin is used at distanceMin (zoomed in) and pitchMax at distanceMax (zoomed out) - the interpolation direction is INFERRED from the module name; the numeric bounds are confirmed."
+}

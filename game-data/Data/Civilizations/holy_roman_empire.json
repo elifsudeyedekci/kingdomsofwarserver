@@ -1,0 +1,147 @@
+{
+  "id": "holy_roman_empire",
+  "nameKey": "civ.holy-roman-empire.name",
+  "descKey": "civ.holy-roman-empire.desc",
+  "colorPrimary": "#FFD700",
+  "colorSecondary": "#000000",
+  "playstyle": "religious-defensive",
+  "startingUnits": ["villager", "villager", "villager", "scout", "prelate"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "prelate-inspire",
+      "nameKey": "bonus.prelate-inspire",
+      "desc": "Prelate priests can inspire nearby villagers, increasing their gather rate by 40% for 30 seconds. Each Prelate can inspire one villager at a time. Multiple Prelates can be assigned to the same resource cluster"
+    },
+    {
+      "id": "holy-roman-free-prelate",
+      "nameKey": "bonus.holy-roman-free-prelate",
+      "desc": "HRE starts with one free Prelate unit in addition to standard starting units, giving an immediate economic efficiency advantage"
+    },
+    {
+      "id": "regnitz-relics",
+      "nameKey": "bonus.regnitz-relics",
+      "desc": "Relics stored in Regnitz Cathedral generate triple the standard gold income (3 gold/s per relic vs 1 gold/s). Encourages aggressive relic collection in early game"
+    },
+    {
+      "id": "defensive-construction",
+      "nameKey": "bonus.defensive-construction",
+      "desc": "All HRE walls, towers, and keeps have +20% HP and garrison capacity. Towers can be upgraded to emit an aura that inspires nearby infantry with +10% attack speed"
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "meinwerk-palace",
+        "nameKey": "landmark.meinwerk-palace",
+        "bonus": "All military technologies cost 25% less to research. Acts as a secondary technology building that can research Feudal Age upgrades simultaneously with the Blacksmith"
+      },
+      {
+        "id": "palace-of-swabia",
+        "nameKey": "landmark.palace-of-swabia",
+        "bonus": "Villagers are created 100% faster and do not require food to train — they cost only wood. Represents the HRE's serfs and bound labor system"
+      }
+    ],
+    "age3": [
+      {
+        "id": "burgrave-palace",
+        "nameKey": "landmark.burgrave-palace",
+        "bonus": "Can produce batches of 5 military units (Men-at-Arms, Spearmen, or Horsemen) simultaneously at significantly reduced cost per unit. Essentially functions as 3 barracks in one building"
+      },
+      {
+        "id": "elzbach-palace",
+        "nameKey": "landmark.elzbach-palace",
+        "bonus": "All Keeps and Outposts gain +100% HP and emit an Influence aura that reduces damage taken by nearby units by 15%. Transforms defensive towers into battlefield anchors"
+      }
+    ],
+    "age4": [
+      {
+        "id": "great-palace-of-flensburg",
+        "nameKey": "landmark.great-palace-of-flensburg",
+        "bonus": "All military units trained anywhere on the map gain +15% HP and +10% attack permanently. Functions as a central command that reinforces all armies globally"
+      },
+      {
+        "id": "cathedral-of-worms",
+        "nameKey": "landmark.cathedral-of-worms",
+        "bonus": "Can hold up to 5 relics (standard maximum is 3). Each relic inside generates 4 gold/s and emits a Divine Blessing aura that heals nearby units for 5 HP/s"
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "prelate",
+      "age": 1,
+      "cost": {"gold": 100},
+      "hp": 60,
+      "attack": 3,
+      "range": 0,
+      "speed": 1.0,
+      "armorType": "light",
+      "special": "Support priest unit that can inspire villagers for +40% gather rate and inspire military units for +10% attack. Can collect and carry relics. Heals friendly units at 10 HP/s in combat range"
+    },
+    {
+      "id": "landsknecht",
+      "age": 3,
+      "cost": {"food": 80, "gold": 40},
+      "hp": 120,
+      "attack": 25,
+      "range": 0,
+      "speed": 1.2,
+      "armorType": "light",
+      "special": "Two-handed swordsman with a whirlwind AoE attack that damages all enemies within melee range simultaneously. Extremely effective against massed infantry formations. Takes bonus damage from ranged units due to light armor"
+    },
+    {
+      "id": "heavy-maa",
+      "age": 2,
+      "cost": {"food": 100, "gold": 40},
+      "hp": 160,
+      "attack": 14,
+      "range": 0,
+      "speed": 0.95,
+      "armorType": "heavy",
+      "special": "HRE Men-at-Arms are heavier armored than standard equivalents, gaining +15% bonus defense against ranged attacks. Can be further upgraded via unique HRE Blacksmith technologies"
+    },
+    {
+      "id": "war-wagon",
+      "age": 4,
+      "cost": {"food": 120, "gold": 80, "wood": 60},
+      "hp": 280,
+      "attack": 18,
+      "range": 3,
+      "speed": 0.8,
+      "armorType": "heavy",
+      "special": "Armored wagon with a ranged crossbow attack. Can garrison 2 infantry inside who fire additional projectiles. Counts as both cavalry and siege for upgrade purposes"
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "inspired-warriors",
+      "age": 2,
+      "cost": {"food": 100, "gold": 75},
+      "effect": "Prelates can now inspire military units in addition to villagers, granting +10% attack speed and +5% HP to any unit they bless. Each inspired buff lasts 60 seconds"
+    },
+    {
+      "id": "steel-barding",
+      "age": 3,
+      "cost": {"gold": 200, "food": 100},
+      "effect": "All HRE cavalry gain +30 HP and projectile damage reduction of 20%. Represents the heavy plate armor tradition of Holy Roman knights"
+    },
+    {
+      "id": "marching-drill",
+      "age": 3,
+      "cost": {"food": 150, "gold": 100},
+      "effect": "All infantry units gain +15% movement speed outside of combat, allowing rapid repositioning of the HRE's infantry-heavy armies across the battlefield"
+    },
+    {
+      "id": "holy-roman-decree",
+      "age": 4,
+      "cost": {"gold": 500},
+      "effect": "All buildings within the HRE city center (12-tile radius of Town Center) generate +0.5 gold per second. Encourages compact, fortified city building"
+    }
+  ],
+  "ageUpCosts": {
+    "age2": {"food": 400},
+    "age3": {"food": 800, "gold": 200},
+    "age4": {"food": 1200, "gold": 600}
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "macedonian_dynasty",
+  "nameKey": "civ.macedonian_dynasty.name",
+  "descKey": "civ.macedonian_dynasty.desc",
+  "colorPrimary": "#808080",
+  "colorSecondary": "#C0C0C0",
+  "playstyle": "dlc",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [],
+  "landmarks": {},
+  "uniqueUnits": [],
+  "uniqueTech": [],
+  "ageUpCosts": { "age2": { "food": 400 }, "age3": { "food": 800, "gold": 200 }, "age4": { "food": 1200, "gold": 600 } }
+}

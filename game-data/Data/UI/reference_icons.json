@@ -1,0 +1,774 @@
+{
+ "illustrations": [
+  {
+   "type": "ottomans",
+   "icon": "ui/icons/hud/civ_illustrations/ott_illustration"
+  },
+  {
+   "type": "english",
+   "icon": "ui/icons/hud/civ_illustrations/eng_illustration"
+  },
+  {
+   "type": "french",
+   "icon": "ui/icons/hud/civ_illustrations/fre_illustration"
+  },
+  {
+   "type": "mongols",
+   "icon": "ui/icons/hud/civ_illustrations/mon_illustration"
+  },
+  {
+   "type": "chinese",
+   "icon": "ui/icons/hud/civ_illustrations/chi_illustration"
+  },
+  {
+   "type": "rus",
+   "icon": "ui/icons/hud/civ_illustrations/rus_illustration"
+  },
+  {
+   "type": "holy_roman_empire",
+   "icon": "ui/icons/hud/civ_illustrations/hre_illustration"
+  },
+  {
+   "type": "abbasid",
+   "icon": "ui/icons/hud/civ_illustrations/abb_illustration"
+  },
+  {
+   "type": "delhi",
+   "icon": "ui/icons/hud/civ_illustrations/sul_illustration"
+  },
+  {
+   "type": "malians",
+   "icon": "ui/icons/hud/civ_illustrations/mal_illustration"
+  },
+  {
+   "type": "byzantines",
+   "icon": "ui/icons/hud/civ_illustrations/byz_illustration"
+  },
+  {
+   "type": "japanese",
+   "icon": "ui/icons/hud/civ_illustrations/jpn_illustration"
+  },
+  {
+   "type": "jin_dynasty",
+   "icon": "ui/icons/hud/civ_illustrations/jin_illustration"
+  }
+ ],
+ "maps": [
+  {
+   "type": "continental",
+   "icon": "ui/images/map_gen_layout/continental_icon"
+  },
+  {
+   "type": "dry_arabia",
+   "icon": "ui/images/map_gen_layout/dryarabia_icon"
+  },
+  {
+   "type": "black_forest",
+   "icon": "ui/images/map_gen_layout/blackforest_icon"
+  },
+  {
+   "type": "mongolian_heights",
+   "icon": "ui/images/map_gen_layout/mongolianheights_icon"
+  },
+  {
+   "type": "danube_river",
+   "icon": "ui/images/map_gen_layout/danube_river_icon"
+  },
+  {
+   "type": "hill_and_dale",
+   "icon": "ui/images/map_gen_layout/hillanddale_icon"
+  },
+  {
+   "type": "mountain_pass",
+   "icon": "ui/images/map_gen_layout/mountainpass_icon"
+  },
+  {
+   "type": "four_lakes",
+   "icon": "ui/images/map_gen_layout/four_lakes_icon"
+  },
+  {
+   "type": "lipany",
+   "icon": "ui/images/map_gen_layout/lipany_icon"
+  },
+  {
+   "type": "highview",
+   "icon": "ui/images/map_gen_layout/highview_icon"
+  },
+  {
+   "type": "acropolis",
+   "icon": "ui/images/map_gen_layout/acropolis_icon"
+  },
+  {
+   "type": "african_waters",
+   "icon": "ui/images/map_gen_layout/african_waters_icon"
+  },
+  {
+   "type": "altai",
+   "icon": "ui/images/map_gen_layout/altai_icon"
+  },
+  {
+   "type": "ancient_spires",
+   "icon": "ui/images/map_gen_layout/ancient_spires_icon"
+  },
+  {
+   "type": "archipelago",
+   "icon": "ui/images/map_gen_layout/archipelago_icon"
+  },
+  {
+   "type": "arid_plains",
+   "icon": "ui/images/map_gen_layout/sunkenlands_icon"
+  },
+  {
+   "type": "ascension",
+   "icon": "ui/images/map_gen_layout/ascension_icon"
+  },
+  {
+   "type": "atacama",
+   "icon": "ui/images/map_gen_layout/atacama_icon"
+  },
+  {
+   "type": "boulder_bay",
+   "icon": "ui/images/map_gen_layout/boulder_bay_icon"
+  },
+  {
+   "type": "canal",
+   "icon": "ui/images/map_gen_layout/canal"
+  },
+  {
+   "type": "canyon",
+   "icon": "ui/images/map_gen_layout/canyon_icon"
+  },
+  {
+   "type": "carmelites",
+   "icon": "ui/images/map_gen_layout/no_thumbnail"
+  },
+  {
+   "type": "channel",
+   "icon": "ui/images/map_gen_layout/channel_icon"
+  },
+  {
+   "type": "clearing",
+   "icon": "ui/images/map_gen_layout/mountain_clearing_icon"
+  },
+  {
+   "type": "cliffsanity",
+   "icon": "ui/images/map_gen_layout/cliffsanity_icon"
+  },
+  {
+   "type": "cliffside",
+   "icon": "ui/images/map_gen_layout/cliffside_icon"
+  },
+  {
+   "type": "confluence",
+   "icon": "ui/images/map_gen_layout/confluence_icon"
+  },
+  {
+   "type": "craters",
+   "icon": "ui/images/map_gen_layout/craters_icon"
+  },
+  {
+   "type": "dry_river",
+   "icon": "ui/images/map_gen_layout/dry_river"
+  },
+  {
+   "type": "dunes",
+   "icon": "ui/images/map_gen_layout/prairie_icon"
+  },
+  {
+   "type": "dungeon",
+   "icon": "ui/images/map_gen_layout/dungeon_icon"
+  },
+  {
+   "type": "enlightened_horizon",
+   "icon": "ui/images/map_gen_layout/enlightened_horizon_icon"
+  },
+  {
+   "type": "fangs",
+   "icon": "ui/images/map_gen_layout/fangs_icon"
+  },
+  {
+   "type": "forest_mountain",
+   "icon": "ui/images/map_gen_layout/highwoods_icon"
+  },
+  {
+   "type": "forest_ponds",
+   "icon": "ui/images/map_gen_layout/forest_ponds_icon"
+  },
+  {
+   "type": "french_pass",
+   "icon": "ui/images/map_gen_layout/frenchpass_icon"
+  },
+  {
+   "type": "glade",
+   "icon": "ui/images/map_gen_layout/glade"
+  },
+  {
+   "type": "golden_heights",
+   "icon": "ui/images/map_gen_layout/golden_heights_icon"
+  },
+  {
+   "type": "golden_pit",
+   "icon": "ui/images/map_gen_layout/golden_pit_icon"
+  },
+  {
+   "type": "gorge",
+   "icon": "ui/images/map_gen_layout/gorge_icon"
+  },
+  {
+   "type": "haunted_gulch",
+   "icon": "ui/images/map_gen_layout/haunted_gulch_icon"
+  },
+  {
+   "type": "hedgemaze",
+   "icon": "ui/images/map_gen_layout/hedgemaze_icon"
+  },
+  {
+   "type": "hidden_valley",
+   "icon": "ui/images/map_gen_layout/hidden_valley_icon"
+  },
+  {
+   "type": "hideout",
+   "icon": "ui/images/map_gen_layout/hideout_icon"
+  },
+  {
+   "type": "highland",
+   "icon": "ui/images/map_gen_layout/highland_icon"
+  },
+  {
+   "type": "himeyama",
+   "icon": "ui/images/map_gen_layout/himeyama_icon"
+  },
+  {
+   "type": "king_of_hill",
+   "icon": "ui/images/map_gen_layout/king_of_the_hill_icon"
+  },
+  {
+   "type": "lake_side",
+   "icon": "ui/images/map_gen_layout/lake_side_icon"
+  },
+  {
+   "type": "land_megarandom",
+   "icon": "ui/images/map_gen_layout/megarandom_land_icon"
+  },
+  {
+   "type": "mediterranean",
+   "icon": "ui/images/map_gen_layout/qinghai_lake_icon"
+  },
+  {
+   "type": "megarandom",
+   "icon": "ui/images/map_gen_layout/megarandom_icon"
+  },
+  {
+   "type": "michi",
+   "icon": "ui/images/map_gen_layout/michi_icon"
+  },
+  {
+   "type": "migration",
+   "icon": "ui/images/map_gen_layout/migration_icon"
+  },
+  {
+   "type": "moats",
+   "icon": "ui/images/map_gen_layout/forts_icon"
+  },
+  {
+   "type": "mountain_lakes",
+   "icon": "ui/images/map_gen_layout/mountain_lakes_icon"
+  },
+  {
+   "type": "mystical_river",
+   "icon": "ui/images/map_gen_layout/dryarabia_icon"
+  },
+  {
+   "type": "nagari",
+   "icon": "ui/images/map_gen_layout/nagari_icon"
+  },
+  {
+   "type": "narrows",
+   "icon": "ui/images/map_gen_layout/narrows_icon"
+  },
+  {
+   "type": "nomadic_ridges",
+   "icon": "ui/images/map_gen_layout/nomadic_ridges_icon"
+  },
+  {
+   "type": "nomadic_tarns",
+   "icon": "ui/images/map_gen_layout/nomadic_tarns_icon"
+  },
+  {
+   "type": "oasis",
+   "icon": "ui/images/map_gen_layout/oasis_icon"
+  },
+  {
+   "type": "ocean_gateway",
+   "icon": "ui/images/map_gen_layout/ocean_gateway_icon"
+  },
+  {
+   "type": "pegee",
+   "icon": "ui/images/map_gen_layout/peagee_icon"
+  },
+  {
+   "type": "pit",
+   "icon": "ui/images/map_gen_layout/pit_icon"
+  },
+  {
+   "type": "plains",
+   "icon": "ui/images/map_gen_layout/plains_icon"
+  },
+  {
+   "type": "ponds",
+   "icon": "ui/images/map_gen_layout/ponds_icon"
+  },
+  {
+   "type": "relic_river",
+   "icon": "ui/images/map_gen_layout/relic_river_icon"
+  },
+  {
+   "type": "rhinelands",
+   "icon": "ui/images/map_gen_layout/rhinelands_icon"
+  },
+  {
+   "type": "river_kingdom",
+   "icon": "ui/images/map_gen_layout/river_kingdom_icon"
+  },
+  {
+   "type": "rolling_rivers",
+   "icon": "ui/images/map_gen_layout/danube_river_icon"
+  },
+  {
+   "type": "rugged",
+   "icon": "ui/images/map_gen_layout/rugged_icon"
+  },
+  {
+   "type": "sacred_mountains",
+   "icon": "ui/images/map_gen_layout/flankwoods"
+  },
+  {
+   "type": "savanna_woodlands",
+   "icon": "ui/images/map_gen_layout/savanna_woodlands_icon"
+  },
+  {
+   "type": "shadow_lake",
+   "icon": "ui/images/map_gen_layout/shadow_lake_icon"
+  },
+  {
+   "type": "snake",
+   "icon": "ui/images/map_gen_layout/snake_river_icon"
+  },
+  {
+   "type": "socotra",
+   "icon": "ui/images/map_gen_layout/socotra_icon"
+  },
+  {
+   "type": "team_islands",
+   "icon": "ui/images/map_gen_layout/warring_islands_icon"
+  },
+  {
+   "type": "the_divide",
+   "icon": "ui/images/map_gen_layout/wasteland_icon"
+  },
+  {
+   "type": "turtle",
+   "icon": "ui/images/map_gen_layout/turtle_icon"
+  },
+  {
+   "type": "turtle_ridge",
+   "icon": "ui/images/map_gen_layout/turtle_ridge_icon"
+  },
+  {
+   "type": "underhill",
+   "icon": "ui/images/map_gen_layout/carmel"
+  },
+  {
+   "type": "volcanic_island",
+   "icon": "ui/images/map_gen_layout/volcanic_island_icon"
+  },
+  {
+   "type": "waterholes",
+   "icon": "ui/images/map_gen_layout/waterholes_icon"
+  },
+  {
+   "type": "waterlanes",
+   "icon": "ui/images/map_gen_layout/waterlanes_icon"
+  },
+  {
+   "type": "westlake",
+   "icon": "ui/images/map_gen_layout/west_lake_icon"
+  }
+ ],
+ "version": 1,
+ "source": "Generated from the reference UI texture tree (UIArt, dev/test only). Logical ids follow the AssetRuntime contract (root-relative, lower-case, no extension).",
+ "units": [
+  {
+   "type": "villager",
+   "icon": "ui/icons/races/common/units/villager"
+  },
+  {
+   "type": "scout",
+   "icon": "ui/icons/races/common/units/scout"
+  },
+  {
+   "type": "spearman",
+   "icon": "ui/icons/races/common/units/spearman_2"
+  },
+  {
+   "type": "archer",
+   "icon": "ui/icons/races/common/units/archer"
+  },
+  {
+   "type": "crossbowman",
+   "icon": "ui/icons/races/common/units/crossbowman"
+  },
+  {
+   "type": "handcannoneer",
+   "icon": "ui/icons/races/common/units/handcannon"
+  },
+  {
+   "type": "horseman",
+   "icon": "ui/icons/races/common/units/horseman"
+  },
+  {
+   "type": "knight",
+   "icon": "ui/icons/races/common/units/knight"
+  },
+  {
+   "type": "lancer",
+   "icon": "ui/icons/races/common/units/knight_2"
+  },
+  {
+   "type": "man-at-arms",
+   "icon": "ui/icons/races/common/units/manatarms"
+  },
+  {
+   "type": "monk",
+   "icon": "ui/icons/races/common/units/monk"
+  },
+  {
+   "type": "siege-ram",
+   "icon": "ui/icons/races/common/units/ram"
+  },
+  {
+   "type": "mangonel",
+   "icon": "ui/icons/races/common/units/mangonel"
+  },
+  {
+   "type": "trebuchet",
+   "icon": "ui/icons/races/common/units/trebuchet"
+  },
+  {
+   "type": "springald",
+   "icon": "ui/icons/races/common/units/scorpion"
+  },
+  {
+   "type": "bombard",
+   "icon": "ui/icons/races/common/units/bombard"
+  },
+  {
+   "type": "ribauldequin",
+   "icon": "ui/icons/races/common/units/ribauldequin"
+  },
+  {
+   "type": "trader",
+   "icon": "ui/icons/races/common/units/trade_cart"
+  },
+  {
+   "type": "trade-ship",
+   "icon": "ui/icons/races/common/units/trade_ship"
+  },
+  {
+   "type": "fishing-boat",
+   "icon": "ui/icons/races/common/units/fishing_boat"
+  },
+  {
+   "type": "transport-ship",
+   "icon": "ui/icons/races/common/units/transport"
+  },
+  {
+   "type": "demolition-ship",
+   "icon": "ui/icons/races/common/units/fireship"
+  },
+  {
+   "type": "galley",
+   "icon": "ui/icons/races/common/units/war_galley"
+  },
+  {
+   "type": "hulk",
+   "icon": "ui/icons/races/common/units/warship"
+  },
+  {
+   "type": "carrack",
+   "icon": "ui/icons/races/common/units/warship"
+  },
+  {
+   "type": "mounted-villager",
+   "icon": "ui/icons/races/common/units/villager"
+  },
+  {
+   "type": "longbowman",
+   "icon": "ui/icons/races/common/units/archer_3"
+  },
+  {
+   "type": "great-bombard",
+   "icon": "ui/icons/races/common/units/bombard"
+  },
+  {
+   "type": "mangudai",
+   "icon": "ui/icons/races/common/units/horsearcher"
+  },
+  {
+   "type": "janissary",
+   "icon": "ui/icons/races/common/units/handcannon"
+  }
+ ],
+ "buildings": [
+  {
+   "type": "town-center",
+   "icon": "ui/icons/races/common/buildings/town_center"
+  },
+  {
+   "type": "house",
+   "icon": "ui/icons/races/common/buildings/house"
+  },
+  {
+   "type": "barracks",
+   "icon": "ui/icons/races/common/buildings/barracks"
+  },
+  {
+   "type": "archery-range",
+   "icon": "ui/icons/races/common/buildings/archery_range"
+  },
+  {
+   "type": "stable",
+   "icon": "ui/icons/races/common/buildings/stable"
+  },
+  {
+   "type": "blacksmith",
+   "icon": "ui/icons/races/common/buildings/blacksmith"
+  },
+  {
+   "type": "market",
+   "icon": "ui/icons/races/common/buildings/market"
+  },
+  {
+   "type": "monastery",
+   "icon": "ui/icons/races/common/buildings/monastery"
+  },
+  {
+   "type": "university",
+   "icon": "ui/icons/races/common/buildings/university"
+  },
+  {
+   "type": "keep",
+   "icon": "ui/icons/races/common/buildings/keep"
+  },
+  {
+   "type": "tower",
+   "icon": "ui/icons/races/common/buildings/tower"
+  },
+  {
+   "type": "dock",
+   "icon": "ui/icons/races/common/buildings/dock"
+  },
+  {
+   "type": "siege-workshop",
+   "icon": "ui/icons/races/common/buildings/siege_workshop"
+  },
+  {
+   "type": "lumber-camp",
+   "icon": "ui/icons/races/common/buildings/lumber_camp"
+  },
+  {
+   "type": "mill",
+   "icon": "ui/icons/races/common/buildings/gristmill"
+  },
+  {
+   "type": "mining-camp",
+   "icon": "ui/icons/races/common/buildings/gold_mining_camp"
+  },
+  {
+   "type": "farm",
+   "icon": "ui/icons/races/common/buildings/wheat_field"
+  },
+  {
+   "type": "wall-stone",
+   "icon": "ui/icons/races/common/buildings/stone_wall"
+  },
+  {
+   "type": "wall-wood",
+   "icon": "ui/icons/races/common/buildings/palisade_wall"
+  },
+  {
+   "type": "gate",
+   "icon": "ui/icons/races/common/buildings/stone_gate"
+  },
+  {
+   "type": "toll-outpost",
+   "icon": "ui/icons/races/common/buildings/outpost"
+  },
+  {
+   "type": "fortress",
+   "icon": "ui/icons/races/common/buildings/keep"
+  },
+  {
+   "type": "military-school",
+   "icon": "ui/icons/races/common/buildings/barracks"
+  },
+  {
+   "type": "mercenary-house",
+   "icon": "ui/icons/races/common/buildings/barracks"
+  },
+  {
+   "type": "war-stable",
+   "icon": "ui/icons/races/common/buildings/stable"
+  },
+  {
+   "type": "machine-workshop",
+   "icon": "ui/icons/races/common/buildings/arsenal"
+  },
+  {
+   "type": "varangian-arsenal",
+   "icon": "ui/icons/races/common/buildings/arsenal"
+  },
+  {
+   "type": "wonder",
+   "icon": "ui/icons/races/common/buildings/keep"
+  },
+  {
+   "type": "hunting-cabin",
+   "icon": "ui/icons/races/common/buildings/lumber_camp"
+  },
+  {
+   "type": "pasture",
+   "icon": "ui/icons/races/common/buildings/wheat_field"
+  },
+  {
+   "type": "pit-mine",
+   "icon": "ui/icons/races/common/buildings/gold_mining_camp"
+  },
+  {
+   "type": "ovoo",
+   "icon": "ui/icons/races/common/buildings/holy_site"
+  }
+ ],
+ "resources": [
+  {
+   "type": "food",
+   "icon": "ui/icons/resources/resource_food_icon"
+  },
+  {
+   "type": "wood",
+   "icon": "ui/icons/resources/resource_wood_icon"
+  },
+  {
+   "type": "gold",
+   "icon": "ui/icons/resources/resource_gold_icon"
+  },
+  {
+   "type": "stone",
+   "icon": "ui/icons/resources/resource_stone_icon"
+  },
+  {
+   "type": "population",
+   "icon": "ui/icons/resources/resource_popcap_icon"
+  },
+  {
+   "type": "idle_villager",
+   "icon": "ui/icons/resources/resource_idle_villager"
+  },
+  {
+   "type": "villager",
+   "icon": "ui/icons/resources/resource_villager"
+  },
+  {
+   "type": "military",
+   "icon": "ui/icons/resources/resource_military"
+  },
+  {
+   "type": "popcap_warning",
+   "icon": "ui/icons/resources/resource_popcap_warning"
+  },
+  {
+   "type": "food_low",
+   "icon": "ui/icons/resources/resource_food_icon_insufficient"
+  },
+  {
+   "type": "wood_low",
+   "icon": "ui/icons/resources/resource_wood_icon_insufficient"
+  },
+  {
+   "type": "gold_low",
+   "icon": "ui/icons/resources/resource_gold_icon_insufficient"
+  },
+  {
+   "type": "stone_low",
+   "icon": "ui/icons/resources/resource_stone_icon_insufficient"
+  }
+ ],
+ "ages": [
+  {
+   "type": "1",
+   "icon": "ui/icons/hud/age/age_display_persistent_1"
+  },
+  {
+   "type": "2",
+   "icon": "ui/icons/hud/age/age_display_persistent_2"
+  },
+  {
+   "type": "3",
+   "icon": "ui/icons/hud/age/age_display_persistent_3"
+  },
+  {
+   "type": "4",
+   "icon": "ui/icons/hud/age/age_display_persistent_4"
+  }
+ ],
+ "civs": [
+  {
+   "type": "ottomans",
+   "icon": "ui/icons/civ/civ_icon_small_ottoman"
+  },
+  {
+   "type": "french",
+   "icon": "ui/icons/civ/civ_icon_small_french"
+  },
+  {
+   "type": "mongols",
+   "icon": "ui/icons/civ/civ_icon_small_mongols"
+  },
+  {
+   "type": "chinese",
+   "icon": "ui/icons/civ/civ_icon_small_chinese"
+  },
+  {
+   "type": "rus",
+   "icon": "ui/icons/civ/civ_icon_small_rus"
+  },
+  {
+   "type": "holy_roman_empire",
+   "icon": "ui/icons/civ/civ_icon_small_historic_hre"
+  },
+  {
+   "type": "abbasid",
+   "icon": "ui/icons/civ/civ_icon_small_abbasid"
+  },
+  {
+   "type": "malians",
+   "icon": "ui/icons/civ/civ_icon_small_malian"
+  },
+  {
+   "type": "byzantines",
+   "icon": "ui/icons/civ/civ_icon_small_byzantine"
+  },
+  {
+   "type": "japanese",
+   "icon": "ui/icons/civ/civ_icon_small_japanese"
+  },
+  {
+   "type": "knights_templar",
+   "icon": "ui/icons/civ/civ_icon_small_knights_templar"
+  },
+  {
+   "type": "house_of_lancaster",
+   "icon": "ui/icons/civ/civ_icon_small_house_of_lancaster"
+  }
+ ]
+}

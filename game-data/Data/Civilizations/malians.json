@@ -1,0 +1,131 @@
+{
+  "id": "malians",
+  "nameKey": "civ.malians.name",
+  "descKey": "civ.malians.desc",
+  "colorPrimary": "#008000",
+  "colorSecondary": "#FFD700",
+  "playstyle": "gold-economy-infantry",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "cattle-herding",
+      "nameKey": "bonus.malians.cattle_herding",
+      "desc": "Cattle can be herded to the Town Center and slaughtered for large amounts of food. Cattle reproduce slowly over time."
+    },
+    {
+      "id": "farimba-aura",
+      "nameKey": "bonus.malians.farimba_aura",
+      "desc": "Farimba Garrison buildings emit an attack aura to nearby friendly units, granting +15% attack damage in range."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "mansa-quarry",
+        "nameKey": "Malians Mansa Quarry",
+        "bonus": "Stone gathering rate increased by +100%. Stone mines within 15 tiles are automatically revealed on the minimap."
+      },
+      {
+        "id": "griot-bara",
+        "nameKey": "Malians Griot Bara",
+        "bonus": "Produces Griot support units that inspire nearby units with attack and movement speed bonuses. Griots also reveal hidden enemies."
+      }
+    ],
+    "age3": [
+      {
+        "id": "grand-mosque",
+        "nameKey": "Malians Grand Mosque",
+        "bonus": "Mosques generate 1.5x gold income from garrisoned Scholars. Each mosque can garrison 2 additional Scholars."
+      },
+      {
+        "id": "farimba-garrison",
+        "nameKey": "Malians Farimba Garrison",
+        "bonus": "Emits a powerful attack aura buffing all nearby friendly units by +20% attack damage. Can garrison cavalry for enhanced aura."
+      }
+    ],
+    "age4": [
+      {
+        "id": "fort-of-the-huntress",
+        "nameKey": "Malians Fort of the Huntress",
+        "bonus": "Spawns Huntress units periodically. Huntresses are elite archers that can camouflage in forests and deal bonus damage to cavalry."
+      },
+      {
+        "id": "wasulu-empire",
+        "nameKey": "Malians Wasulu Empire",
+        "bonus": "Villages no longer count against population cap. Each Village produces a free Donso unit upon construction."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "musofaba",
+      "age": 2,
+      "cost": { "food": 100, "gold": 30 },
+      "hp": 160,
+      "attack": 16,
+      "range": 0,
+      "speed": 1.2,
+      "armorType": "medium",
+      "special": "When garrisoned in a Farimba Garrison, emits an extended attack aura to all units within range. Bonus damage to siege equipment."
+    },
+    {
+      "id": "donso",
+      "age": 1,
+      "cost": { "food": 60 },
+      "hp": 90,
+      "attack": 11,
+      "range": 4,
+      "speed": 1.15,
+      "armorType": "light",
+      "special": "Cheapest Malian combat unit. Automatically upgrades at 10 kills, gaining +20 HP, +3 attack, and bonus range. Can reach up to 3 upgrade tiers."
+    },
+    {
+      "id": "griot",
+      "age": 2,
+      "cost": { "food": 40, "gold": 30 },
+      "hp": 70,
+      "attack": 5,
+      "range": 0,
+      "speed": 1.25,
+      "armorType": "unarmored",
+      "special": "Support unit that grants nearby allies +10% attack speed and +5% movement speed. Reveals stealthed units in a 3-tile radius."
+    },
+    {
+      "id": "huntress",
+      "age": 4,
+      "cost": { "food": 80, "gold": 50 },
+      "hp": 120,
+      "attack": 28,
+      "range": 6,
+      "speed": 1.3,
+      "armorType": "light",
+      "special": "Can camouflage in forests, becoming invisible to enemy units. Bonus damage to cavalry. Produced periodically from the Fort of the Huntress."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "farima-leadership",
+      "age": 2,
+      "cost": { "food": 150, "gold": 100 },
+      "effect": "Farimba Garrison aura radius increased by 50% and attack bonus increased to +25%."
+    },
+    {
+      "id": "poisoned-arrows",
+      "age": 3,
+      "cost": { "food": 200, "gold": 150 },
+      "effect": "Donso and Huntress ranged attacks apply a poison that deals 5 damage per second for 8 seconds. Stacks up to 3 times."
+    },
+    {
+      "id": "veteran-donsos",
+      "age": 4,
+      "cost": { "food": 400, "gold": 250 },
+      "effect": "All Donso units start with 1 upgrade tier already applied. Maximum upgrade tier increased to 4."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  }
+}

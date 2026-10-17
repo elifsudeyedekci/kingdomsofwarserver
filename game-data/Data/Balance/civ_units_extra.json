@@ -1,0 +1,13 @@
+{
+  "_source": "HAND-WRITTEN PREVIEW DATA. Age of Empires IV: Raiders of the North (Vikings, Scots) releases 2026-10-29 and no official stats are published yet; only the unit names (Scots: Gallowglass, Border Reiver) were announced. All numbers below are approximations in the style of the other civilizations and WILL be replaced by the real data (add the civs to tools/aoe4/gen_civ.pl when aoe4world publishes them).",
+  "civs": {
+    "scots": {
+      "gallowglass": {"hp": 160, "attack": 13, "range": 0, "speed": 1.05, "cooldown": 1.5, "sight": 20, "cost": {"food": 100, "gold": 50}, "trainTime": 28, "armorMelee": 3, "armorRanged": 4, "isHeavy": 1, "isCavalry": 0, "bonusDamage": {"heavy": 6}, "populationCost": 1, "minAge": 3, "producer": "barracks", "art": "man-at-arms", "ages": {"4": {"hp": 200, "attack": 16, "armorMelee": 4, "armorRanged": 5, "speed": 1.05, "cooldown": 1.5, "isHeavy": 1}}},
+      "border-reiver": {"hp": 120, "attack": 9, "range": 0, "speed": 1.7, "cooldown": 1.25, "sight": 22, "cost": {"food": 80, "gold": 40}, "trainTime": 25, "armorMelee": 1, "armorRanged": 1, "isHeavy": 0, "isCavalry": 1, "populationCost": 1, "minAge": 2, "producer": "stable", "art": "horseman", "ages": {"3": {"hp": 150, "attack": 11, "armorMelee": 1, "armorRanged": 2, "speed": 1.7, "cooldown": 1.25, "isHeavy": 0}, "4": {"hp": 180, "attack": 13, "armorMelee": 2, "armorRanged": 3, "speed": 1.7, "cooldown": 1.25, "isHeavy": 0}}}
+    },
+    "vikings": {
+      "huskarl": {"hp": 140, "attack": 11, "range": 0, "speed": 1.15, "cooldown": 1.5, "sight": 20, "cost": {"food": 90, "gold": 30}, "trainTime": 25, "armorMelee": 2, "armorRanged": 6, "isHeavy": 0, "isCavalry": 0, "populationCost": 1, "minAge": 2, "producer": "barracks", "art": "man-at-arms", "ages": {"3": {"hp": 170, "attack": 13, "armorMelee": 3, "armorRanged": 7, "speed": 1.15, "cooldown": 1.5, "isHeavy": 0}, "4": {"hp": 200, "attack": 15, "armorMelee": 4, "armorRanged": 8, "speed": 1.15, "cooldown": 1.5, "isHeavy": 0}}},
+      "berserker": {"hp": 100, "attack": 16, "range": 0, "speed": 1.3, "cooldown": 1.25, "sight": 20, "cost": {"food": 80, "gold": 50}, "trainTime": 28, "armorMelee": 0, "armorRanged": 0, "isHeavy": 0, "isCavalry": 0, "populationCost": 1, "minAge": 3, "producer": "barracks", "art": "spearman", "ages": {"4": {"hp": 125, "attack": 19, "armorMelee": 1, "armorRanged": 1, "speed": 1.3, "cooldown": 1.25, "isHeavy": 0}}}
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0c0a09"/>
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1917;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0c0a09;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative border -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.3"/>
+  <rect x="50" y="50" width="1100" height="530" fill="none" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.15"/>
+
+  <!-- Corner decorations -->
+  <polygon points="40,40 100,40 40,100" fill="#f59e0b" fill-opacity="0.2"/>
+  <polygon points="1160,40 1100,40 1160,100" fill="#f59e0b" fill-opacity="0.2"/>
+  <polygon points="40,590 100,590 40,530" fill="#f59e0b" fill-opacity="0.2"/>
+  <polygon points="1160,590 1100,590 1160,530" fill="#f59e0b" fill-opacity="0.2"/>
+
+  <!-- Crown icon (simplified) -->
+  <g transform="translate(540, 140)">
+    <polygon points="60,0 120,60 100,80 60,40 20,80 0,60" fill="url(#gold)" opacity="0.9"/>
+    <rect x="0" y="80" width="120" height="20" rx="4" fill="url(#gold)" opacity="0.9"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="330" font-family="Georgia, serif" font-size="72" font-weight="bold"
+        fill="white" text-anchor="middle" letter-spacing="4">
+    KINGDOMS
+  </text>
+  <text x="600" y="395" font-family="Georgia, serif" font-size="52" font-weight="normal"
+        fill="url(#gold)" text-anchor="middle" letter-spacing="8">
+    OF WAR
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="455" font-family="Arial, sans-serif" font-size="22" font-weight="normal"
+        fill="#a8a29e" text-anchor="middle" letter-spacing="2">
+    Command. Conquer. Dominate.
+  </text>
+
+  <!-- Genre tag -->
+  <rect x="500" y="490" width="200" height="36" rx="18" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="600" y="514" font-family="Arial, sans-serif" font-size="14"
+        fill="#f59e0b" text-anchor="middle" letter-spacing="3">
+    MOBILE RTS
+  </text>
+</svg>

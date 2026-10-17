@@ -1,0 +1,9 @@
+{
+  "source": "ReferenceAttributes map_gen/map_gen_size (CONFIRMED): 416 up to 2 players, 512 up to 4, 640 up to 6, 768 up to 8. World units; 2 units = one sim tile.",
+  "sizes": [
+    { "maxPlayers": 2, "size": 416 },
+    { "maxPlayers": 4, "size": 512 },
+    { "maxPlayers": 6, "size": 640 },
+    { "maxPlayers": 99, "size": 768 }
+  ]
+}

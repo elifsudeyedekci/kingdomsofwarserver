@@ -1,0 +1,20 @@
+# Node / Next.js / NestJS
+node_modules/
+.next/
+out/
+dist/
+*.log
+npm-debug.log*
+
+# Env files (keep .env.example, ignore real ones)
+.env
+.env.local
+.env.*.local
+
+# deployment secrets and server-side backups
+deploy/contabo/.env.production
+deploy/contabo/backups/
+
+# OS
+.DS_Store
+Thumbs.db

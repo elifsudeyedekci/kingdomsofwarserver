@@ -1,0 +1,6 @@
+{
+  "id": "vikings", "nameKey": "civ.vikings.name", "descKey": "civ.vikings.desc", "colorPrimary": "#2F5F8F", "colorSecondary": "#D9C9A0",
+  "playstyle": "preview", "startingUnits": ["villager", "villager", "villager", "scout"], "startingBuildings": ["town-center"],
+  "passiveBonuses": [], "landmarks": {}, "uniqueUnits": [], "uniqueTech": [],
+  "ageUpCosts": { "age2": { "food": 400 }, "age3": { "food": 800, "gold": 200 }, "age4": { "food": 1200, "gold": 600 } }
+}

@@ -1,0 +1,100 @@
+{
+  "tickRate": 20,
+  "timeoutTicks": 108000,
+  "timeoutSeconds": 5400,
+  "timeoutMinutes": 90,
+  "conditions": {
+    "conquest": {
+      "enabled": true,
+      "description": "Eliminate all enemy town centers",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 1,
+      "targetBuilding": "town-center",
+      "eliminationTrigger": "all_enemy_town_centers_destroyed",
+      "allowsResignation": true
+    },
+    "sacred_sites": {
+      "enabled": true,
+      "description": "Control all sacred sites simultaneously for 10 minutes",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 12000,
+      "winningDurationSeconds": 600,
+      "winningDurationMinutes": 10,
+      "requiresAllSites": true,
+      "controlRadiusTiles": 3,
+      "captureTimeSeconds": 60,
+      "lossOfControlResetsTimer": true
+    },
+    "wonder": {
+      "enabled": true,
+      "description": "Build and defend a Wonder for 15 minutes",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 18000,
+      "winningDurationSeconds": 900,
+      "winningDurationMinutes": 15,
+      "wonderBuildCost": {"wood": 1000, "stone": 1000, "gold": 1000},
+      "wonderBuildTimeSeconds": 300,
+      "wonderHp": 8000,
+      "destroyingWonderResetsTimer": true,
+      "canBuildMultipleWonders": false
+    },
+    "relics": {
+      "enabled": true,
+      "description": "Collect all relics and hold them in a monastery for 10 minutes",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 12000,
+      "winningDurationSeconds": 600,
+      "winningDurationMinutes": 10,
+      "requiresAllRelics": true,
+      "storageBuilding": "monastery",
+      "relicCarrierUnit": "monk",
+      "capturingRelicFromMonasteryAllowed": true,
+      "lossOfRelicResetsTimer": true
+    },
+    "score": {
+      "enabled": false,
+      "description": "Highest score at time limit wins",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 0,
+      "timeLimitTicks": 72000,
+      "timeLimitMinutes": 60,
+      "scoreWeights": {
+        "unitsKilled": 1,
+        "buildingsDestroyed": 5,
+        "resourcesGathered": 0.01,
+        "technologiesResearched": 10,
+        "sacredSitesHeld": 50
+      },
+      "tieBreaker": "military_units_alive"
+    },
+    "sudden_death": {
+      "enabled": false,
+      "description": "First player to lose their town center is eliminated; last player standing wins (FFA)",
+      "checkIntervalTicks": 20,
+      "winningTicksRequired": 1,
+      "eliminationTrigger": "town_center_destroyed",
+      "gracePeriodTicks": 600,
+      "gracePeriodSeconds": 30
+    }
+  },
+  "surrenderConditions": {
+    "allowSurrender": true,
+    "minimumGameTimeTicks": 1200,
+    "minimumGameTimeSeconds": 60,
+    "teamSurrenderRequiresAllPlayers": true
+  },
+  "drawConditions": {
+    "allowDraw": true,
+    "triggers": [
+      "timeout_with_no_winner",
+      "all_players_resign_simultaneously"
+    ],
+    "mutualAgreementAllowed": true,
+    "mutualAgreementMinimumGameTimeTicks": 6000,
+    "mutualAgreementMinimumGameTimeSeconds": 300
+  },
+  "victoryAnnouncement": {
+    "delayTicksAfterConditionMet": 100,
+    "delaySeconds": 5
+  }
+}

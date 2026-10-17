@@ -1,0 +1,411 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        default: staging
+        type: choice
+        options: [staging, production]
+      deploy_target:
+        description: Deploy platform
+        required: true
+        default: k8s
+        type: choice
+        options: [k8s, ecs, swarm]
+      force_deploy:
+        description: Skip smoke-test gate
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ghcr.io/${{ github.repository }}
+  BACKEND_STAGING_URL: https://staging-api.kingdoms-of-war.com
+  BACKEND_PROD_URL: https://api.kingdoms-of-war.com
+  PANEL_STAGING_URL: https://staging-admin.kingdoms-of-war.com
+  PANEL_PROD_URL: https://admin.kingdoms-of-war.com
+  LANDING_STAGING_URL: https://staging.kingdoms-of-war.com
+  LANDING_PROD_URL: https://kingdoms-of-war.com
+
+jobs:
+  # ── 1. Build & push Docker images ─────────────────────────────────────────
+  build-and-push:
+    name: Build & Push Images
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image_tag: ${{ github.sha }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push admin-backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./admin-backend
+          file: ./admin-backend/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_PREFIX }}/admin-backend:${{ github.sha }}
+            ${{ env.IMAGE_PREFIX }}/admin-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & push admin-panel
+        uses: docker/build-push-action@v5
+        with:
+          context: ./admin-panel
+          file: ./admin-panel/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_PREFIX }}/admin-panel:${{ github.sha }}
+            ${{ env.IMAGE_PREFIX }}/admin-panel:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & push landing-website
+        uses: docker/build-push-action@v5
+        with:
+          context: ./landing-website
+          file: ./landing-website/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_PREFIX }}/landing-website:${{ github.sha }}
+            ${{ env.IMAGE_PREFIX }}/landing-website:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ── 2a. Deploy Staging — Kubernetes ──────────────────────────────────────
+  deploy-staging-k8s:
+    name: Deploy → Staging (K8s)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_dispatch' || inputs.deploy_target == 'k8s')
+    environment:
+      name: staging
+      url: ${{ env.BACKEND_STAGING_URL }}
+
+    steps:
+      - name: Configure kubectl (staging)
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_STAGING }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Roll out new images
+        run: |
+          SHA=${{ github.sha }}
+          NS=kingdoms-of-war
+          for SVC in admin-backend admin-panel landing-website; do
+            kubectl set image deployment/${SVC} ${SVC}=${{ env.IMAGE_PREFIX }}/${SVC}:${SHA} -n ${NS}
+          done
+
+      - name: Wait for rollouts
+        run: |
+          NS=kingdoms-of-war
+          for SVC in admin-backend admin-panel landing-website; do
+            echo "Waiting for ${SVC}…"
+            kubectl rollout status deployment/${SVC} -n ${NS} --timeout=300s
+          done
+
+      - name: Smoke test — staging
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_STAGING_URL }}
+          PANEL_URL: ${{ env.PANEL_STAGING_URL }}
+          LANDING_URL: ${{ env.LANDING_STAGING_URL }}
+        run: bash scripts/smoke-test.sh staging || {
+          echo "::error::Smoke test failed — rolling back staging"
+          kubectl rollout undo deployment/admin-backend -n kingdoms-of-war
+          kubectl rollout undo deployment/admin-panel   -n kingdoms-of-war
+          exit 1
+        }
+
+  # ── 2b. Deploy Staging — AWS ECS ─────────────────────────────────────────
+  deploy-staging-ecs:
+    name: Deploy → Staging (ECS)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' && inputs.deploy_target == 'ecs'
+    environment:
+      name: staging
+      url: ${{ env.BACKEND_STAGING_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to ECS (staging)
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          ECS_CLUSTER: kingdoms-of-war-staging
+          ECS_REGION: ${{ secrets.AWS_REGION }}
+          IMAGE_PREFIX: ${{ env.IMAGE_PREFIX }}
+        run: bash scripts/deploy-ecs.sh staging
+
+      - name: Smoke test — staging (ECS)
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_STAGING_URL }}
+          PANEL_URL: ${{ env.PANEL_STAGING_URL }}
+          LANDING_URL: ${{ env.LANDING_STAGING_URL }}
+        run: bash scripts/smoke-test.sh staging
+
+  # ── 2c. Deploy Staging — Docker Swarm ────────────────────────────────────
+  deploy-staging-swarm:
+    name: Deploy → Staging (Swarm)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' && inputs.deploy_target == 'swarm'
+    environment:
+      name: staging
+      url: ${{ env.BACKEND_STAGING_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via Docker Swarm (staging)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SWARM_HOST_STAGING }}
+          username: ${{ secrets.SWARM_USER }}
+          key: ${{ secrets.SWARM_SSH_KEY }}
+          script: |
+            export IMAGE_TAG=${{ github.sha }}
+            export IMAGE_PREFIX=${{ env.IMAGE_PREFIX }}
+            export REGISTRY_USER=${{ github.actor }}
+            export REGISTRY_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            bash /opt/kingdoms-of-war/scripts/deploy-swarm.sh staging
+
+      - name: Smoke test — staging (Swarm)
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_STAGING_URL }}
+          PANEL_URL: ${{ env.PANEL_STAGING_URL }}
+          LANDING_URL: ${{ env.LANDING_STAGING_URL }}
+        run: bash scripts/smoke-test.sh staging
+
+  # ── 3a. Deploy Production — Kubernetes ───────────────────────────────────
+  deploy-production-k8s:
+    name: Deploy → Production (K8s)
+    needs: deploy-staging-k8s
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_dispatch' || inputs.deploy_target == 'k8s')
+    environment:
+      name: production
+      url: ${{ env.BACKEND_PROD_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure kubectl (production)
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_PROD }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Roll out new images
+        run: |
+          SHA=${{ github.sha }}
+          NS=kingdoms-of-war
+          for SVC in admin-backend admin-panel landing-website; do
+            kubectl set image deployment/${SVC} ${SVC}=${{ env.IMAGE_PREFIX }}/${SVC}:${SHA} -n ${NS}
+          done
+
+      - name: Wait for rollouts
+        run: |
+          NS=kingdoms-of-war
+          for SVC in admin-backend admin-panel landing-website; do
+            echo "Waiting for ${SVC}…"
+            kubectl rollout status deployment/${SVC} -n ${NS} --timeout=600s
+          done
+
+      - name: Smoke test — production
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_PROD_URL }}
+          PANEL_URL: ${{ env.PANEL_PROD_URL }}
+          LANDING_URL: ${{ env.LANDING_PROD_URL }}
+        run: bash scripts/smoke-test.sh production || {
+          echo "::error::Production smoke test FAILED — initiating rollback"
+          NS=kingdoms-of-war
+          for SVC in admin-backend admin-panel landing-website; do
+            kubectl rollout undo deployment/${SVC} -n ${NS}
+          done
+          kubectl rollout status deployment/admin-backend -n ${NS} --timeout=300s
+          exit 1
+        }
+
+      - name: Notify Slack — success
+        if: success()
+        run: |
+          curl --silent -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "attachments": [{
+                "color": "good",
+                "text": "*✅ Production deploy succeeded* — <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|`${{ github.sha }}`> by ${{ github.actor }}"
+              }]
+            }'
+
+      - name: Notify Slack — failure
+        if: failure()
+        run: |
+          curl --silent -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "attachments": [{
+                "color": "danger",
+                "text": "*🚨 Production deploy FAILED + rolled back* — <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|`${{ github.sha }}`> by ${{ github.actor }}"
+              }]
+            }'
+
+  # ── 3b. Deploy Production — AWS ECS ──────────────────────────────────────
+  deploy-production-ecs:
+    name: Deploy → Production (ECS)
+    needs: deploy-staging-ecs
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' && inputs.deploy_target == 'ecs'
+    environment:
+      name: production
+      url: ${{ env.BACKEND_PROD_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy to ECS (production)
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          ECS_CLUSTER: kingdoms-of-war-production
+          ECS_REGION: ${{ secrets.AWS_REGION }}
+          IMAGE_PREFIX: ${{ env.IMAGE_PREFIX }}
+        run: bash scripts/deploy-ecs.sh production
+
+      - name: Smoke test — production (ECS)
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_PROD_URL }}
+          PANEL_URL: ${{ env.PANEL_PROD_URL }}
+          LANDING_URL: ${{ env.LANDING_PROD_URL }}
+        run: bash scripts/smoke-test.sh production || {
+          echo "::error::Production smoke test FAILED — rolling back ECS services"
+          bash scripts/deploy-ecs.sh production rollback
+          exit 1
+        }
+
+      - name: Notify Slack
+        if: always()
+        run: |
+          STATUS=${{ job.status }}
+          COLOR=$([ "$STATUS" = "success" ] && echo "good" || echo "danger")
+          ICON=$([ "$STATUS" = "success" ] && echo "✅" || echo "🚨")
+          curl --silent -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"attachments\": [{
+                \"color\": \"${COLOR}\",
+                \"text\": \"*${ICON} Production ECS deploy ${STATUS}* — <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|\`${{ github.sha }}\`> by ${{ github.actor }}\"
+              }]
+            }"
+
+  # ── 3c. Deploy Production — Docker Swarm ─────────────────────────────────
+  deploy-production-swarm:
+    name: Deploy → Production (Swarm)
+    needs: deploy-staging-swarm
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' && inputs.deploy_target == 'swarm'
+    environment:
+      name: production
+      url: ${{ env.BACKEND_PROD_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via Docker Swarm (production)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SWARM_HOST_PROD }}
+          username: ${{ secrets.SWARM_USER }}
+          key: ${{ secrets.SWARM_SSH_KEY }}
+          script: |
+            export IMAGE_TAG=${{ github.sha }}
+            export IMAGE_PREFIX=${{ env.IMAGE_PREFIX }}
+            export REGISTRY_USER=${{ github.actor }}
+            export REGISTRY_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            bash /opt/kingdoms-of-war/scripts/deploy-swarm.sh production
+
+      - name: Smoke test — production (Swarm)
+        if: ${{ !inputs.force_deploy }}
+        env:
+          BACKEND_URL: ${{ env.BACKEND_PROD_URL }}
+          PANEL_URL: ${{ env.PANEL_PROD_URL }}
+          LANDING_URL: ${{ env.LANDING_PROD_URL }}
+        run: bash scripts/smoke-test.sh production
+
+      - name: Notify Slack
+        if: always()
+        run: |
+          STATUS=${{ job.status }}
+          COLOR=$([ "$STATUS" = "success" ] && echo "good" || echo "danger")
+          ICON=$([ "$STATUS" = "success" ] && echo "✅" || echo "🚨")
+          curl --silent -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"attachments\": [{
+                \"color\": \"${COLOR}\",
+                \"text\": \"*${ICON} Production Swarm deploy ${STATUS}* — <https://github.com/${{ github.repository }}/commit/${{ github.sha }}|\`${{ github.sha }}\`> by ${{ github.actor }}\"
+              }]
+            }"

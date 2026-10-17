@@ -1,0 +1,141 @@
+{
+  "id": "french",
+  "nameKey": "civ.french.name",
+  "descKey": "civ.french.desc",
+  "colorPrimary": "#002395",
+  "colorSecondary": "#ED2939",
+  "playstyle": "aggressive-cavalry",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "economic-tech-discount",
+      "nameKey": "bonus.economic-tech-discount",
+      "desc": "All economic technologies cost 30% less to research, enabling faster economic development and allowing the French to invest saved resources into military"
+    },
+    {
+      "id": "royal-knights-age1",
+      "nameKey": "bonus.royal-knights-age1",
+      "desc": "Royal Knights are available one age earlier than standard knights for other civilizations, providing early cavalry pressure"
+    },
+    {
+      "id": "cavalry-charge-bonus",
+      "nameKey": "bonus.cavalry-charge-bonus",
+      "desc": "All cavalry units deal +30% bonus damage on initial charge attack when engaging from a distance of 5 or more tiles"
+    },
+    {
+      "id": "influence-economy",
+      "nameKey": "bonus.influence-economy",
+      "desc": "Buildings constructed near the Town Center or Keeps generate an Influence bonus that increases the gold generation rate of nearby trade buildings by 10%"
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "school-of-cavalry",
+        "nameKey": "landmark.school-of-cavalry",
+        "bonus": "All cavalry units train 40% faster globally. Unlocks the Companion Cavalry technology that provides a free squire (light cavalry) whenever a Royal Knight is trained"
+      },
+      {
+        "id": "royal-institute",
+        "nameKey": "landmark.royal-institute",
+        "bonus": "All economic and military technologies cost an additional 25% less (stacks with the base economic discount). Researching a technology triggers a 30-second productivity boost to nearby villagers"
+      }
+    ],
+    "age3": [
+      {
+        "id": "college-of-artillery",
+        "nameKey": "landmark.college-of-artillery",
+        "bonus": "Unlocks Ribauldequin (multi-barrel cannon) earlier than standard. All gunpowder units are trained 25% faster and gain +10% projectile speed"
+      },
+      {
+        "id": "red-palace",
+        "nameKey": "landmark.red-palace",
+        "bonus": "Fortified palace that acts as an additional Town Center. Generates 0.5 gold per second and allows training of all Age 3 cavalry units without a separate Stable"
+      }
+    ],
+    "age4": [
+      {
+        "id": "palace-of-the-bastille",
+        "nameKey": "landmark.palace-of-the-bastille",
+        "bonus": "Massive fortress that trains all unit types and provides a garrison capacity of 50. Emits an influence aura that provides +20% attack speed to all units within 15 tiles"
+      },
+      {
+        "id": "guild-hall",
+        "nameKey": "landmark.guild-hall",
+        "bonus": "Generates resources based on the number of unique building types constructed: +1 food, gold, and wood per second per 5 distinct building types. Encourages diverse base building"
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "royal-knight",
+      "age": 1,
+      "cost": {"food": 120, "gold": 60},
+      "hp": 200,
+      "attack": 22,
+      "range": 0,
+      "speed": 1.6,
+      "armorType": "heavy",
+      "special": "Available from Age 1 (Dark Age). Deals +30% bonus charge damage. Can be upgraded to Veteran Royal Knight and Elite Royal Knight. Inspires nearby cavalry units with +10% speed aura"
+    },
+    {
+      "id": "arbaletrier",
+      "age": 2,
+      "cost": {"food": 70, "gold": 30},
+      "hp": 80,
+      "attack": 13,
+      "range": 5,
+      "speed": 1.15,
+      "armorType": "light",
+      "special": "Elite French crossbowman. Has a Pavise ability that deploys a shield granting +5 armor while stationary. Deals bonus damage to heavy infantry"
+    },
+    {
+      "id": "ribauldequin",
+      "age": 3,
+      "cost": {"food": 0, "gold": 300, "wood": 100},
+      "hp": 120,
+      "attack": 35,
+      "range": 4,
+      "speed": 0.6,
+      "armorType": "siege",
+      "special": "Multi-barrel organ gun that fires a spread of 5 bolts simultaneously in a cone. Devastating against massed infantry. Very slow movement speed and requires a crew of 2 to operate"
+    },
+    {
+      "id": "knight-of-the-order",
+      "age": 4,
+      "cost": {"food": 160, "gold": 100},
+      "hp": 300,
+      "attack": 32,
+      "range": 0,
+      "speed": 1.5,
+      "armorType": "heavy",
+      "special": "Elite cavalry champion available only in Age 4. Immune to negative auras. Every 5th attack triggers a Rally Cry that grants all nearby cavalry +25% attack speed for 8 seconds"
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "chivalry",
+      "age": 2,
+      "cost": {"food": 100, "gold": 75},
+      "effect": "Stables generate 1 food per second and Royal Knights regenerate 2 HP per second passively out of combat, reflecting the disciplined French knight culture"
+    },
+    {
+      "id": "cantled-saddles",
+      "age": 3,
+      "cost": {"food": 150, "gold": 100},
+      "effect": "All cavalry units gain +15% HP and a charge distance of +2 tiles. Increases the bonus damage window for the Cavalry Charge passive"
+    },
+    {
+      "id": "ordinance-company",
+      "age": 4,
+      "cost": {"gold": 400, "food": 200},
+      "effect": "All French military units are considered 'standing army' and gain +10% attack and +5% move speed. Additionally reduces cavalry training cost by 20%"
+    }
+  ],
+  "ageUpCosts": {
+    "age2": {"food": 400},
+    "age3": {"food": 800, "gold": 200},
+    "age4": {"food": 1200, "gold": 600}
+  }
+}

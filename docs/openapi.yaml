@@ -1,0 +1,2534 @@
+openapi: 3.0.3
+info:
+  title: Kingdoms of War Admin API
+  description: Admin backend API for the Kingdoms of War mobile RTS game
+  version: 1.0.0
+  contact:
+    email: admin@kingdoms-of-war.com
+
+servers:
+  - url: http://localhost:3001
+    description: Local development
+  - url: https://staging-api.kingdoms-of-war.com
+    description: Staging
+  - url: https://api.kingdoms-of-war.com
+    description: Production
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: auth
+    description: Authentication — register, login, token refresh, logout
+  - name: player
+    description: Player profile and match history
+  - name: match
+    description: Match lifecycle — create, start, record result, abandon
+  - name: store
+    description: Store products and player currency wallets
+  - name: tournament
+    description: Tournaments, leaderboard entries and promotion series
+  - name: leaderboard
+    description: Global and season leaderboards
+  - name: clan
+    description: Clan management, membership and clan wars
+  - name: health
+    description: Service health check
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # ── Common ────────────────────────────────────────────────────────────────
+
+    PaginatedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: {}
+        total:
+          type: integer
+          example: 142
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 20
+
+    Error:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Validation failed
+        error:
+          type: string
+          example: Bad Request
+
+    # ── Auth ─────────────────────────────────────────────────────────────────
+
+    RegisterDto:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+          minLength: 3
+          maxLength: 20
+          pattern: '^[a-zA-Z0-9_]+$'
+          example: warrior99
+        email:
+          type: string
+          format: email
+          example: warrior@example.com
+        password:
+          type: string
+          minLength: 8
+          maxLength: 64
+          example: Str0ng!Pass
+
+    LoginDto:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: warrior@example.com
+        password:
+          type: string
+          example: Str0ng!Pass
+
+    RefreshTokenDto:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        expiresIn:
+          type: integer
+          description: Access token lifetime in seconds
+          example: 900
+
+    # ── Player ───────────────────────────────────────────────────────────────
+
+    PlayerProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        username:
+          type: string
+          example: warrior99
+        displayName:
+          type: string
+          example: The Iron Warrior
+        avatarUrl:
+          type: string
+          nullable: true
+          example: https://cdn.example.com/avatars/warrior.png
+        favoriteCivId:
+          type: string
+          nullable: true
+          example: english
+        createdAt:
+          type: string
+          format: date-time
+
+    PlayerStats:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        mmr:
+          type: integer
+          example: 1450
+        wins:
+          type: integer
+          example: 42
+        losses:
+          type: integer
+          example: 18
+        winRate:
+          type: number
+          format: float
+          example: 0.70
+
+    UpdateProfileDto:
+      type: object
+      properties:
+        displayName:
+          type: string
+          maxLength: 40
+          example: The Iron Warrior
+        avatarUrl:
+          type: string
+          example: https://cdn.example.com/avatars/warrior.png
+        favoriteCivId:
+          type: string
+          example: english
+
+    # ── Match ────────────────────────────────────────────────────────────────
+
+    MatchPlayerSlot:
+      type: object
+      required:
+        - userId
+        - slot
+        - teamId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        slot:
+          type: integer
+          minimum: 0
+          example: 0
+        teamId:
+          type: integer
+          minimum: 0
+          maximum: 3
+          example: 0
+        civId:
+          type: string
+          nullable: true
+          example: english
+
+    CreateMatchDto:
+      type: object
+      required:
+        - mode
+      properties:
+        mode:
+          type: string
+          enum: [RANKED_1V1, RANKED_2V2, UNRANKED, CUSTOM, TOURNAMENT]
+          example: RANKED_1V1
+        mapId:
+          type: string
+          nullable: true
+          example: map_arabia
+        seed:
+          type: string
+          nullable: true
+          example: abc123
+        region:
+          type: string
+          nullable: true
+          example: eu-west
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatchPlayerSlot'
+
+    ParticipantResult:
+      type: object
+      required:
+        - userId
+        - isWinner
+      properties:
+        userId:
+          type: string
+          format: uuid
+        isWinner:
+          type: boolean
+        placement:
+          type: integer
+          nullable: true
+          example: 1
+        surrendered:
+          type: boolean
+          nullable: true
+        disconnected:
+          type: boolean
+          nullable: true
+
+    RecordResultDto:
+      type: object
+      required:
+        - participants
+      properties:
+        victoryType:
+          type: string
+          enum: [DOMINATION, WONDER, RELIC, RESIGNATION, TIMEOUT, DISCONNECT]
+          nullable: true
+        winnerUserId:
+          type: string
+          format: uuid
+          nullable: true
+        durationTicks:
+          type: integer
+          nullable: true
+          example: 18000
+        dataHash:
+          type: string
+          nullable: true
+          description: Integrity hash of the replay/result bundle
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantResult'
+
+    Match:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        mode:
+          type: string
+          enum: [RANKED_1V1, RANKED_2V2, UNRANKED, CUSTOM, TOURNAMENT]
+        status:
+          type: string
+          enum: [WAITING, LOADING, IN_PROGRESS, COMPLETED, ABANDONED]
+        mapId:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+        endedAt:
+          type: string
+          format: date-time
+          nullable: true
+
+    # ── Store ────────────────────────────────────────────────────────────────
+
+    CreateProductDto:
+      type: object
+      required:
+        - nameKey
+        - priceUsd
+        - contents
+      properties:
+        skuAndroid:
+          type: string
+          example: com.kowgame.gems_500
+        skuIos:
+          type: string
+          example: gems_500
+        nameKey:
+          type: string
+          description: Localisation key for the product name
+          example: store.gems_500.name
+        descKey:
+          type: string
+          description: Localisation key for the product description
+          example: store.gems_500.desc
+        priceUsd:
+          type: number
+          format: float
+          minimum: 0
+          example: 4.99
+        localPrices:
+          type: object
+          additionalProperties:
+            type: number
+          example: { TR: 149.99 }
+        contents:
+          type: object
+          description: Currency/item contents granted on purchase
+          example: { gems: 500 }
+        isConsumable:
+          type: boolean
+          example: true
+        segment:
+          type: string
+          example: vip
+        countries:
+          type: array
+          items:
+            type: string
+          example: []
+        minVersion:
+          type: string
+          example: 1.0.0
+        sortOrder:
+          type: integer
+          minimum: 0
+          example: 0
+
+    StoreProduct:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nameKey:
+          type: string
+        descKey:
+          type: string
+          nullable: true
+        priceUsd:
+          type: number
+          format: float
+        isActive:
+          type: boolean
+        isConsumable:
+          type: boolean
+        contents:
+          type: object
+        sortOrder:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    PlayerWallet:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        gems:
+          type: integer
+          example: 1200
+        gold:
+          type: integer
+          example: 45000
+        updatedAt:
+          type: string
+          format: date-time
+
+    AdjustWalletDto:
+      type: object
+      required:
+        - currency
+        - amount
+        - reason
+      properties:
+        currency:
+          type: string
+          enum: [gems, gold]
+          example: gems
+        amount:
+          type: integer
+          description: Positive to credit, negative to debit
+          example: 500
+        reason:
+          type: string
+          example: manual_admin_grant
+
+    # ── Tournament ───────────────────────────────────────────────────────────
+
+    CreateTournamentDto:
+      type: object
+      required:
+        - name
+        - startAt
+        - endAt
+        - createdBy
+      properties:
+        name:
+          type: string
+          example: KoW Summer Cup 2026
+        description:
+          type: string
+          nullable: true
+          example: Ranked 1v1 bracket tournament
+        startAt:
+          type: string
+          format: date-time
+          example: '2026-07-01T00:00:00Z'
+        endAt:
+          type: string
+          format: date-time
+          example: '2026-07-15T00:00:00Z'
+        maxPlayers:
+          type: integer
+          minimum: 2
+          example: 64
+        prizePool:
+          type: object
+          nullable: true
+          example: { first: '100 USD', second: '50 USD' }
+        createdBy:
+          type: string
+          format: uuid
+          example: admin-uuid-1
+
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [upcoming, active, completed, cancelled]
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        maxPlayers:
+          type: integer
+          nullable: true
+        prizePool:
+          type: object
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+
+    UpdateTournamentStatusDto:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [upcoming, active, completed, cancelled]
+          example: active
+
+    UpsertLeaderboardEntryDto:
+      type: object
+      required:
+        - userId
+        - type
+        - score
+      properties:
+        userId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          example: season
+        seasonId:
+          type: string
+          format: uuid
+          nullable: true
+        score:
+          type: integer
+          example: 1500
+
+    # ── Leaderboard ──────────────────────────────────────────────────────────
+
+    LeaderboardEntry:
+      type: object
+      properties:
+        rank:
+          type: integer
+          example: 1
+        userId:
+          type: string
+          format: uuid
+        username:
+          type: string
+          example: warrior99
+        score:
+          type: integer
+          example: 2850
+        seasonId:
+          type: string
+          format: uuid
+          nullable: true
+        metadata:
+          type: object
+          nullable: true
+
+    UpdateScoreDto:
+      type: object
+      required:
+        - userId
+        - score
+      properties:
+        userId:
+          type: string
+          format: uuid
+        seasonId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Omit to update the global leaderboard
+        score:
+          type: integer
+          minimum: 0
+          description: Score delta to add (additive, never decreases)
+          example: 25
+        metadata:
+          type: object
+          nullable: true
+
+    # ── Clan ─────────────────────────────────────────────────────────────────
+
+    CreateClanDto:
+      type: object
+      required:
+        - name
+        - tag
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 50
+          example: Iron Legion
+        tag:
+          type: string
+          minLength: 2
+          maxLength: 5
+          example: IRON
+        description:
+          type: string
+          maxLength: 500
+          nullable: true
+          example: Competitive clan for high-MMR players
+        logoUrl:
+          type: string
+          nullable: true
+          example: https://cdn.example.com/clans/iron-legion.png
+        isOpen:
+          type: boolean
+          default: true
+        minMmr:
+          type: integer
+          minimum: 0
+          default: 0
+          example: 1200
+
+    Clan:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        tag:
+          type: string
+        description:
+          type: string
+          nullable: true
+        logoUrl:
+          type: string
+          nullable: true
+        isOpen:
+          type: boolean
+        minMmr:
+          type: integer
+        memberCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    ClanMember:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        username:
+          type: string
+        role:
+          type: string
+          enum: [member, officer, leader]
+        joinedAt:
+          type: string
+          format: date-time
+
+    AddMemberDto:
+      type: object
+      required:
+        - userId
+      properties:
+        userId:
+          type: string
+          format: uuid
+        role:
+          type: string
+          enum: [member, officer]
+          default: member
+
+    PromoteMemberDto:
+      type: object
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          enum: [member, officer, leader]
+          example: officer
+
+paths:
+  # ── Health ──────────────────────────────────────────────────────────────────
+
+  /health:
+    get:
+      operationId: health_check
+      tags: [health]
+      summary: Service health check
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  # ── Auth ────────────────────────────────────────────────────────────────────
+
+  /auth/register:
+    post:
+      operationId: auth_register
+      tags: [auth]
+      summary: Register a new player account
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDto'
+      responses:
+        '201':
+          description: Account created — returns tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Validation error or email/username already taken
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/login:
+    post:
+      operationId: auth_login
+      tags: [auth]
+      summary: Login with email and password
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Successful login — returns tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/refresh:
+    post:
+      operationId: auth_refresh
+      tags: [auth]
+      summary: Rotate refresh token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDto'
+      responses:
+        '200':
+          description: New token pair issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Refresh token invalid or expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/logout:
+    post:
+      operationId: auth_logout
+      tags: [auth]
+      summary: Invalidate refresh token
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenDto'
+      responses:
+        '204':
+          description: Logged out — no content returned
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Player ──────────────────────────────────────────────────────────────────
+
+  /player/me:
+    get:
+      operationId: player_getMe
+      tags: [player]
+      summary: Get own profile
+      responses:
+        '200':
+          description: The authenticated player's profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProfile'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: player_updateProfile
+      tags: [player]
+      summary: Update own profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileDto'
+      responses:
+        '200':
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProfile'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: player_deleteAccount
+      tags: [player]
+      summary: Soft-delete own account
+      responses:
+        '204':
+          description: Account deleted — no content
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /player/me/stats:
+    get:
+      operationId: player_getStats
+      tags: [player]
+      summary: Get own match stats
+      responses:
+        '200':
+          description: The authenticated player's win/loss stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerStats'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /player/me/matches:
+    get:
+      operationId: player_getMatchHistory
+      tags: [player]
+      summary: Get own match history (paginated)
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 50
+      responses:
+        '200':
+          description: Paginated match history
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Match'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /player/{id}:
+    get:
+      operationId: player_getById
+      tags: [player]
+      summary: Get public player profile by userId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Public player profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProfile'
+        '404':
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Match ───────────────────────────────────────────────────────────────────
+
+  /match:
+    post:
+      operationId: match_create
+      tags: [match]
+      summary: Create a new match lobby
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMatchDto'
+      responses:
+        '201':
+          description: Match created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /match/{id}:
+    get:
+      operationId: match_getById
+      tags: [match]
+      summary: Get match by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Match details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Match not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /match/{id}/start:
+    patch:
+      operationId: match_start
+      tags: [match]
+      summary: Start a match (transitions WAITING to LOADING)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Match started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Match not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /match/{id}/result:
+    patch:
+      operationId: match_recordResult
+      tags: [match]
+      summary: Record match result and update MMR
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordResultDto'
+      responses:
+        '200':
+          description: Result recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Match not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /match/{id}/abandon:
+    patch:
+      operationId: match_abandon
+      tags: [match]
+      summary: Abandon or cancel a match
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Match abandoned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Match not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Store ───────────────────────────────────────────────────────────────────
+
+  /store/products:
+    get:
+      operationId: store_getProducts
+      tags: [store]
+      summary: List store products with pagination
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: includeInactive
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Paginated product list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/StoreProduct'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: store_createProduct
+      tags: [store]
+      summary: Create a new store product (admin only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDto'
+      responses:
+        '201':
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreProduct'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /store/products/{id}:
+    get:
+      operationId: store_getProductById
+      tags: [store]
+      summary: Get a single store product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreProduct'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: store_updateProduct
+      tags: [store]
+      summary: Partially update a store product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductDto'
+      responses:
+        '200':
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreProduct'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /store/products/{id}/toggle:
+    post:
+      operationId: store_toggleProduct
+      tags: [store]
+      summary: Toggle the isActive flag of a store product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product with updated isActive flag
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreProduct'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /store/wallet/{userId}:
+    get:
+      operationId: store_getWallet
+      tags: [store]
+      summary: Get the currency wallet for a player
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Player wallet balances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerWallet'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Wallet not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /store/wallet/{userId}/adjust:
+    post:
+      operationId: store_adjustWallet
+      tags: [store]
+      summary: Credit or deduct currency from a player wallet (admin only)
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustWalletDto'
+      responses:
+        '200':
+          description: Updated wallet balances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerWallet'
+        '400':
+          description: Validation error or insufficient balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Tournament ───────────────────────────────────────────────────────────────
+
+  /tournament:
+    get:
+      operationId: tournament_list
+      tags: [tournament]
+      summary: List tournaments with optional status filter
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [upcoming, active, completed, cancelled]
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+      responses:
+        '200':
+          description: Paginated tournament list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Tournament'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: tournament_create
+      tags: [tournament]
+      summary: Create a new tournament
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTournamentDto'
+      responses:
+        '201':
+          description: Tournament created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/{id}:
+    get:
+      operationId: tournament_getById
+      tags: [tournament]
+      summary: Get tournament by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Tournament details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/{id}/status:
+    patch:
+      operationId: tournament_updateStatus
+      tags: [tournament]
+      summary: Update tournament status (e.g. upcoming to active)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTournamentStatusDto'
+      responses:
+        '200':
+          description: Tournament with updated status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '400':
+          description: Invalid status transition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/{id}/start:
+    patch:
+      operationId: tournament_start
+      tags: [tournament]
+      summary: Start a tournament (transitions status to active)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Tournament started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/{id}/complete:
+    patch:
+      operationId: tournament_complete
+      tags: [tournament]
+      summary: Complete a tournament (transitions status to completed)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Tournament completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Tournament not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/leaderboard/entries:
+    get:
+      operationId: tournament_getLeaderboard
+      tags: [tournament]
+      summary: Get leaderboard entries by type and optional season
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            example: season
+        - name: seasonId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Paginated leaderboard entries
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LeaderboardEntry'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: tournament_upsertLeaderboardEntry
+      tags: [tournament]
+      summary: Upsert a leaderboard entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertLeaderboardEntryDto'
+      responses:
+        '201':
+          description: Entry created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardEntry'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/promotion/{userId}:
+    get:
+      operationId: tournament_getPromotionSeries
+      tags: [tournament]
+      summary: Get active promotion series for a user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Active promotion series, or null if none
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  userId:
+                    type: string
+                    format: uuid
+                  targetRank:
+                    type: string
+                  wins:
+                    type: integer
+                  losses:
+                    type: integer
+                  isComplete:
+                    type: boolean
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /tournament/promotion/{userId}/result:
+    post:
+      operationId: tournament_recordPromotionResult
+      tags: [tournament]
+      summary: Record a promotion series match result
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - won
+              properties:
+                won:
+                  type: boolean
+                  description: Whether the player won this promotion match
+      responses:
+        '200':
+          description: Updated promotion series state
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  wins:
+                    type: integer
+                  losses:
+                    type: integer
+                  isComplete:
+                    type: boolean
+                  promoted:
+                    type: boolean
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player or active series not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Leaderboard ─────────────────────────────────────────────────────────────
+
+  /leaderboard:
+    get:
+      operationId: leaderboard_getGlobal
+      tags: [leaderboard]
+      summary: Global all-time leaderboard (score desc, paginated)
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Global leaderboard entries
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LeaderboardEntry'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/season/{seasonId}:
+    get:
+      operationId: leaderboard_getSeason
+      tags: [leaderboard]
+      summary: Per-season leaderboard (score desc, paginated)
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Season leaderboard entries
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/LeaderboardEntry'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/top/{n}:
+    get:
+      operationId: leaderboard_getTopN
+      tags: [leaderboard]
+      summary: Fixed top-N snapshot (global or per-season)
+      parameters:
+        - name: n
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 10
+        - name: seasonId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+            description: Omit for global
+      responses:
+        '200':
+          description: Top-N entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardEntry'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/player/{userId}/rank:
+    get:
+      operationId: leaderboard_getPlayerRank
+      tags: [leaderboard]
+      summary: Player's rank position in global or season leaderboard
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: seasonId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Player rank
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                    format: uuid
+                  rank:
+                    type: integer
+                    example: 42
+                  score:
+                    type: integer
+                    example: 1850
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Player not found on leaderboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/player/{userId}/around:
+    get:
+      operationId: leaderboard_getAroundPlayer
+      tags: [leaderboard]
+      summary: Players above and below a given player (window size n)
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: n
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: seasonId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Surrounding leaderboard window
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardEntry'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/score:
+    post:
+      operationId: leaderboard_updateScore
+      tags: [leaderboard]
+      summary: Upsert player score (additive — score never decreases)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScoreDto'
+      responses:
+        '200':
+          description: Updated leaderboard entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardEntry'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /leaderboard/season/{seasonId}/reset:
+    delete:
+      operationId: leaderboard_resetSeason
+      tags: [leaderboard]
+      summary: Delete all entries for a season (admin, irreversible)
+      parameters:
+        - name: seasonId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Number of deleted rows
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: integer
+                    example: 1500
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Season not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Clan ────────────────────────────────────────────────────────────────────
+
+  /clan:
+    get:
+      operationId: clan_list
+      tags: [clan]
+      summary: List clans with optional search and pagination
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Search by name or tag
+      responses:
+        '200':
+          description: Paginated clan list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/PaginatedResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Clan'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: clan_create
+      tags: [clan]
+      summary: Create a new clan (caller becomes leader)
+      parameters:
+        - name: leaderId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: UUID of the user who will be the clan leader
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClanDto'
+      responses:
+        '201':
+          description: Clan created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clan'
+        '400':
+          description: Validation error or name/tag already taken
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/{id}:
+    get:
+      operationId: clan_getById
+      tags: [clan]
+      summary: Get clan by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Clan details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clan'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      operationId: clan_update
+      tags: [clan]
+      summary: Update clan settings (leader only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClanDto'
+      responses:
+        '200':
+          description: Updated clan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clan'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: clan_disband
+      tags: [clan]
+      summary: Disband clan — removes all members then deletes the clan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Clan disbanded — no content
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/{id}/members:
+    get:
+      operationId: clan_getMembers
+      tags: [clan]
+      summary: List members of a clan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Clan member list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClanMember'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: clan_addMember
+      tags: [clan]
+      summary: Add a user to the clan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddMemberDto'
+      responses:
+        '201':
+          description: Member added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanMember'
+        '400':
+          description: User already in a clan or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan or user not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/{id}/members/{userId}:
+    delete:
+      operationId: clan_removeMember
+      tags: [clan]
+      summary: Remove a user from the clan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Member removed — no content
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan or member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/{id}/members/{userId}/role:
+    patch:
+      operationId: clan_promoteMember
+      tags: [clan]
+      summary: Promote or demote a clan member (member / officer / leader)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromoteMemberDto'
+      responses:
+        '200':
+          description: Member role updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClanMember'
+        '400':
+          description: Invalid role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan or member not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/{id}/wars:
+    get:
+      operationId: clan_getWars
+      tags: [clan]
+      summary: Get war history for a clan (as attacker and defender)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Clan war history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    attackerClanId:
+                      type: string
+                      format: uuid
+                    defenderClanId:
+                      type: string
+                      format: uuid
+                    status:
+                      type: string
+                      enum: [pending, active, completed]
+                    winnerId:
+                      type: string
+                      format: uuid
+                      nullable: true
+                    startedAt:
+                      type: string
+                      format: date-time
+                      nullable: true
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Clan not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clan/wars:
+    post:
+      operationId: clan_createWar
+      tags: [clan]
+      summary: Declare a new clan war between two clans
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - attackerClanId
+                - defenderClanId
+              properties:
+                attackerClanId:
+                  type: string
+                  format: uuid
+                defenderClanId:
+                  type: string
+                  format: uuid
+      responses:
+        '201':
+          description: Clan war declared
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  attackerClanId:
+                    type: string
+                    format: uuid
+                  defenderClanId:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum: [pending, active, completed]
+        '400':
+          description: Invalid clans or war already active
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: One or both clans not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

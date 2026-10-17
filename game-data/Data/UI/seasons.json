@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "note": "Season catalogue (data-driven). Seasons belong to ranked play, which needs the online service (rating, rewards, rotation) and is not available yet, so this list is intentionally EMPTY: no season is invented. Entry shape: { \"id\": \"s1\", \"name\": \"Season 1\", \"startUtc\": \"2026-01-01T00:00:00Z\", \"endUtc\": \"2026-04-01T00:00:00Z\", \"mapPool\": \"ranked\" }",
+  "seasons": []
+}

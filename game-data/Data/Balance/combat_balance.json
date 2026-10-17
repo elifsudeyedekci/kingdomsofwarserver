@@ -1,0 +1,41 @@
+{
+  "damageFormulas": {
+    "baseFormula": "max(1, attack - armorValue)",
+    "armorTypes": {
+      "unarmored": {"melee": 0, "ranged": 0, "siege": 0},
+      "light": {"melee": 0, "ranged": 2, "siege": 0},
+      "medium": {"melee": 2, "ranged": 2, "siege": 0},
+      "heavy": {"melee": 4, "ranged": 3, "siege": 2},
+      "siege": {"melee": 5, "ranged": 8, "siege": 5}
+    }
+  },
+  "bonusDamageMultipliers": {
+    "spearman_vs_cavalry": 2.5,
+    "handcannoneer_vs_heavy": 1.5,
+    "siege_vs_building": 3.0,
+    "fire_vs_wood_building": 2.0,
+    "archer_vs_unarmored": 1.3,
+    "knight_vs_ranged": 1.2
+  },
+  "fireDoT": {
+    "damagePerSecond": 5,
+    "duration": 10,
+    "stackable": false
+  },
+  "morale": {
+    "panicThresholdPercent": 20,
+    "routSpeedMultiplier": 1.5,
+    "rallyTimeSeconds": 8,
+    "bonusNearHero": 0.1
+  },
+  "combatRange": {
+    "meleeEngageDistance": 1.2,
+    "rangedMinimumDistance": 1.0,
+    "siegeMinimumDistance": 3.0
+  },
+  "attackAnimationTimings": {
+    "meleeWindupTicks": 10,
+    "rangedProjectileSpeed": 15,
+    "siegeReloadTicks": 120
+  }
+}

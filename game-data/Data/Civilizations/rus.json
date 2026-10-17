@@ -1,0 +1,120 @@
+{
+  "id": "rus",
+  "nameKey": "civ.rus.name",
+  "descKey": "civ.rus.desc",
+  "colorPrimary": "#D52B1E",
+  "colorSecondary": "#0032A0",
+  "playstyle": "hunting-bounty",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "hunting-gold-bounty",
+      "nameKey": "bonus.rus.hunting_bounty",
+      "desc": "Hunters generate 20% more food and passively earn gold equal to 25% of food gathered while hunting."
+    },
+    {
+      "id": "wooden-fortitude",
+      "nameKey": "bonus.rus.wooden_fortitude",
+      "desc": "All wooden structures (Lumber Camp, Palisade Walls, wooden towers) have +50% HP."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "golden-gate",
+        "nameKey": "Rus Golden Gate",
+        "bonus": "All military units produced within 20 tiles gain +10% movement speed permanently."
+      },
+      {
+        "id": "abbey-of-trinity",
+        "nameKey": "Rus Abbey of the Trinity",
+        "bonus": "Friendly structures automatically repair at no wood cost when damaged. Monks trained here are free."
+      }
+    ],
+    "age3": [
+      {
+        "id": "cathedral-of-christ",
+        "nameKey": "Rus Cathedral of Christ the Savior",
+        "bonus": "Relics stored in the Cathedral generate 2x gold income. Each relic also generates +5 influence per minute."
+      },
+      {
+        "id": "spasskaya-tower",
+        "nameKey": "Rus Spasskaya Tower",
+        "bonus": "Scout units reveal a 50% larger area. Scouts passively generate gold equal to 1 gold per minute each."
+      }
+    ],
+    "age4": [
+      {
+        "id": "kremlin",
+        "nameKey": "Rus Kremlin",
+        "bonus": "Periodically produces free Streltsy units. All defensive towers within 15 tiles gain +3 arrow attacks."
+      },
+      {
+        "id": "high-armory",
+        "nameKey": "Rus High Armory",
+        "bonus": "All weapon upgrade technologies researched at this landmark are 50% cheaper. Unlocks unique Rus weapon upgrade tier."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "streltsy",
+      "age": 3,
+      "cost": { "food": 70, "gold": 45 },
+      "hp": 130,
+      "attack": 20,
+      "range": 5,
+      "speed": 1.0,
+      "armorType": "medium",
+      "special": "Bonus damage vs heavy armor units. Can switch between a musket (ranged) and an axe (melee). Deals +30% damage when stationary."
+    },
+    {
+      "id": "boyar",
+      "age": 2,
+      "cost": { "food": 150, "gold": 60 },
+      "hp": 280,
+      "attack": 24,
+      "range": 0,
+      "speed": 1.3,
+      "armorType": "heavy",
+      "special": "While HP is above 50%, gains +5 armor. Inspires nearby cavalry units, granting +10% attack speed."
+    },
+    {
+      "id": "lodya-ship",
+      "age": 2,
+      "cost": { "food": 80, "gold": 60, "wood": 120 },
+      "hp": 300,
+      "attack": 18,
+      "range": 5,
+      "speed": 1.4,
+      "armorType": "medium",
+      "special": "Versatile Rus warship that can transform between a fishing vessel and a combat ship at a dock."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "mounted-precision",
+      "age": 2,
+      "cost": { "food": 125, "gold": 75 },
+      "effect": "Horse Archers gain +1 range and +20% attack speed when moving."
+    },
+    {
+      "id": "knight-sabers",
+      "age": 3,
+      "cost": { "food": 250, "gold": 150 },
+      "effect": "Boyar units gain an additional +3 armor when at full HP and deal +15% bonus damage to unarmored units."
+    },
+    {
+      "id": "copper-plating",
+      "age": 4,
+      "cost": { "food": 400, "gold": 300 },
+      "effect": "Streltsy gain +2 armor and their ranged attacks pierce through the first target in a line, hitting a second enemy."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  }
+}

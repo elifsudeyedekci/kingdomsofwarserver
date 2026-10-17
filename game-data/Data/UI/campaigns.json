@@ -1,0 +1,919 @@
+{
+ "source": "ReferenceAttributes campaign_map + LocaleTurkish cardinal.tr.ucs",
+ "campaigns": [
+  {
+   "id": "proving_grounds",
+   "name": "Er Meydanı",
+   "period": "",
+   "priority": 0,
+   "scenarioCount": 4,
+   "chapters": [
+    {
+     "id": "proving_grounds_historic_battles",
+     "name": "Tarihi Savaşlar",
+     "order": 0,
+     "missions": [
+      {
+       "id": "challenge_montgisard",
+       "name": "",
+       "tagline": "",
+       "year": 0,
+       "order": 1,
+       "brief": "",
+       "outro": "",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "challenge_agincourt",
+       "name": "",
+       "tagline": "",
+       "year": 0,
+       "order": 2,
+       "brief": "",
+       "outro": "",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "challenge_safed",
+       "name": "",
+       "tagline": "",
+       "year": 0,
+       "order": 3,
+       "brief": "",
+       "outro": "",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "challenge_towton",
+       "name": "",
+       "tagline": "",
+       "year": 0,
+       "order": 4,
+       "brief": "",
+       "outro": "",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "salisbury",
+   "name": "Kralın Yükselişi",
+   "period": "1047-1066",
+   "priority": 0,
+   "scenarioCount": 5,
+   "chapters": [
+    {
+     "id": "salisbury_chp1",
+     "name": "İntikam",
+     "order": 0,
+     "missions": [
+      {
+       "id": "sal_chp1_rebellion",
+       "name": "Normandiya'da İsyan",
+       "tagline": "Genç Guillaume de Normandie, 1047'de taraftan isyanlarla karşı karşıya kaldı.",
+       "year": 1047,
+       "order": 1047,
+       "brief": "Normandiya isyan ediyor. Kontrolü yeniden eline almak için Dük Guillaume'un kuvvetlerini toplaması ve kendisini destekleyen Fransa Kralı Henry ile birleşmesi gerekiyor.",
+       "outro": "Görev Başarısız Oldu.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "sal_chp1_valesdun",
+       "name": "Val-ès-Dunes Savaşı",
+       "tagline": "Guillaume, asi kuzeni Gui de Bourgogne ile yüzleşmek için hazırlıklara devam etti.",
+       "year": 1047,
+       "order": 1049,
+       "brief": "Gui de Bourgogne'un isyanıyla birlikte Guillaume, Fransa Kralı I. Henry'nin kraliyet ordusuna katılmadan önce kendi güçlerini toplamaya devam etti.",
+       "outro": "Görev Başarısız Oldu.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "salisbury_chp2",
+     "name": "Güçlendirme",
+     "order": 0,
+     "missions": [
+      {
+       "id": "sal_chp2_dinan",
+       "name": "Dinan Kuşatması",
+       "tagline": "Mathilde, Guillaume için güçlü bir ordu oluşturmaya başlamıştı. Bu orduyla Dinan kalesini alt ederek rakibine haddini bildirecekti.",
+       "year": 1065,
+       "order": 1060,
+       "brief": "Mathilde artık Guillaume'un komutası altına girecek güçlü bir ordu kurarak Dinan Kalesi'ni alabilecek konumdaydı. Tam anlamıyla Normandiya tasarımına sahip olan kaleyi yıkmak için Guillaume'un tüm kurnazlığını ve zekâsını kullanması gerekecekti",
+       "outro": "Görev Başarısız Oldu.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "sal_chp2_womanswork",
+       "name": "Bretonyada Bir Kasaba",
+       "tagline": "Guillaume, Dinan kalesini yerle bir etmeden önce karısı Mathilde'nin güçlü bir ekonomi kurması gerekiyordu.",
+       "year": 1065,
+       "order": 1058,
+       "brief": "1065'te Guillaume de Normandie, rakibi Conan II de Bretagne'a doğru batıdan yürümüştü. Bretonya Dükalığını sonlandırmak için büyük Dinan hisarını yıkmayı planlıyordu.",
+       "outro": "Görev Başarısız Oldu.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "salisbury_chp3",
+     "name": "Geri Kazanım",
+     "order": 0,
+     "missions": [
+      {
+       "id": "sal_chp3_brokenpromise",
+       "name": "Norman İstilası",
+       "tagline": "Dük Guillaume, İngiltere tahtını ele geçirmek amacıyla büyük bir işgal gücü topladı.",
+       "year": 1066,
+       "order": 1066,
+       "brief": "Edward the Confessor'ın ölümünün ardından Harold Godwinson, İngiltere Tahtına geçti. Öfkelenen Guillaume, doğuştan gelme hakkını zorla almak için işgale hazırlandı.",
+       "outro": "Görev Başarısız Oldu.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "english",
+   "name": "Normanlar",
+   "period": "1066 - 1217",
+   "priority": 1,
+   "scenarioCount": 10,
+   "chapters": [
+    {
+     "id": "english_chp1",
+     "name": "Fetih",
+     "order": 1,
+     "missions": [
+      {
+       "id": "ang_chp1_hastings",
+       "name": "Hastings Muharebesi",
+       "tagline": "1066'da Normandiyalı William, İngiltere Krallığını Anglo-Sakson rakibinden zorla çekip almak için yola çıktı. Yalnızca bir kişi kral olabilirdi.",
+       "year": 1066,
+       "order": 1066,
+       "brief": "Normandiyalı William İngiltere'yi fethetme girişimine başladı. Ancak Anglo-Sakson hükmünü sonlandırmak için önce onların krallarını öldürmesi gerekecekti.",
+       "outro": "Görev başarısız oldu. Kuvvetlerin kalkan duvarını aşmalı ve Kral Harold'ı yenmeli.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp1_york",
+       "name": "Kuzeyden York'a",
+       "tagline": "İngiltere, Norman yönetimi altındaydı fakat herkes Fatih Kral'dan memnun değildi.",
+       "year": 1069,
+       "order": 1078,
+       "brief": "Kral William'ın ordusu, Norman yönetimine karşı çıkanların direniş sorunuyla York'a doğru belirsiz bir ilerleyişle karşılaştı.",
+       "outro": "Görev başarısız oldu. Birimlerinin tümünü kaybetmemeli ve ele geçirdiğin Şehir Merkezlerini savunmalısın. ",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "english_chp2",
+     "name": "Mülkiyet",
+     "order": 2,
+     "missions": [
+      {
+       "id": "ang_chp2_bayeux",
+       "name": "Bayeux'nun Çöküşü",
+       "tagline": "Normandiya'da, Fatih William'ın oğulları imparatorluklarının yönetimi konusunda tatsız bir kavgaya tutuştular.",
+       "year": 1105,
+       "order": 1104,
+       "brief": "Kral I. Henry, kendisine ait olduğuna inandığı şeyi almaya niyetli bir şekilde ordusunun tamamıyla Bayeux'ya hücum etti.",
+       "outro": "Görev başarısız oldu. Zafer kazanabilmen için birimlerinden bazıları hayatta kalmalı. Savaş alanlarını akıllıca seç ve geri çekilip yeniden toplanmaktan korkma.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp2_bremule",
+       "name": "Brémule Muharebesi",
+       "tagline": "İki nüfuzlu kral Normandiya'nın kaderini belirlemek için karşı karşıya geldi.",
+       "year": 1119,
+       "order": 1128,
+       "brief": "Normandiya'nın tarlalarında tesadüfen gerçekleşen bir karşılaşma Kral I. Henry'nin Fransa'nın ünlü kralı VI. Louis'ye karşı meydan savaşıyla yüz yüze gelmesini sağladı.",
+       "outro": "Görev başarısız oldu. Fransızların Fleury Şehir Merkezi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp2_tinchebray",
+       "name": "Tinchebray Muharebesi",
+       "tagline": "Normandiya uğruna yapılan kardeş kavgası bugün karara bağlanacaktı.",
+       "year": 1106,
+       "order": 1116,
+       "brief": "Kral I. Henry'nin Normandiya girişimi kardeşini ele geçirmeye bağlıydı. Fakat Tinchebray'deki kale Dük Robert'ı korudu. Henry, onu kale dışına çekebilmek için her yola başvurmaya niyetliydi.",
+       "outro": "Görev başarısız oldu. Zafer kazanabilmen için birimlerinden bazıları hayatta kalmalı. Savaş alanlarını akıllıca seç ve geri çekilip yeniden toplanmaktan korkma.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "english_chp3",
+     "name": "Anarşi",
+     "order": 3,
+     "missions": [
+      {
+       "id": "ang_chp3_lincoln",
+       "name": "İlk Lincoln Muharebesi",
+       "tagline": "İmparatoriçe Matilda, iç savaşın ateşini körükleyerek İngiliz tahtı için hamlede bulundu.",
+       "year": 1141,
+       "order": 1154,
+       "brief": "Lincoln'deki kale kuşatma altındaydı. Kalenin içinde İmparatoriçe Matilda'ya sadık kuvvetler Matilda'nın üvey kardeşi Gloucester'lı Robert'tan destek bekliyordu. Kuşatmayı bozmak için Robert'ın kralı esir alması gerekecekti.",
+       "outro": "Görev başarısız oldu. Stephen'ın kuvvetlerinin Lincoln İç Kalesi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp3_wallingford",
+       "name": "Wallingford Kuşatması",
+       "tagline": "İmparatorluğun gelecek hükümdarlığı söz konusuydu. Krallar tahta geçecek… ve tahttan indirilecekti.",
+       "year": 1153,
+       "order": 1166,
+       "brief": "Matilda ve Stephen'ın taç savaşı Wallingford'da sonuçlanacaktı. Matilda'nın ordusu kaleyi koruyabilirse taht üzerindeki hakkını geri kazanabilirdi.",
+       "outro": "Görev başarısız oldu. Kral Stephen'ın kuvvetlerinin sana ait tüm Simgeleri yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "english_chp4",
+     "name": "Ayaklanma",
+     "order": 4,
+     "missions": [
+      {
+       "id": "ang_chp4_dover",
+       "name": "Dover Kuşatması",
+       "tagline": "Kral John'un İngiltere'yi yönetimindeki zayıflık, kırılgan saltanatını devirmek için bir istilayı harekete geçirdi.",
+       "year": 1216,
+       "order": 1193,
+       "brief": "Kral John, İngiliz baronları kızdırmıştı. Tam bir ayaklanmayla Fransızları istilaya ve Kral John'un zayıflığından yararlanmaya davet ettiler. Önlerinde tek bir ana tahkim duruyordu: Dover'daki kale.",
+       "outro": "Görev başarısız oldu. Fransızların Dover İç Kalesi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp4_lincoln",
+       "name": "İkinci Lincoln Muharebesi",
+       "tagline": "Bir çocuk kralın tahta geçmesi İngiltere'yi ayaklanmaya açık hale getirdi. İngiltere'yi koruma işiyse yaşlı bir şövalye ve bir kadın şerife düşüyordu.",
+       "year": 1217,
+       "order": 1217,
+       "brief": "Asi baronlar ve Fransız müttefikleri Lincoln'deki kaleyi kuşattılar. Kralın şövalyesi Mareşal William şehri zorla geri almakla görevlendirilmişti.",
+       "outro": "Görev başarısız oldu. Kuşatmayı asilerden önce veya Fransızlar Lincoln İç Kalesi'ni yok etmeden yıkmalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "ang_chp4_rochester",
+       "name": "Rochester Kuşatması",
+       "tagline": "Kral John, tahttan ayrılmadı ancak bunun bedeli kendi halkına karşı kanlı bir savaş olacaktı.",
+       "year": 1215,
+       "order": 1205,
+       "brief": "Rochester'daki kale asilerin eline düştü. Kral John'un kendi baronlarına karşı kuşatma yapması gerekiyordu.",
+       "outro": "Görev başarısız oldu. Birimlerinin tümünü kaybetmemeli ve ele geçirdiğin Şehir Merkezlerini savunmalısın. ",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moscow",
+   "name": "Moskova'nın Yükselişi",
+   "period": "1238 - 1552",
+   "priority": 2,
+   "scenarioCount": 8,
+   "chapters": [
+    {
+     "id": "moscow_chp1",
+     "name": "Hisardan Şehre",
+     "order": 1,
+     "missions": [
+      {
+       "id": "gdm_chp1_moscow",
+       "name": "Moskova'nın Yeniden Kurulması",
+       "tagline": "Birkaç yıl içinde bir zamanların gurur duyulan Rus prenslikleri Altın Ordu'nun Moğol işgalcileri tarafından yerle bir edildi ancak küçük bir kasaba küllerinden yeniden doğacaktı: Moskova.",
+       "year": 1238,
+       "order": 1238,
+       "brief": "Moğol akıncıları Moskova şehrini yerle bir etti. Ancak, metanetli Moskovalılar evlerini yeniden inşa etmeye kararlıydı. Bu kez öncekinden de güçlü olacak şekilde...",
+       "outro": "Görev başarısız oldu. Moğolların Moskova'daki tüm Simgeleri yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "moscow_chp2",
+     "name": "Şehirden Devlete",
+     "order": 2,
+     "missions": [
+      {
+       "id": "gdm_chp2_kulikovo",
+       "name": "Kulikovo Muharebesi",
+       "tagline": "Müttefiklerle desteklenen Prens Dmitry cesur bir hedefle yola çıktı: Altın Ordu'yu savaşta yenmek.",
+       "year": 1380,
+       "order": 1332,
+       "brief": "Prens Dmitry ve müttefikleri tarihi bir meydan okuma yapmaya hazırlandılar. Ruslar, savaşı Moğol ordusuna götüreceklerdi. Ya zafer ya da ölüm olacaktı.",
+       "outro": "Görev başarısız oldu. Prens Dmitry ordularını iyileştirebilen güçlü bir yeteneğe sahip.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "gdm_chp2_tribute",
+       "name": "Haraç",
+       "tagline": "Moskova tehlikeli bir çizgide yürüdü. Prens Dmitry bir taraftan Altın Ordu'ya haraç öderken diğer taraftan da ona meydan okumak için sessizce ittifaklar kurdu.",
+       "year": 1375,
+       "order": 1301,
+       "brief": "Moskova'nın toprakları büyüdükçe Altın Ordu'ya gitgide daha fazla haraç borçlandı. Hanı yatıştırmak için Prens Dmitry'nin müttefiklerinden sürekli bir vergi akışına ihtiyacı vardı.",
+       "outro": "Görev başarısız oldu. Moğolların talep ettiği haracı ödemelisin. Başarılı olmak için çevrede kasabalar bul ve ticaret yollarını koru.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "moscow_chp3",
+     "name": "Devletten İmparatorluğa",
+     "order": 3,
+     "missions": [
+      {
+       "id": "gdm_chp3_moscow",
+       "name": "Ordu'nun Aleyhine",
+       "tagline": "İntikam, Dmitry'e geliyordu. Moskova'nın taş surları en ağır sınavla yüzleşecekti: öfkeli Han'ın tüm gücüyle.",
+       "year": 1382,
+       "order": 1395,
+       "brief": "Dmitry Donskoy, Altın Ordu'yu kızdırmıştı. İntikam için susamış olan Toktamış Han başkente indi. Moskova başkaldırısının bedelini ödeyecekti.",
+       "outro": "Görev başarısız oldu. Moğolları Moskova'nın merkezinden uzak tutmalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "gdm_chp3_novgorod",
+       "name": "Novgorod Cumhuriyeti'nin Çöküşü",
+       "tagline": "Moskova, Han'a boyun eğse de tüm Ruslar Moskova'ya boyun eğmeyecekti. Novgorod Cumhuriyeti, sembolik konsey çanının son kez çalışına kadar bağımsızlığını savunacaktı.",
+       "year": 1478,
+       "order": 1426,
+       "brief": "III. İvan tüm Rus topraklarını Moskova kontrolü altında birleştirmeyi arzuluyordu. Ancak bağımsız Novgorod cumhuriyeti savaşmadan teslim olmayacaktı.",
+       "outro": "Görev başarısız oldu. Düşman köylerini ele geçirmeli ve sonra da ele geçirdiğin Şehir Merkezlerini savunmalısın. ",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "gdm_chp3_ugra",
+       "name": "Uğra Nehri'nde Büyük Direniş",
+       "tagline": "Güç göstermek amacıyla Ruslar, onları fethedenlere sağlam bir bağımsızlık duruşuyla tepeden bakacaktı.",
+       "year": 1480,
+       "order": 1457,
+       "brief": "Moğol ordusu Moskova'yı cezalandırmak için bir kez daha ilerlerken III. İvan da Altın Ordu'nun zayıflayan gücüne karşı direneceği konumu seçmişti. Uğra Nehri'nde hattını savunacaktı.",
+       "outro": "Görev başarısız oldu. Moğolların Şehir Merkezi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "moscow_chp4",
+     "name": "İmparatorluktan Süper Güce",
+     "order": 4,
+     "missions": [
+      {
+       "id": "gdm_chp4_kazan",
+       "name": "Kazan Kuşatması",
+       "tagline": "Çar IV. İvan kendi halkı üzerinde mutlak bir gücü sıkmsıkı tutuyordu. Artık ona kafa tutan bir düşmandan yeni topraklar almak istiyordu.",
+       "year": 1552,
+       "order": 1552,
+       "brief": "IV. İvan'ın hırsı Moskova Knezliği'nin sınırlarının çok ötesine uzanıyordu. Rus savaş makinesini kendi topraklarının doğusuna getirmiş ve Tatar Kazan Hanlığı'nı hedef almıştı.",
+       "outro": "Görev başarısız oldu. Şehir Merkezi'nin ve Simgelerin yok edilmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "gdm_chp4_smolensk",
+       "name": "Moskova, Litvanya'ya Karşı",
+       "tagline": "Arkasında güçlü bir Moskova'nın kudretiyle III. Vasili, Smolensk'in büyük Litvanya hisarını kuşattı.",
+       "year": 1514,
+       "order": 1521,
+       "brief": "III. İvan'ın varisi III. Vasili babasının Rus topraklarını ele geçirip birleştirme mücadelesini devraldı. Sıradaki hedefi Litvanya'nın tahkim edilmiş Smolensk şehriydi.",
+       "outro": "Görev başarısız oldu. Ele geçirdiğin köylerdeki Simgeleri ve Şehir Merkezlerini savunmalısın.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hundred",
+   "name": "Yüz Yıl Savaşı",
+   "period": "1337-1453",
+   "priority": 3,
+   "scenarioCount": 8,
+   "chapters": [
+    {
+     "id": "hundred_chp1",
+     "name": "Şövalyelik",
+     "order": 1,
+     "missions": [
+      {
+       "id": "hun_chp1_combat30",
+       "name": "Otuz Çarpışması",
+       "tagline": "İngiltere kralı, Fransa'daki hak talebi için savaş açtı. Şiddetli baskınlar ve yıkıcı savaşların ortasında bir şampiyon turnuvası şövalyelik değerlerini sürdürecekti.",
+       "year": 1351,
+       "order": 1350,
+       "brief": "Fransız yüzbaşı Jean de Beaumanoir, Fransa'nın Bretonya üzerindeki hak talebini savunmak için otuz büyük savaşçı görevlendirecekti. Karşı tarafta da İngiltere'nin en azılı şampiyonları krallarını temsil ediyordu. İki taraf, bir şövalye savaşı arenasında çarpışacaktı.",
+       "outro": "Görev başarısız oldu. Çarpışmanın iki turunun sonunda İngilizlerden daha fazla düşman yenmelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "hun_chp1_paris",
+       "name": "Paris Kuşatması",
+       "tagline": "İngiltere'nin korkulan Kara Prensi, kuzey Fransa'yı ateşe vermişti. Son darbeye hazır olan ordusu başkente doğru ilerledi.",
+       "year": 1360,
+       "order": 1360,
+       "brief": "İngilizler, Paris'i almaya geliyordu. Parisliler başkentin surları ardına sığınırken Fransız ordusu şehri savunmaya hazırlanıyordu. Zafer ve yenilgi arasında yalnızca kararlılıkları ve birkaç metrelik taş duruyordu.",
+       "outro": "Görev başarısız oldu. İngilizlerin Paris'teki tüm Simgeleri yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "hundred_chp2",
+     "name": "Kargaşa",
+     "order": 2,
+     "missions": [
+      {
+       "id": "hun_chp2_cocherel",
+       "name": "Kaos İçindeki Fransa",
+       "tagline": "Bir kargaşa fırtınası Fransa'nın yaşamını tehdit ediyordu. Kralın otoritesini zorla kabul ettirmesi gerekiyordu… hem istilacılara hem de rençperlere.",
+       "year": 1364,
+       "order": 1380,
+       "brief": "1364 yılında taç giyen Veliaht, Fransa Kralı V. Charles oldu. Köylülerden, paralı askerlerden ve işgalcilerden gelen tehditlerle karşı karşıya kalan kralın gücü, ilk olarak bu düzensiz diyarı kontrol altına alma çabasıyla sınanacaktı.",
+       "outro": "Görev başarısız oldu. Düşmanın tüm Şehir Merkezlerini veya Cocherel'deki Manastır'ı yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "hun_chp2_pontvallain",
+       "name": "Pontvallain Muharebesi",
+       "tagline": "Fikir ayrılığı ve rekabet İngiliz ordusunu bölmüştü. Artık Fransa'nın saldırma vaktiydi.",
+       "year": 1370,
+       "order": 1390,
+       "brief": "İç çatışmalar İngiliz ordusunu rakip gruplara bölmüştü. Bu dağınık gruplar Pontvallain'a doğru baskına giderken Fransız ordusu da onları yok etmeye hazırlanıyordu.",
+       "outro": "Görev başarısız oldu. İngilizlerin Pontvallain Şehir Merkezi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "hundred_chp3",
+     "name": "Çaresizlik",
+     "order": 3,
+     "missions": [
+      {
+       "id": "hun_chp3_orleans",
+       "name": "Orléans Kuşatması",
+       "tagline": "Bir ulusun kaderi ve bir kralın yükselişi korkusuz genç bir kızın omuzlarındaydı: Jeanne d'Arc.",
+       "year": 1429,
+       "order": 1410,
+       "brief": "Jeanne d'Arc, Fransız ordusunu kuşatılmış Orléans şehrine getirdi. Surların etrafı çevrili ve halkın çaresiz olduğunu gördü. Sağlam inancıyla Fransızları karşı koymak için bir araya toplayıp şüpheye yer bırakmayan ilahi çağırısı için hak iddia edecekti.",
+       "outro": "Görev başarısız oldu. İngilizlerin Orléans'taki tüm Simgeleri yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "hun_chp3_patay",
+       "name": "Patay Muharebesi",
+       "tagline": "Jeanne d'Arc'ın sabrı meyvesini vermişti. İngilizler geri çekilmişken ölümcül darbeyi indirebilirdi.",
+       "year": 1429,
+       "order": 1420,
+       "brief": "Jeanne d'Arc'ın amansız takibiyle Loire Vadisi'nden kovalanan İngiliz kuvvetlerinin kalıntıları kuzeyin güvenli kollarına ulaşmak için kaçtı. Fransız ordusu Patay'da amaçlarına asla ulaşmamalarını sağlayabilirdi.",
+       "outro": "Görev başarısız oldu. Tüm birimlerini kaybedemezsin ve İngilizlerin Patay Şehir Merkezi'ni yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "hundred_chp4",
+     "name": "Egemenlik",
+     "order": 4,
+     "missions": [
+      {
+       "id": "hun_chp4_formigny",
+       "name": "Formigny Muharebesi",
+       "tagline": "Yüz Yıl Savaşı istilalar, ayaklanmalar, hastalık ve yıkımla geçmişti. Fransa artık zaferin eşiğinde duruyordu.",
+       "year": 1450,
+       "order": 1450,
+       "brief": "Yüz Yıl Savaşı'nın son demlerinde İngiltere, Fransa'nın kuzeyindeki bölgelerine sıkıca tutunarak oraları savunacak büyük bir ordu gönderdi. Formigny'de Fransa'nın kuvvetiyle doğrudan yüzleşeceklerdi.",
+       "outro": "Görev başarısız oldu. Ana ordun geldiğinde bir kısmı zaferin için hayatta kalmalı. Geri çekilip yeniden toplanmaktan korkma.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "hun_chp4_rouen",
+       "name": "Normandiya'nın Geri Alınması",
+       "tagline": "Normandiya, uzun zamandır yarışılan toprağı için olan mücadelede yıkıcı bir son görecekti.",
+       "year": 1448,
+       "order": 1440,
+       "brief": "Barutlu silahların ortaya çıkması yeni bir savaş dönemini başlattı. İngiltere ordusu hâlâ uzun yaya güvenirken Fransızlar onlardan üstün gelecek eşsiz bir fırsat bulmuştu.",
+       "outro": "Görev başarısız oldu. İngilizlerin sana ait tüm Simgeleri yok etmesini önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mongol",
+   "name": "Moğol İmparatorluğu",
+   "period": "1215 - 1279",
+   "priority": 4,
+   "scenarioCount": 9,
+   "chapters": [
+    {
+     "id": "mongol_chp1",
+     "name": "Şok ve Dehşet",
+     "order": 1,
+     "missions": [
+      {
+       "id": "mon_chp1_juyong",
+       "name": "Çin Seddi",
+       "tagline": "Moğolların Avrupa'ya ilk saldırılarından on yıl önce Cengiz Han en çok arzuladığı hedefine hücum etmişti: Çin Seddi.",
+       "year": 1213,
+       "order": 1219,
+       "brief": "Cengiz Han'ın imparatorluğunu genişletme girişimi onu Çin Seddi'ne getirmişti. Ancak önünde Zhangjiakou'nun kudretli Jin hisarı duruyordu.",
+       "outro": "Görev başarısız oldu. Cengiz Han baskınlardan gelir kazanma yeteneğine takviye sağlayan güçlü bir liderdir. Faydalanacak hedefler bulmak için araziyi keşfet.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp1_kalka_river",
+       "name": "Kalka Nehri Muharebesi",
+       "tagline": "1223'te Moğol ordusu batıya gümbürtülü bir giriş yaptı. Şüphesiz yeni bir düşman olan Ruslara karşı taktiklerini test edip güçlerini sergileyeceklerdi.",
+       "year": 1223,
+       "order": 1213,
+       "brief": "Büyük Moğol taktikçisi General Subutay, Rus ordusunu dikkatle seçtiği bir savaş alanına sürükledi: Kalka Nehri'nin kıyılarına.",
+       "outro": "Görev başarısız oldu. Moğolların büyük avantajlarından biri de yüksek hareketlilikleridir. Hızlarını düşmanların kanadını çevirmek ve onları kuşatmak için kullan.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp1_zhongdu",
+       "name": "Zhongdu Muharebesi",
+       "tagline": "Dünyaya hükmetme isteği Cengiz Han'ı Çin'in zengin başkenti Zhongdu'nun surlarına getirdi.",
+       "year": 1215,
+       "order": 1225,
+       "brief": "Zhongdu ticaretin, şifanın ve teknolojinin parlayan ışığıydı. Büyük şehri kendi için isteyen Cengiz Han'ın yavaş fakat güvenilir bir stratejiye başvurması gerekecekti: açlık.",
+       "outro": "Görev başarısız oldu. Birimlerinden bazıları zaferin için hayatta kalmalı. Arazide baskın yaparak ve zenginlikler toplayarak daha fazla takipçi çek.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "mongol_chp2",
+     "name": "Fetih",
+     "order": 2,
+     "missions": [
+      {
+       "id": "mon_chp2_kiev",
+       "name": "Kiev Kuşatması",
+       "tagline": "Rus prenslikleri, doğudan gelen istilacılara birer birer yenik düşmüştü. Yalnızca Kiev batının eşiğinde ayakta kalmaya devam etti.",
+       "year": 1240,
+       "order": 1237,
+       "brief": "Kiev'in baş kaldırmasıyla öfkelenen Möngke Han gururlu şehri cezalandırması gerektiğini biliyordu. Avrupa, Kiev'in hatasını duyacaktı... kan ve külle ödenmiş şekilde.",
+       "outro": "Görev başarısız oldu. Möngke Han'ın yakındaki binalardaki birim üretimini oldukça hızlandırmak için güçlü bir yeteneği vardır. Bunu ihtiyaç duyduğunda hızlıca kuvvetler mevzilendirmek için kullan.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp2_liegnitz",
+       "name": "Liegnitz Muharebesi",
+       "tagline": "Disiplinli ve amansız Moğollar en güvenilir stratejileriyle Avrupa'nın doğu cephesine saldırdı: böl ve fethet stratejisi.",
+       "year": 1241,
+       "order": 1243,
+       "brief": "Cengiz Han'ın torunu Baydar'ın önderliğindeki Moğollar ilk çifte saldırılarını orta Avrupa'da gerçekleştirdi. Dağınık gruplar halinde gelen Polonya ordusu onlarla yüzleşmek için koşuştu.",
+       "outro": "Görev başarısız oldu. Birimlerinden bazıları zaferin için hayatta kalmalı. Moğollar düşman yapılarını yakarak baskın geliri kazanabilir. Bu, ordunu hızla kuvvetlendirmene yardımcı olabilir.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp2_mohi",
+       "name": "Mohi Muharebesi",
+       "tagline": "Moğolların kışkırtıcı baskınlarına aldanan Macarlar bu yeni istilacıların peşine düştü… tam da Batu Han'ın istediği gibi.",
+       "year": 1241,
+       "order": 1249,
+       "brief": "Macar ordusunu dikkatlice seçtikleri savaş alanına çeken Batu Han ve General Subutay savaşçılarını bir başka taktiksel savaşa hazırladı.",
+       "outro": "Görev başarısız oldu. Zafer kazanabilmen için birimlerinden bazıları hayatta kalmalı. Müttefikin Batu Han'dan en iyi şekilde yararlan. Savaş alanlarını akıllıca seç ve geri çekilip yeniden toplanmaktan korkma.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "mongol_chp3",
+     "name": "Hakimiyet",
+     "order": 3,
+     "missions": [
+      {
+       "id": "mon_chp3_lumen_shan",
+       "name": "Lumen Shan'da Abluka",
+       "tagline": "Songların hisarlarını sarsılmaz şekilde savunmaları Moğolları strateji değiştirmeye zorladı: saldırıdan aç bırakmaya.",
+       "year": 1268,
+       "order": 1267,
+       "brief": "Kubilay Han, Çinli sığınmacı General Liu Zheng'in uzmanlığından yararlandı. Moğollar ikiz şehirlerin gücünü zayıflatmak için onun sezgisinden faydalanacaktı.",
+       "outro": "Görev başarısız oldu. Çin Şehir Merkezlerini ve tarafına geçen Köylüleri korumalısın. Ayrıca ablukanı oluşturduktan sonra Songların kaçmasını önlemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp3_xiangyang_1267",
+       "name": "Song Hisarı",
+       "tagline": "Kubilay Han gözünü Çin tahtına dikti. Ancak önünde ele geçirilemez bir hisar ve bu hisarın boyun eğmez garnizonu duruyordu.",
+       "year": 1267,
+       "order": 1261,
+       "brief": "Çin'in İmparatoru olma yolunda hevesli olan Kubilay Han, ordusunu Song Hanedanı'nın en zengin şehirlerini ele geçirmeye gönderdi. Han nehrinin iki tarafında bulunan Xiangyang ve Fancheng hisarları doğrudan bir saldırıya hazırlandı.",
+       "outro": "Görev başarısız oldu. Song karşı saldırısına mukabil kuşatma noktalarının üçünü de elinde tutmalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "mon_chp3_xiangyang_1273",
+       "name": "Xiangyang'ın Çöküşü",
+       "tagline": "Xiangyang'ın kudretli taş surları, Song hisarının son direnişinde Büyük Katapult'un muazzam gücüyle karşılaştı.",
+       "year": 1273,
+       "order": 1273,
+       "brief": "Kubilay Han'ın kuşatma mühendisi İsmail, yanında yıkıcı yeni bir katapult getirmişti. Bu kudretli silah sayesinde benzersiz bir kuvvetle hisara saldırabilirdi.",
+       "outro": "Görev başarısız oldu. İsmail'in en büyük kuşatma silahların için hedefler üzerinde uzun süreli görünürlük sağlayan bir İmparatorluk Doğanı göndermek için özgün bir yeteneği vardır.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "abbasid",
+   "name": "Sultanlar Yükseliyor",
+   "period": "1111 - 1426",
+   "priority": 5,
+   "scenarioCount": 8,
+   "chapters": [
+    {
+     "id": "abbasid_chp1",
+     "name": "İstila",
+     "order": 1,
+     "missions": [
+      {
+       "id": "abb_m1_tyre",
+       "name": "Sur Savunması",
+       "tagline": "Franklar, İlk Haçlı Seferinde Kutsal Toprakların büyük bir kısmını ele geçirmişti. Yalnızca tek bir şehir onların pençesine düşmemişti.",
+       "year": 1111,
+       "order": 1111,
+       "brief": "Mülteciler surlarının içinde sığınacak bir yer ararken Sur kenti, eşi benzeri görülmemiş bir Frank savaş makinesiyle yüzleşmeye hazırlanıyordu.",
+       "outro": "Görev başarısız oldu. Atlı Okçularını ya da Simgelerini kaybetmemen gerekir. Sur Şehir Merkezini korumalısın.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "abbasid_chp2",
+     "name": "Selahaddin",
+     "order": 2,
+     "missions": [
+      {
+       "id": "abb_m2_egypt",
+       "name": "Mısır'a Doğru",
+       "tagline": "Mısır'daki on yıl süren mücadelede, hırslı bir genç olan Selahaddin en önde yerini alacaktı.",
+       "year": 1163,
+       "order": 1171,
+       "brief": "Mısır'ı kontrol altına almak isteyen Kudüs Kralı, toprakları ele geçirmeye başladı. Ancak Nûreddin'nin iki kurnaz liderin komuta ettiği ordusu, hâkimiyet için ona kafa tutacaktı.",
+       "outro": "Görev başarısız oldu. Frankların kontrolü tamamen ele geçirmesine engel olmalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "abb_m4_hattin",
+       "name": "Hattin Boynuzları",
+       "tagline": "Selahaddin'in vakti gelmişti. Tüm savaşçıları sancağına toplayıp en büyük savaş planını harekete geçirdi.",
+       "year": 1187,
+       "order": 1239,
+       "brief": "Onlarca yıllık düşmanlıktan yararlanan Selahaddin, Müslüman ordularının öfkesini Franklara karşı kullandı. Yaptığı planla düşmanı hızla Tiberya'ya çekmek istedi.",
+       "outro": "Görev başarısız oldu. Frankların Tiberya'ya ulaşmasını engellemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "abb_m3_redsea",
+       "name": "Kızıldeniz Akıncıları",
+       "tagline": "Kızıldenizin sakin sularında kargaşaya yol açan düşman Frank filosu, Selahaddin'in donanmasının öfkesini yakında hissedecekti.",
+       "year": 1183,
+       "order": 1205,
+       "brief": "Châtillonlu pervasız Renaud önderliğindeki Franklar her yeri yağmalayarak Kızıldeniz bölgesindeki Müslümanlara kadar ulaştılar. Ancak bu yaptıkları yanlarına kalmayacaktı.",
+       "outro": "Görev başarısız oldu. Müttefiklerinin Rıhtımlarını korumalı ve Sivil Kargaşayı düşük tutmalısın. Kargaşayı azaltmak için tüm Ticaret Gemilerini koru ve Korsan üssünü yok et.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "abbasid_chp3",
+     "name": "Kölelerden Sultanlara",
+     "order": 3,
+     "missions": [
+      {
+       "id": "abb_m5_mansurah",
+       "name": "Mansûre Muharebesi",
+       "tagline": "Franklar, IX. Louis komutasında Kudüs'ü ele geçirmek için başlattıkları arayış boyunca Mısır çöllerinde ortalığı birbirine kattı.",
+       "year": 1250,
+       "order": 1298,
+       "brief": "Kudüs'e açılan bir kapı olarak Mısır'ı ele geçirmeye kararlı olan Kral IX. Louis komutasındaki yeni bir Frank ordusu saldırıya geçti.",
+       "outro": "Görev başarısız oldu. Casusun Ulağa canlı olarak ulaşmalı, ardından sen de Şehir Merkezini ve Beyt'ül Hikmet'ini korumalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "abb_m6_aynjalut",
+       "name": "Ayn Calut Muharebesi",
+       "tagline": "Sultanlığın kapısına dayanan yeni bir tehdit vardı: Moğollar gelmişti.",
+       "year": 1260,
+       "order": 1332,
+       "brief": "Sultan Kutuz, dehşet saçan Moğolların önünü kesmek için yanında Baybars ile harekete geçti.",
+       "outro": "Görev başarısız oldu. Takviye birlikleri beklerken Atlı Okçularını hayatta tutmalı ve Afula halkını korumalısın.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "abb_m7_acre",
+       "name": "Akka Kuşatması",
+       "tagline": "Bozulan antlaşmaların külleri arasında Memlûkler, son Frank limanını da yakıp kül edeceklerdi.",
+       "year": 1291,
+       "order": 1366,
+       "brief": "Savaşın arifesinde Sultan Kalavun öldü ve sultanlığı oğlu El Eşref Halil'e devretti. Halil, Şam'ın en güçlü silahlarıyla babasının Frankları püskürtme görevini üzerine aldı.",
+       "outro": "Görev başarısız oldu. Kuşatma Kampını korumalısın.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    },
+    {
+     "id": "abbasid_chp4",
+     "name": "Akdeniz Korsanları",
+     "order": 4,
+     "missions": [
+      {
+       "id": "abb_m8_cyprus",
+       "name": "Kıbrıs'ın İşgali",
+       "tagline": "Mısır kıyılarına zulmeden korsanlar ve akıncılar, Memlûk azabının ateşini çok geçmeden tadacaklardı.",
+       "year": 1426,
+       "order": 1426,
+       "brief": "Akdeniz, Kıbrıs'a sığınan korsanların istilasına uğramıştı. Baskınlar karşısında öfkeden çılgına dönen Memlûkler bir istila filosu oluşturdu.",
+       "outro": "Görev başarısız oldu. Simgelerini korumalısın.",
+       "objectives": [],
+       "challenges": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chinese",
+   "name": "Yue Fei'nin Mirası",
+   "period": "1127 - 1140",
+   "priority": 6,
+   "scenarioCount": 8,
+   "chapters": [
+    {
+     "id": "chinese_chp1",
+     "name": "Bölüm 1",
+     "order": 1,
+     "missions": [
+      {
+       "id": "chi_m1_yingtianfu",
+       "name": "Yingtianfu'ya Kaçış",
+       "tagline": "Wuzhu’nun Jin orduları Song başkentini fethetti ve imparatoru yakaladı. Ancak general Han Shizhong'un yardımıyla bir Song prensi güneye kaçtı.",
+       "year": 1127,
+       "order": 1124,
+       "brief": "Han Shizhong ve Prens Zhao Gou hızla ilerliyordu fakat Jin avcıları hemen arkalarındaydı…",
+       "outro": "Görev Başarısız. Prens Zhao Gou'yu hayatta tutmalı ve onu güvenli bir şekilde Yingtianfu'ya götürmelisin.",
+       "objectives": [],
+       "challenges": 2
+      },
+      {
+       "id": "chi_m2_jiankang",
+       "name": "Jiankang Savunması",
+       "tagline": "Öfkeli Jin kuvvetleri, Yangzi Nehri üzerindeki Jiankang şehrini tehdit ediyor. Yue Fei çaresizce bir savunma düzenliyor.",
+       "year": 1129,
+       "order": 1126,
+       "brief": "Jin ordusu Jiankang'a doğru ilerlerken Yue Fei, savunmacılara destek olmak için şehre doğru hızla yola çıktı…",
+       "outro": "Görev Başarısız. Jiankang'a ulaşmalı ve ardından Jin birliklerinin İmparatorluk Sarayı'nı yok etmesini engellemelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "chi_m3_huangtiandang",
+       "name": "Huangtiandang Muharebesi",
+       "tagline": "Jin orduları Yangzi Nehri yakınlarında yeniden toplanırken Han Shizhong ve Yue Fei, Wuzhu için kurnazca bir tuzak kuruyor.",
+       "year": 1130,
+       "order": 1128,
+       "brief": "Jin birlikleri konumlarından dolayı kendilerine aşırı güveniyordu ancak Han Shizhong, donanmalarının zayıf noktaları olduğunu biliyordu…",
+       "outro": "Görev Başarısız. Jiankang'ı Jin Hanedanı'ndan geri almadan önce düşman gemilerinin kaçmasını engellemelisin, ayrıca kanal kazarak kaçmalarına da izin vermemelisin.",
+       "objectives": [],
+       "challenges": 2
+      }
+     ]
+    },
+    {
+     "id": "chinese_chp2",
+     "name": "2. Bölüm",
+     "order": 2,
+     "missions": [
+      {
+       "id": "chi_m4_southern_rebels",
+       "name": "Güney Asileri",
+       "tagline": "Eyaletlerde ayaklanma var! Haydut savaş ağaları Çin'in Song Hanedanlığı'nı içten çökertmeden önce onları ezip geçmek için Yue Fei hızla güneye gidiyor.",
+       "year": 1131,
+       "order": 1132,
+       "brief": "Dört haydut grubu kırsal bölgeleri kasıp kavuruyordu. Yue Fei ya onları yola getirecek ya da kellelerini alacaktı…",
+       "outro": "Görev Başarısız. 4 Haydut Liderini de mağlup etmeli ve kuvvetlerinin yok olmasına izin vermemelisin.",
+       "objectives": [],
+       "challenges": 2
+      },
+      {
+       "id": "chi_m5_dean_da_qi",
+       "name": "De'an Kuşatması",
+       "tagline": "Jin'in kukla devleti Da Qi, De'an şehrini tehdit ediyor ancak Song'un elinde dâhiyane bir gizli silah var.",
+       "year": 1132,
+       "order": 1134,
+       "brief": "De’an'daki durum son derece vahim görünüyordu ancak isyancılar barutlu silahların ne kadar ölümcül olabileceğini öğrenmek üzereydi…",
+       "outro": "Görev Başarısız. De’an'daki Şehir Merkezlerini korumalı ve son günde düşman kuşatma kampını yok etmelisin.",
+       "objectives": [],
+       "challenges": 2
+      },
+      {
+       "id": "chi_m6_northern_expedition",
+       "name": "Kuzey Seferi",
+       "tagline": "Jin ve Da Qi tökezlemişken Yue Fei bir adım atıyor. Song orduları Xiangyang bölgesini özgürlüğe kavuşturmak için kuzeye hücum ediyor.",
+       "year": 1134,
+       "order": 1136,
+       "brief": "Savunmada geçen yılların ardından rüzgâr nihayet tersine dönmüştü. Artık güçlü rakibini yerinden söküp atma sırası Yue Fei'deydi…",
+       "outro": "Görev Başarısız. Xiangyang'ı geri aldıktan sonra savunmalı ve ardından geri kalan düşman şehirlerini ele geçirmelisin.",
+       "objectives": [],
+       "challenges": 2
+      }
+     ]
+    },
+    {
+     "id": "chinese_chp3",
+     "name": "3. Bölüm",
+     "order": 3,
+     "missions": [
+      {
+       "id": "chi_m7_central_plains",
+       "name": "Merkez Ova",
+       "tagline": "Jin imparatoru öldü, orduları da evine döndü. Yue Fei nihayet Da Qi'yi temelli yok etmek için bir fırsat yakalıyor.",
+       "year": 1135,
+       "order": 1140,
+       "brief": "Merkez Ova'nın ata toprakları, Song Hanedanı için özel bir kültürel öneme sahipti. Buraların geri alınması, morali büyük ölçüde artıracaktı…",
+       "outro": "Görev Başarısız. Lushi'deki Şehir Merkezini korurken düşman şehirlerindeki İç Kaleleri yok etmelisin.",
+       "objectives": [],
+       "challenges": 1
+      },
+      {
+       "id": "chi_m8_yancheng",
+       "name": "Yancheng Muharebesi",
+       "tagline": "Wuzhu'yla son bir kez karşılaşmak isteyen Yue Fei, Song ordusunu Jin bölgesine götürüyor.",
+       "year": 1140,
+       "order": 1142,
+       "brief": "Yerel halkın Wuzhu'ya ve nefret edilen Jin birliklerine karşı kesin tavır almasıyla birlikte Yue Fei, yaklaşan savaşta onların kendisine destek olacağını biliyordu…",
+       "outro": "Görev Başarısız. Shunchang ve Yancheng'i savunmalı, ardından Yingchang ve Zhuxian Kasabasını Wuzhu ile Jin Hanedanı'ndan geri almalısın.",
+       "objectives": [],
+       "challenges": 2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

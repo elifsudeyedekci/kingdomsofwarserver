@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-ci:
+    name: Backend CI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin-backend
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: kow_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: admin-backend/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kow_test
+      - run: npm test -- --passWithNoTests --coverage --coverageThreshold='{"global":{"lines":60}}'
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kow_test
+          JWT_SECRET: ci-test-secret-do-not-use-in-prod
+          JWT_REFRESH_SECRET: ci-test-refresh-secret-do-not-use
+
+  admin-panel-ci:
+    name: Admin Panel CI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin-panel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: admin-panel/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:3001
+
+  database-validate:
+    name: Prisma Schema Validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: database
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install prisma --save-dev
+      - run: npx prisma validate --schema=schema.prisma
+
+  landing-website-ci:
+    name: Landing Website CI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: landing-website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: landing-website/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  security-scan:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: cd admin-backend && npm ci && npm audit --audit-level=high
+      - run: cd admin-panel && npm ci && npm audit --audit-level=high
+
+  unity-meta-check:
+    name: Unity Meta Files Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for missing .meta files
+        run: |
+          cd KingdomsOfWar
+          MISSING=$(find Assets/_Game -name "*.cs" -o -name "*.asmdef" | while read f; do
+            [ -f "${f}.meta" ] || echo "MISSING: $f"
+          done)
+          if [ -n "$MISSING" ]; then
+            echo "$MISSING"
+            exit 1
+          fi
+          echo "All meta files present"

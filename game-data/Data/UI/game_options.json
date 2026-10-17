@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "note": "Custom-game options for single-player skirmishes (data-driven). resources: extra starting resources added on top of the civilisation start (KoW preset values - the reference game's exact preset numbers are UNKNOWN and are not claimed). startAges: age every player starts in (1-4). speeds: game speed multipliers (view-side time scale; the deterministic tick rate is unchanged). Multiplayer ignores these options until they are synchronised by the lobby protocol.",
+  "resources": [
+    { "id": "standard", "name": "Standard", "food": 0, "wood": 0, "gold": 0, "stone": 0 },
+    { "id": "medium", "name": "Medium", "food": 500, "wood": 500, "gold": 300, "stone": 200 },
+    { "id": "high", "name": "High", "food": 1500, "wood": 1500, "gold": 1000, "stone": 500 }
+  ],
+  "startAges": [
+    { "age": 1, "name": "Dark Age" },
+    { "age": 2, "name": "Feudal Age" },
+    { "age": 3, "name": "Castle Age" },
+    { "age": 4, "name": "Imperial Age" }
+  ],
+  "speeds": [
+    { "value": 1.0, "name": "Normal" },
+    { "value": 1.5, "name": "Fast" },
+    { "value": 2.0, "name": "Very fast" }
+  ]
+}

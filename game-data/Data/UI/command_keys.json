@@ -1,0 +1,192 @@
+{
+ "version": 1,
+ "source": "D:/AOE4_EXTRACTED/RAW/ReferenceAttributes/instances/hotkeys/hotkey_binding/building_<name>/{train_,produce_,tech_}*.xml (combo_primary). CONFIRMED: units sit on the top key row (Q W E R), technologies/upgrades on the lower rows. Only ids that exist in KoW (units, buildings, tech_balance.json) are listed.",
+ "grid": "QWERASDFZXCV",
+ "buildings": [
+  {
+   "building": "archery-range",
+   "entries": [
+    {
+     "id": "archer",
+     "key": "Q",
+     "kind": "unit"
+    },
+    {
+     "id": "crossbowman",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "handcannoneer",
+     "key": "E",
+     "kind": "unit"
+    }
+   ]
+  },
+  {
+   "building": "barracks",
+   "entries": [
+    {
+     "id": "man-at-arms",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "spearman",
+     "key": "Q",
+     "kind": "unit"
+    }
+   ]
+  },
+  {
+   "building": "dock",
+   "entries": [
+    {
+     "id": "demolition-ship",
+     "key": "D",
+     "kind": "unit"
+    },
+    {
+     "id": "fishing-boat",
+     "key": "Q",
+     "kind": "unit"
+    },
+    {
+     "id": "trade-ship",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "transport-ship",
+     "key": "E",
+     "kind": "unit"
+    }
+   ]
+  },
+  {
+   "building": "market",
+   "entries": [
+    {
+     "id": "trader",
+     "key": "Q",
+     "kind": "unit"
+    }
+   ]
+  },
+  {
+   "building": "mill",
+   "entries": [
+    {
+     "id": "professional_scouts",
+     "key": "R",
+     "kind": "tech"
+    },
+    {
+     "id": "wheelbarrow",
+     "key": "W",
+     "kind": "tech"
+    }
+   ]
+  },
+  {
+   "building": "monastery",
+   "entries": [
+    {
+     "id": "monk",
+     "key": "Q",
+     "kind": "unit"
+    },
+    {
+     "id": "piety",
+     "key": "S",
+     "kind": "tech"
+    }
+   ]
+  },
+  {
+   "building": "siege-workshop",
+   "entries": [
+    {
+     "id": "bombard",
+     "key": "A",
+     "kind": "unit"
+    },
+    {
+     "id": "mangonel",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "siege-ram",
+     "key": "R",
+     "kind": "unit"
+    },
+    {
+     "id": "springald",
+     "key": "Q",
+     "kind": "unit"
+    },
+    {
+     "id": "trebuchet",
+     "key": "E",
+     "kind": "unit"
+    },
+    {
+     "id": "lightweight_beams",
+     "key": "A",
+     "kind": "tech"
+    },
+    {
+     "id": "adjustable_crossbars",
+     "key": "W",
+     "kind": "tech"
+    },
+    {
+     "id": "greased_axles",
+     "key": "E",
+     "kind": "tech"
+    },
+    {
+     "id": "roller_shutter_triggers",
+     "key": "Q",
+     "kind": "tech"
+    }
+   ]
+  },
+  {
+   "building": "stable",
+   "entries": [
+    {
+     "id": "horseman",
+     "key": "Q",
+     "kind": "unit"
+    },
+    {
+     "id": "knight",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "scout",
+     "key": "E",
+     "kind": "unit"
+    }
+   ]
+  },
+  {
+   "building": "town-center",
+   "entries": [
+    {
+     "id": "scout",
+     "key": "W",
+     "kind": "unit"
+    },
+    {
+     "id": "villager",
+     "key": "Q",
+     "kind": "unit"
+    }
+   ]
+  }
+ ]
+}

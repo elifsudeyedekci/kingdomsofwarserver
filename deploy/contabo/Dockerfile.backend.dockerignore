@@ -1,0 +1,11 @@
+*
+!admin-backend
+!database
+!game-data/Data/Balance
+!game-data/Data/Civilizations
+!game-data/Data/Localization
+!game-data/Data/UI
+**/node_modules
+**/dist
+**/.env
+**/.env.*

@@ -1,0 +1,164 @@
+{
+  "id": "mongols",
+  "nameKey": "civ.mongols.name",
+  "descKey": "civ.mongols.desc",
+  "colorPrimary": "#1A6B3A",
+  "colorSecondary": "#C9A84C",
+  "playstyle": "nomadic-rush",
+  "startingUnits": ["villager", "villager", "villager", "scout", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "nomadic-movement",
+      "nameKey": "bonus.nomadic-movement",
+      "desc": "All Mongol buildings (except Stone Walls and the Ovoo) can be packed up and moved to a new location. Packed buildings travel at 50% standard unit speed, allowing the Mongol player to shift their entire base during a game"
+    },
+    {
+      "id": "pillage-bonus",
+      "nameKey": "bonus.pillage-bonus",
+      "desc": "When Mongol military units destroy an enemy building, they gain 50% of the building's original resource cost back as gold. This rewards aggressive raiding and building destruction"
+    },
+    {
+      "id": "speed-of-the-steppe",
+      "nameKey": "bonus.speed-of-the-steppe",
+      "desc": "All Mongol cavalry and ranged cavalry units move 10% faster than equivalent units for other civilizations. Their scout units also have 50% extended vision range"
+    },
+    {
+      "id": "superior-mobility",
+      "nameKey": "bonus.superior-mobility",
+      "desc": "Mongol units do not lose movement speed when moving through forests or rough terrain. Cavalry units passing through enemy Influence zones do not trigger alert effects"
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "the-ovoo",
+        "nameKey": "landmark.the-ovoo",
+        "bonus": "Sacred stone monument placed on stone deposits. Allows all military production buildings within its influence radius to produce units in pairs for +50% additional cost. Also generates 0.5 gold per second passively"
+      },
+      {
+        "id": "ger",
+        "nameKey": "landmark.ger",
+        "bonus": "Mobile command tent that acts as a secondary Town Center. Can be packed and moved. When unpacked near a resource deposit, villagers gathering from that deposit gain +25% gather speed"
+      }
+    ],
+    "age3": [
+      {
+        "id": "il-khanate-palace",
+        "nameKey": "landmark.il-khanate-palace",
+        "bonus": "Periodically spawns free Khan units (every 5 minutes). Each Khan provides a command aura boosting nearby cavalry attack by 15% and speed by 10%. Multiple Khans can be active simultaneously"
+      },
+      {
+        "id": "steppe-redoubt",
+        "nameKey": "landmark.steppe-redoubt",
+        "bonus": "Stone keep variant that can be packed and moved like other Mongol buildings. Generates 2 gold per second and can train Mangudai directly. Counts as a Stable for technology research purposes"
+      }
+    ],
+    "age4": [
+      {
+        "id": "kurultai",
+        "nameKey": "landmark.kurultai",
+        "bonus": "When activated (60-second cooldown), triggers a Great Khan's Call that instantly heals all Mongol units on the map for 30% of their max HP and grants them +20% attack speed for 30 seconds. Represents the great Mongol assembly"
+      },
+      {
+        "id": "khaganate-palace",
+        "nameKey": "landmark.khaganate-palace",
+        "bonus": "Periodically sends a free army of mixed units (2 Mangudai, 2 Keshik, 1 Traction Trebuchet) every 4 minutes from the building's location. Units arrive pre-upgraded to current Age tier"
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "mangudai",
+      "age": 3,
+      "cost": {"food": 60, "gold": 40},
+      "hp": 100,
+      "attack": 12,
+      "range": 5,
+      "speed": 1.8,
+      "armorType": "light",
+      "special": "Elite mounted archer that can fire while moving at full speed with no accuracy penalty. Deals bonus damage to siege equipment. Kite ability: automatically retreats while firing when attacked by melee units"
+    },
+    {
+      "id": "khan",
+      "age": 1,
+      "cost": {"food": 0, "gold": 0},
+      "hp": 150,
+      "attack": 16,
+      "range": 5,
+      "speed": 2.0,
+      "armorType": "light",
+      "special": "Free hero unit available from Age 1. Provides three command signals via unique abilities: Attack Move Signal (+20% attack speed to nearby cavalry), Flaming Arrows Signal (ranged units deal fire AoE for 10s), Sentry Signal (reveals a large area of fog of war). Respawns after 120 seconds if killed"
+    },
+    {
+      "id": "keshik",
+      "age": 2,
+      "cost": {"food": 110, "gold": 40},
+      "hp": 180,
+      "attack": 18,
+      "range": 0,
+      "speed": 1.65,
+      "armorType": "heavy",
+      "special": "Elite Mongol heavy cavalry that generates food on each kill. Bonus food amount: 10 food per infantry kill, 20 food per cavalry kill. Acts as a self-sustaining raiding unit for long campaigns away from base"
+    },
+    {
+      "id": "traction-trebuchet",
+      "age": 2,
+      "cost": {"wood": 200, "gold": 100},
+      "hp": 80,
+      "attack": 50,
+      "range": 8,
+      "speed": 0.7,
+      "armorType": "siege",
+      "special": "Man-powered trebuchet available two ages earlier than standard trebuchets. Lower damage and range than the counterweight trebuchet, but available very early for siege aggression. Does not need to pack/unpack — fires from a mobile carriage"
+    },
+    {
+      "id": "huihui-pao",
+      "age": 4,
+      "cost": {"wood": 300, "gold": 200},
+      "hp": 160,
+      "attack": 80,
+      "range": 10,
+      "speed": 0.5,
+      "armorType": "siege",
+      "special": "Massive counterweight trebuchet with an extended range of 10 tiles. Fires massive stones that deal splash damage in a 2-tile radius. Requires 60 seconds to set up (unpack) before firing. The ultimate Mongol siege weapon"
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "whistling-arrows",
+      "age": 2,
+      "cost": {"food": 75, "gold": 50},
+      "effect": "All Mongol mounted archers and ranged cavalry now fire whistling arrows that apply a fear debuff to enemy units hit — causing them to temporarily slow by 20% and reducing their attack speed by 10% for 5 seconds"
+    },
+    {
+      "id": "superior-mobility-upgrade",
+      "age": 3,
+      "cost": {"gold": 200, "food": 100},
+      "effect": "All Mongol cavalry units gain an additional +5% movement speed and can now move at full speed on all terrain types including mud, shallow water, and hillsides"
+    },
+    {
+      "id": "yam-network",
+      "age": 3,
+      "cost": {"food": 200, "gold": 150},
+      "effect": "Establishes the Yam postal road network — all Mongol units moving between owned buildings or Ovoo influence zones move 25% faster. Reinforcements arrive from Town Center 40% faster"
+    },
+    {
+      "id": "raid-bounty",
+      "age": 2,
+      "cost": {"food": 100, "gold": 50},
+      "effect": "Pillage bonus increases from 50% to 75% resource return on destroyed buildings. Cavalry units also gain +10% attack when within 5 tiles of an enemy building"
+    },
+    {
+      "id": "monastic-shrines",
+      "age": 4,
+      "cost": {"gold": 400},
+      "effect": "Each active Ovoo now generates 1 gold per second in addition to its existing bonuses. Mongol religious sites (if relics are captured) generate double the standard gold income"
+    }
+  ],
+  "ageUpCosts": {
+    "age2": {"food": 400},
+    "age3": {"food": 800, "gold": 200},
+    "age4": {"food": 1200, "gold": 600}
+  }
+}

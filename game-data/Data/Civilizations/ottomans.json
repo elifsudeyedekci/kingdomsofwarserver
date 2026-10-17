@@ -1,0 +1,120 @@
+{
+  "id": "ottomans",
+  "nameKey": "civ.ottomans.name",
+  "descKey": "civ.ottomans.desc",
+  "colorPrimary": "#C8102E",
+  "colorSecondary": "#FFFFFF",
+  "playstyle": "military-school-gunpowder",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "military-school-auto-produce",
+      "nameKey": "bonus.ottomans.military_school",
+      "desc": "Military School buildings automatically produce free units over time without player input. Higher-age schools produce more advanced units."
+    },
+    {
+      "id": "grand-bazaar-carry",
+      "nameKey": "bonus.ottomans.grand_bazaar_carry",
+      "desc": "Villagers carry 20% more resources per trip. Traders generate 10% more gold per route."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "istanbul-imperial-palace",
+        "nameKey": "Ottomans Istanbul Imperial Palace",
+        "bonus": "Generates a steady income of gold. Doubles the Military School unit production speed for all schools within 30 tiles."
+      },
+      {
+        "id": "istanbul-observatory",
+        "nameKey": "Ottomans Istanbul Observatory",
+        "bonus": "All technology research speed increased by 20%. Reveals all enemy military buildings on the map for 60 seconds when built."
+      }
+    ],
+    "age3": [
+      {
+        "id": "mehmed-imperial-armory",
+        "nameKey": "Ottomans Mehmed Imperial Armory",
+        "bonus": "All gunpowder units gain +20% attack damage. Unlocks unique Ottoman cannon upgrades unavailable elsewhere."
+      },
+      {
+        "id": "sea-gate-castle",
+        "nameKey": "Ottomans Sea Gate Castle",
+        "bonus": "All naval units gain +2 armor. Acts as a coastal fort that fires large cannon shots at enemy ships."
+      }
+    ],
+    "age4": [
+      {
+        "id": "topkapi-palace",
+        "nameKey": "Ottomans Topkapi Palace",
+        "bonus": "Military School production speed doubled globally. Produced units emerge fully upgraded to the current age."
+      },
+      {
+        "id": "twin-minaret-medrese",
+        "nameKey": "Ottomans Twin Minaret Medrese",
+        "bonus": "Any technology can be researched instantly by paying 2x its normal cost. Acts as a University with no queue limit."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "janissary",
+      "age": 3,
+      "cost": { "food": 60, "gold": 50 },
+      "hp": 145,
+      "attack": 22,
+      "range": 5,
+      "speed": 1.1,
+      "armorType": "medium",
+      "special": "Bonus damage vs heavy armor. High reload time but exceptional accuracy. Can be trained for free via Military School over time."
+    },
+    {
+      "id": "great-bombard",
+      "age": 4,
+      "cost": { "gold": 600, "stone": 200 },
+      "hp": 400,
+      "attack": 80,
+      "range": 8,
+      "speed": 0.6,
+      "armorType": "siege",
+      "special": "Massive area damage against walls and buildings. Slow rate of fire but devastating impact. Bonus damage to gates and towers."
+    },
+    {
+      "id": "sipahi",
+      "age": 2,
+      "cost": { "food": 100, "gold": 40 },
+      "hp": 200,
+      "attack": 18,
+      "range": 0,
+      "speed": 1.5,
+      "armorType": "heavy",
+      "special": "Fast heavy cavalry. Produced for free by Military School over time. Inspires nearby Ottoman infantry with +10% attack speed."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "military-discipline",
+      "age": 2,
+      "cost": { "food": 100, "gold": 75 },
+      "effect": "Military School produces units 25% faster. Units from Military School gain +5% HP bonus."
+    },
+    {
+      "id": "grand-cannon",
+      "age": 3,
+      "cost": { "food": 200, "gold": 300 },
+      "effect": "Great Bombard range increased by 2 and projectiles now pierce through thin walls, dealing damage to units behind."
+    },
+    {
+      "id": "field-work",
+      "age": 4,
+      "cost": { "food": 500, "gold": 400 },
+      "effect": "All Ottoman military units gain +15% HP and can construct temporary field fortifications (palisade stakes) in combat."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "note": "Which building types F1 (military), F2 (economy) and F3 (tech) cycle through (reference: F1/F2/F3 select a building of that kind, TAB cycles within it - CONFIRMED in the official shortcut article; the exact membership per civilization is INFERRED from building roles). Data-driven: add a type id here to include it; unknown ids are ignored.",
+  "groups": [
+    { "id": "mil",  "types": ["barracks", "archery-range", "stable", "siege-workshop", "war-stable", "machine-workshop", "military-school", "mercenary-house", "varangian-arsenal", "keep", "fortress"] },
+    { "id": "eco",  "types": ["town-center", "mill", "lumber-camp", "mining-camp", "farm", "dock", "market", "hunting-cabin", "ovoo", "pit-mine", "pasture", "grassland", "cistern", "house"] },
+    { "id": "tech", "types": ["blacksmith", "university", "monastery", "matsuri", "hojo-clan-daimyo-estate", "oda-clan-daimyo-estate", "takeda-clan-daimyo-estate"] }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+ "source": "Wwise event names of the reference game (Content/cardinal/audio*), resolved to wem media through the banks' HIRC by tools/source-audit/bnk-events.js. Dev/test only (same gate as the other reference data). Key = KoW SoundId; first listed events are picked at random.",
+ "installDirs": [
+  "D:/XBox Games/Age of Empires IV/Content/cardinal"
+ ],
+ "maxVariants": 12,
+ "sounds": {
+  "ButtonClick": [
+   "sfx_ui_base_button_click"
+  ],
+  "ButtonHover": [
+   "sfx_ui_frontend_highlight_button_play"
+  ],
+  "MeleeHit": [
+   "common_sword_arming_sfx_hit_play",
+   "common_spear_sfx_hit_play",
+   "common_mace_sfx_hit_play",
+   "common_1hand_axe_sfx_hit_play"
+  ],
+  "ArrowRelease": [
+   "sfx_combat_ranged_longbow3_fire_play",
+   "sfx_combat_ranged_crossbow3_fire_play"
+  ],
+  "ArrowHit": [
+   "common_arrow_sfx_hit_play"
+  ],
+  "BuildingHit": [
+   "sfx_destruction_stonewall_damage_play",
+   "sfx_destruction_pallisade_damage_play"
+  ],
+  "BuildingDestroyed": [
+   "sfx_destruction_total_collapse_stone_medium_play",
+   "sfx_destruction_total_collapse_wood_small_play",
+   "sfx_destruction_total_collapse_brick_medium_play"
+  ],
+  "BuildingConstructed": [
+   "sfx_construction_shared_build_construction_complete_play"
+  ],
+  "BuildingQueued": [
+   "sfx_ui_building_placed_small_play",
+   "sfx_ui_building_placed_medium_play"
+  ],
+  "TechResearched": [
+   "sfx_ui_event_queue_low_priority_play"
+  ],
+  "AgeUp": [
+   "sfx_ui_shared_age_up_notifcation_local_play"
+  ],
+  "VictoryFanfare": [
+   "mus_stinger_triumph_long"
+  ],
+  "DefeatStinger": [
+   "mus_stinger_negative"
+  ],
+  "UnderAttack": [
+   "sfx_ui_shared_attack_horn_under_attack_low",
+   "sfx_ui_shared_attack_horn_under_attack_gaia"
+  ],
+  "EnemySpotted": [
+   "sfx_ui_shared_map_ping_alert"
+  ],
+  "UnitTrained": [
+   "sfx_ui_event_queue_low_priority_play"
+  ],
+  "CommandDenied": [
+   "sfx_ui_action_failed_play"
+  ],
+  "Notification": [
+   "sfx_ui_event_queue_high_priority_play"
+  ],
+  "QueueCancel": [
+   "sfx_ui_hud_inGame_button_buildCancel_play"
+  ],
+  "UnitDeath": [
+   "sfx_foley_bodyfall"
+  ],
+  "ResourceCollected": [
+   "sfx_foley_shared_villager_dropoff_ground_play",
+   "sfx_foley_shared_villager_dropoff_wood_play",
+   "sfx_foley_shared_villager_dropoff_food_play",
+   "sfx_foley_shared_villager_dropoff_gold_play",
+   "sfx_foley_shared_villager_dropoff_stone_play"
+  ],
+  "UnitGather": [
+   "sfx_foley_shared_villager_logging_play",
+   "sfx_foley_shared_villager_mining_play",
+   "sfx_foley_shared_villager_foraging_play",
+   "sfx_foley_shared_villager_sickle_harvest_play"
+  ],
+  "BuildingSelect": [
+   "sfx_ui_house_building_selection_play",
+   "sfx_ui_tech_unit_town_center_building_selection_play",
+   "sfx_ui_unit_infantry_building_selection_play",
+   "sfx_ui_econ_food_building_selection_play",
+   "sfx_ui_tower_building_selection_play"
+  ]
+ },
+ "music": {
+  "events": {
+   "default": "mus_core_event_play",
+   "english": "mus_core_event_play_english",
+   "french": "mus_core_event_play_french",
+   "mongols": "mus_core_event_play_mongols",
+   "chinese": "mus_core_event_play_chinese",
+   "rus": "mus_core_event_play_rus",
+   "holy_roman_empire": "mus_core_event_play_hre",
+   "abbasid": "mus_core_event_play_abbasid",
+   "delhi": "mus_core_event_play_sultanate",
+   "malians": "mus_core_event_play_malian",
+   "byzantines": "mus_core_event_play_byzantine",
+   "japanese": "mus_core_event_play_japanese",
+   "ottomans": "mus_core_event_play_ottoman",
+   "jin_dynasty": "mus_core_event_play_jin"
+  }
+ },
+ "buildingSelect": {
+  "house": "sfx_ui_house_building_selection_play",
+  "town-center": "sfx_ui_tech_unit_town_center_building_selection_play",
+  "barracks": "sfx_ui_unit_infantry_building_selection_play",
+  "archery-range": "sfx_ui_unit_ranged_building_selection_play",
+  "stable": "sfx_ui_unit_cavalry_building_selection_play",
+  "siege-workshop": "sfx_ui_unit_siege_building_selection_play",
+  "monastery": "sfx_ui_unit_religious_building_selection_play",
+  "dock": "sfx_ui_unit_dock_building_selection_play",
+  "mill": "sfx_ui_econ_food_building_selection_play",
+  "lumber-camp": "sfx_ui_econ_wood_building_selection_play",
+  "mining-camp": "sfx_ui_econ_stone_building_selection_play",
+  "market": "sfx_ui_econ_market_building_selection_play",
+  "blacksmith": "sfx_ui_tech_unit_infantry_building_selection_play",
+  "university": "sfx_ui_tech_unit_university_building_selection_play",
+  "keep": "sfx_ui_tower_building_selection_play",
+  "fortress": "sfx_ui_tower_building_selection_play",
+  "tower": "sfx_ui_tower_building_selection_play",
+  "toll-outpost": "sfx_ui_outpost_building_selection_play",
+  "wall-stone": "sfx_ui_wall_building_selection_play",
+  "gate": "sfx_ui_wall_building_selection_play",
+  "wall-wood": "sfx_ui_pallisades_building_selection_play",
+  "farm": "sfx_ui_resource_farm_building_selection_play",
+  "pasture": "sfx_ui_resource_pasture_building_selection_play",
+  "cistern": "sfx_ui_econ_cistern_building_selection_play",
+  "aqueduct": "sfx_ui_aqueduct_building_selection_play",
+  "wonder": "sfx_ui_wonder_building_selection_play",
+  "mercenary-house": "sfx_ui_tech_unit_mercenary_house_building_selection_play",
+  "hunting-cabin": "sfx_ui_econ_food_building_selection_play",
+  "military-school": "sfx_ui_tech_unit_infantry_building_selection_play"
+ },
+ "hitSounds": {
+  "spearman": "common_pike_sfx_hit_play",
+  "man-at-arms": "common_sword_arming_sfx_hit_play",
+  "knight": "common_lance_sfx_hit_play",
+  "lancer": "common_lance_sfx_hit_play",
+  "horseman": "common_spear_sfx_hit_play",
+  "scout": "common_sword_sfx_hit_play",
+  "villager": "common_dagger_sfx_hit_play",
+  "trader": "common_dagger_sfx_hit_play",
+  "monk": "common_mace_sfx_hit_play",
+  "archer": "common_arrow_sfx_hit_play",
+  "crossbowman": "common_bolt_crossbow_sfx_hit_play",
+  "handcannoneer": "common_hand_cannon_sfx_hit_play",
+  "siege-ram": "common_battering_ram_sfx_hit_play",
+  "battering-ram": "common_battering_ram_sfx_hit_play",
+  "mangonel": "common_mangonel_sfx_hit_play",
+  "trebuchet": "common_trebuchet_counterweight_sfx_hit_play",
+  "bombard": "common_bombard_sfx_hit_play",
+  "cannon": "common_cannon_sfx_hit_play",
+  "springald": "common_scorpion_sfx_hit_play",
+  "scorpion": "common_scorpion_sfx_hit_play"
+ },
+ "fireSounds": {
+  "archer": "sfx_combat_ranged_longbow3_fire_play",
+  "crossbowman": "sfx_combat_ranged_crossbow4_fire_play",
+  "handcannoneer": "sfx_weapons_ranged_arquebus_fire",
+  "bombard": "sfx_siege_shot_fire_cannon_bombard",
+  "cannon": "sfx_siege_shot_fire_cannon",
+  "trebuchet": "sfx_siege_trebuchet_cw_fire"
+ }
+}

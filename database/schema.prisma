@@ -1,0 +1,1691 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum Platform {
+  android
+  ios
+  editor
+}
+
+enum MatchStatus {
+  waiting
+  loading
+  in_progress
+  completed
+  cancelled
+  error
+}
+
+enum MatchMode {
+  tutorial
+  ai_skirmish
+  casual_1v1
+  ranked_1v1
+  casual_2v2
+  ranked_2v2
+  casual_3v3
+  ranked_3v3
+  casual_4v4
+  ranked_4v4
+  custom
+  clan_war
+  tournament
+  event
+  spectator
+}
+
+enum VictoryType {
+  conquest
+  sacred_site
+  wonder
+  relic
+  surrender
+  disconnect
+  timeout
+}
+
+enum MasterDataStatus {
+  draft
+  pending_review
+  approved
+  published
+  archived
+}
+
+enum SupportTicketStatus {
+  open
+  in_progress
+  waiting_player
+  resolved
+  closed
+}
+
+enum SupportTicketPriority {
+  low
+  medium
+  high
+  critical
+}
+
+enum BanType {
+  temporary
+  permanent
+  ranked_only
+}
+
+enum PrivacyRequestType {
+  export
+  delete
+}
+
+enum PrivacyRequestStatus {
+  pending
+  processing
+  completed
+  failed
+}
+
+enum AdminRole {
+  super_admin
+  owner
+  developer
+  game_designer
+  live_ops
+  support
+  moderator
+  finance
+  marketing
+  analyst
+  legal
+}
+
+enum FriendshipStatus {
+  pending
+  accepted
+  blocked
+}
+
+enum RankTier {
+  bronze
+  silver
+  gold
+  platinum
+  diamond
+  master
+}
+
+enum PromotionSeriesStatus {
+  active
+  won
+  lost
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// USERS & ACCOUNTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id               String    @id @default(uuid())
+  guestId          String?   @unique
+  googleId         String?   @unique
+  appleId          String?   @unique
+  email            String?   @unique
+  emailVerified    Boolean   @default(false)
+  phone            String?   @unique
+  phoneVerified    Boolean   @default(false)
+  passwordHash     String?
+  twoFactorEnabled Boolean   @default(false)
+  twoFactorSecret  String?
+  isActive         Boolean   @default(true)
+  isGuest          Boolean   @default(true)
+  country          String?
+  language         String    @default("tr")
+  timezone         String?
+  registeredAt     DateTime  @default(now())
+  lastLoginAt      DateTime?
+  deletedAt        DateTime?
+
+  profile                PlayerProfile?
+  devices                PlayerDevice[]
+  sessions               PlayerSession[]
+  inventory              PlayerInventory[]
+  wallet                 PlayerWallet?
+  purchases              PlayerPurchase[]
+  bans                   Ban[]
+  mutes                  Mute[]
+  antiCheatFlags         AntiCheatFlag[]
+  fraudFlags             FraudFlag[]
+  supportTickets         SupportTicket[]
+  legalAcceptances       LegalAcceptance[]
+  friendsInitiated       Friendship[]          @relation("FriendshipRequester")
+  friendsReceived        Friendship[]          @relation("FriendshipReceiver")
+  friendRequestsSent     FriendRequest[]       @relation("FriendRequestFrom")
+  friendRequestsReceived FriendRequest[]       @relation("FriendRequestTo")
+  rankHistory            RankHistory[]
+  promotionSeries        PromotionSeries[]
+  privacyRequests        PrivacyRequest[]
+  achievementProgress    AchievementProgress[]
+
+  @@index([email])
+  @@index([registeredAt])
+  @@map("users")
+}
+
+model PlayerProfile {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  username      String   @unique
+  displayName   String?
+  avatarUrl     String?
+  level         Int      @default(1)
+  xp            Int      @default(0)
+  mmr           Int      @default(1000)
+  peakMmr       Int      @default(1000)
+  currentRank   RankTier @default(bronze)
+  totalMatches  Int      @default(0)
+  wins          Int      @default(0)
+  losses        Int      @default(0)
+  favoriteCivId String?
+  clanId        String?
+  riskScore     Float    @default(0)
+  isPremium     Boolean  @default(false)
+  playSeconds   Int      @default(0)
+  sessionCount  Int      @default(0)
+  lastSeenAt    DateTime?
+  lastPlatform  String?
+  lastAppVersion String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User  @relation(fields: [userId], references: [id])
+  clan Clan? @relation(fields: [clanId], references: [id])
+
+  @@index([mmr])
+  @@index([username])
+  @@map("player_profiles")
+}
+
+model PlayerDevice {
+  id         String   @id @default(uuid())
+  userId     String
+  deviceId   String
+  platform   Platform
+  osVersion  String?
+  appVersion String?
+  model      String?
+  pushToken  String?
+  isActive   Boolean  @default(true)
+  lastSeenAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, deviceId])
+  @@index([userId])
+  @@map("player_devices")
+}
+
+model PlayerSession {
+  id           String    @id @default(uuid())
+  userId       String
+  refreshToken String    @unique
+  ipAddress    String?
+  userAgent    String?
+  isValid      Boolean   @default(true)
+  expiresAt    DateTime
+  createdAt    DateTime  @default(now())
+  revokedAt    DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([refreshToken])
+  @@map("player_sessions")
+}
+
+model PlayerWallet {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  coins       Int      @default(0)
+  gems        Int      @default(0)
+  chestKeys   Int      @default(0)
+  eventTokens Int      @default(0)
+  bpXp        Int      @default(0)
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("player_wallets")
+}
+
+model PlayerInventory {
+  id         String    @id @default(uuid())
+  userId     String
+  itemType   String
+  itemId     String
+  quantity   Int       @default(1)
+  expiresAt  DateTime?
+  obtainedAt DateTime  @default(now())
+  source     String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([userId, itemType])
+  @@map("player_inventory")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PAYMENTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+model PlayerPurchase {
+  id             String    @id @default(uuid())
+  userId         String
+  storeProductId String
+  platform       Platform
+  transactionId  String    @unique
+  receiptData    String
+  amountUsd      Float
+  currencyCode   String    @default("USD")
+  amountLocal    Float?
+  status         String    @default("pending")
+  verifiedAt     DateTime?
+  fraudScore     Float?
+  createdAt      DateTime  @default(now())
+
+  user         User             @relation(fields: [userId], references: [id])
+  storeProduct StoreProduct     @relation(fields: [storeProductId], references: [id])
+  receipt      PurchaseReceipt?
+  refund       Refund?
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("player_purchases")
+}
+
+model PurchaseReceipt {
+  id                 String    @id @default(uuid())
+  purchaseId         String    @unique
+  rawReceipt         String
+  validationResponse Json?
+  isValid            Boolean   @default(false)
+  validatedAt        DateTime?
+  createdAt          DateTime  @default(now())
+
+  purchase PlayerPurchase @relation(fields: [purchaseId], references: [id])
+
+  @@index([createdAt])
+  @@map("purchase_receipts")
+}
+
+model Refund {
+  id          String    @id @default(uuid())
+  purchaseId  String    @unique
+  userId      String
+  reason      String?
+  amountUsd   Float
+  status      String    @default("pending")
+  processedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  purchase PlayerPurchase @relation(fields: [purchaseId], references: [id])
+
+  @@index([createdAt])
+  @@map("refunds")
+}
+
+model Chargeback {
+  id            String    @id @default(uuid())
+  userId        String
+  transactionId String
+  amountUsd     Float
+  reason        String?
+  status        String    @default("received")
+  resolvedAt    DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@index([userId])
+  @@map("chargebacks")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MASTER DATA (game content)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Civilization {
+  id        String           @id
+  nameKey   String
+  data      Json
+  version   Int              @default(1)
+  status    MasterDataStatus @default(draft)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("civilizations")
+}
+
+model Unit {
+  id        String           @id
+  nameKey   String
+  civId     String?
+  data      Json
+  version   Int              @default(1)
+  status    MasterDataStatus @default(draft)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([civId])
+  @@map("units")
+}
+
+model Building {
+  id        String           @id
+  nameKey   String
+  civId     String?
+  data      Json
+  version   Int              @default(1)
+  status    MasterDataStatus @default(draft)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("buildings")
+}
+
+model Technology {
+  id        String           @id
+  nameKey   String
+  civId     String?
+  data      Json
+  version   Int              @default(1)
+  status    MasterDataStatus @default(draft)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("technologies")
+}
+
+model GameMap {
+  id        String           @id
+  nameKey   String
+  data      Json
+  version   Int              @default(1)
+  status    MasterDataStatus @default(draft)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("maps")
+}
+
+model Landmark {
+  id          String           @id
+  nameKey     String
+  civId       String?
+  ageRequired Int
+  data        Json
+  version     Int              @default(1)
+  status      MasterDataStatus @default(draft)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@map("landmarks")
+}
+
+model BalanceConfig {
+  id          String   @id @default(uuid())
+  configKey   String   @unique
+  value       Json
+  description String?
+  version     Int      @default(1)
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@map("balance_configs")
+}
+
+model MasterDataVersion {
+  id          String   @id @default(uuid())
+  dataType    String
+  version     Int
+  hash        String
+  publishedAt DateTime @default(now())
+  publishedBy String?
+
+  @@unique([dataType, version])
+  @@map("master_data_versions")
+}
+
+model MasterDataChangeset {
+  id          String           @id @default(uuid())
+  dataType    String
+  changedBy   String
+  reviewedBy  String?
+  publishedBy String?
+  oldValue    Json?
+  newValue    Json
+  status      MasterDataStatus @default(draft)
+  reviewNote  String?
+  createdAt   DateTime         @default(now())
+  reviewedAt  DateTime?
+  publishedAt DateTime?
+
+  @@index([dataType])
+  @@index([status])
+  @@map("master_data_changesets")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MATCHES
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Match {
+  id            String      @id @default(uuid())
+  mode          MatchMode
+  status        MatchStatus @default(waiting)
+  mapId         String?
+  seed          String?
+  region        String?
+  tickRate      Int         @default(15)
+  startedAt     DateTime?
+  endedAt       DateTime?
+  durationTicks Int?
+  serverVersion String?
+  dataHash      String?
+  replayId      String?
+  createdAt     DateTime    @default(now())
+
+  players MatchPlayer[]
+  events  MatchEvent[]
+  result  MatchResult?
+  replay  Replay?
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("matches")
+}
+
+model MatchPlayer {
+  id           String   @id @default(uuid())
+  matchId      String
+  userId       String
+  slot         Int
+  teamId       Int
+  civId        String?
+  mmrBefore    Int?
+  mmrAfter     Int?
+  mmrDelta     Int?
+  isWinner     Boolean?
+  surrendered  Boolean  @default(false)
+  disconnected Boolean  @default(false)
+  afk          Boolean  @default(false)
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@unique([matchId, userId])
+  @@index([userId])
+  @@map("match_players")
+}
+
+model MatchEvent {
+  id        String   @id @default(uuid())
+  matchId   String
+  tick      Int
+  eventType String
+  playerId  String?
+  data      Json?
+  createdAt DateTime @default(now())
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@index([matchId])
+  @@index([createdAt])
+  @@map("match_events")
+}
+
+model MatchResult {
+  id              String       @id @default(uuid())
+  matchId         String       @unique
+  winnerUserId    String?
+  victoryType     VictoryType?
+  serverValidated Boolean      @default(false)
+  validatedAt     DateTime?
+  data            Json?
+  createdAt       DateTime     @default(now())
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@map("match_results")
+}
+
+model Replay {
+  id              String    @id @default(uuid())
+  matchId         String    @unique
+  schemaVersion   Int       @default(1)
+  dataVersionHash String?
+  filePath        String?
+  fileSize        Int?
+  checksum        String?
+  isPublic        Boolean   @default(false)
+  shareCode       String?   @unique
+  retainUntil     DateTime?
+  createdAt       DateTime  @default(now())
+
+  match Match @relation(fields: [matchId], references: [id])
+
+  @@index([shareCode])
+  @@map("replays")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLANS & SOCIAL
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Clan {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  tag         String   @unique @db.VarChar(5)
+  description String?
+  logoUrl     String?
+  leaderId    String
+  gold        Int      @default(0)
+  points      Int      @default(0)
+  isOpen      Boolean  @default(true)
+  minMmr      Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  members  ClanMember[]
+  wars     ClanWar[]
+  profiles PlayerProfile[]
+
+  @@map("clans")
+}
+
+model ClanMember {
+  id       String   @id @default(uuid())
+  clanId   String
+  userId   String
+  role     String   @default("member")
+  joinedAt DateTime @default(now())
+
+  clan Clan @relation(fields: [clanId], references: [id])
+
+  @@unique([clanId, userId])
+  @@map("clan_members")
+}
+
+model ClanWar {
+  id            String    @id @default(uuid())
+  clanId        String
+  opponentId    String
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  endedAt       DateTime?
+  clanScore     Int       @default(0)
+  opponentScore Int       @default(0)
+  winnerId      String?
+  status        String    @default("scheduled")
+
+  clan         Clan                 @relation(fields: [clanId], references: [id])
+  participants ClanWarParticipant[]
+  attacks      ClanWarAttack[]
+
+  @@index([clanId])
+  @@index([status])
+  @@map("clan_wars")
+}
+
+model ClanWarParticipant {
+  id       String   @id @default(uuid())
+  warId    String
+  clanId   String
+  userId   String
+  joinedAt DateTime @default(now())
+
+  war ClanWar @relation(fields: [warId], references: [id])
+
+  @@unique([warId, userId])
+  @@index([warId, clanId])
+  @@map("clan_war_participants")
+}
+
+model ClanWarAttack {
+  id          String   @id @default(uuid())
+  warId       String
+  attackerId  String
+  defenderId  String
+  stars       Int
+  destruction Int
+  createdAt   DateTime @default(now())
+
+  war ClanWar @relation(fields: [warId], references: [id])
+
+  @@index([warId, attackerId])
+  @@map("clan_war_attacks")
+}
+
+model Friendship {
+  id          String           @id @default(uuid())
+  requesterId String
+  receiverId  String
+  status      FriendshipStatus @default(pending)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  requester User @relation("FriendshipRequester", fields: [requesterId], references: [id])
+  receiver  User @relation("FriendshipReceiver", fields: [receiverId], references: [id])
+
+  @@unique([requesterId, receiverId])
+  @@index([receiverId])
+  @@map("friendships")
+}
+
+model FriendRequest {
+  id           String   @id @default(uuid())
+  fromPlayerId String
+  toPlayerId   String
+  status       String   @default("pending")
+  createdAt    DateTime @default(now())
+
+  fromPlayer User @relation("FriendRequestFrom", fields: [fromPlayerId], references: [id])
+  toPlayer   User @relation("FriendRequestTo", fields: [toPlayerId], references: [id])
+
+  @@unique([fromPlayerId, toPlayerId])
+  @@map("friend_requests")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TOURNAMENTS & LEADERBOARD
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Tournament {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  startAt     DateTime
+  endAt       DateTime
+  maxPlayers  Int?
+  prizePool   Json?
+  status      String   @default("upcoming")
+  createdBy   String
+  createdAt   DateTime @default(now())
+
+  participants TournamentParticipant[]
+  matches      TournamentMatch[]
+
+  @@map("tournaments")
+}
+
+/// Tracks a player's registration in a tournament.
+model TournamentParticipant {
+  id           String   @id @default(uuid())
+  tournamentId String
+  userId       String
+  registeredAt DateTime @default(now())
+  seed         Int?
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+
+  @@unique([tournamentId, userId])
+  @@index([tournamentId])
+  @@map("tournament_participants")
+}
+
+/// A single match slot within a tournament bracket.
+/// Supports single-elimination: rounds are 1-indexed, position is 0-indexed within a round.
+/// nextMatchId links the winner's destination slot in the next round.
+model TournamentMatch {
+  id             String    @id @default(uuid())
+  tournamentId   String
+  round          Int
+  position       Int
+  participant1Id String?
+  participant2Id String?
+  winnerId       String?
+  score          String?
+  scheduledAt    DateTime?
+  completedAt    DateTime?
+  nextMatchId    String?
+
+  tournament Tournament @relation(fields: [tournamentId], references: [id])
+
+  @@index([tournamentId, round])
+  @@map("tournament_matches")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ACHIEVEMENTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Persists per-player progress and unlock state for each achievement definition.
+/// The achievement definitions themselves live in DEFINITIONS (in-code), so only
+/// progress/unlock rows are stored here.
+model AchievementProgress {
+  id            String    @id @default(uuid())
+  userId        String
+  achievementId String
+  progress      Int       @default(0)
+  isUnlocked    Boolean   @default(false)
+  unlockedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@index([achievementId])
+  @@map("achievement_progress")
+}
+
+model LeaderboardEntry {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  seasonId  String?
+  score     Int
+  rank      Int?
+  metadata  Json?
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, type, seasonId])
+  @@index([type, score])
+  @@map("leaderboard_entries")
+}
+
+model RankHistory {
+  id                 String   @id @default(uuid())
+  userId             String
+  seasonId           String
+  finalRank          RankTier
+  finalMmr           Int
+  placementCompleted Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, seasonId])
+  @@map("rank_history")
+}
+
+model PromotionSeries {
+  id           String                @id @default(uuid())
+  userId       String
+  targetRank   RankTier
+  wins         Int                   @default(0)
+  losses       Int                   @default(0)
+  totalMatches Int                   @default(0)
+  status       PromotionSeriesStatus @default(active)
+  createdAt    DateTime              @default(now())
+  completedAt  DateTime?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("promotion_series")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LIVE OPS
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Season {
+  id         String   @id @default(uuid())
+  number     Int      @unique
+  name       String
+  startAt    DateTime
+  endAt      DateTime
+  bpMaxLevel Int      @default(100)
+  isActive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@map("seasons")
+}
+
+model BattlePass {
+  id          String    @id @default(uuid())
+  seasonId    String
+  userId      String
+  level       Int       @default(0)
+  xp          Int       @default(0)
+  isPremium   Boolean   @default(false)
+  purchasedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([seasonId, userId])
+  @@index([userId])
+  @@map("battle_passes")
+}
+
+model Quest {
+  id         String   @id @default(uuid())
+  type       String
+  titleKey   String
+  descKey    String
+  xpReward   Int      @default(0)
+  rewardData Json?
+  conditions Json
+  resetType  String   @default("daily")
+  isActive   Boolean  @default(true)
+  civId      String?
+  minAge     Int?
+  createdAt  DateTime @default(now())
+
+  @@map("quests")
+}
+
+model LiveOpsEvent {
+  id         String   @id @default(uuid())
+  titleKey   String
+  descKey    String
+  type       String
+  startAt    DateTime
+  endAt      DateTime
+  config     Json
+  rewards    Json?
+  segment    String?
+  countries  String[]
+  minVersion String?
+  isActive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([isActive, startAt, endAt])
+  @@map("events")
+}
+
+model Reward {
+  id   String @id @default(uuid())
+  type String
+  data Json
+
+  @@map("rewards")
+}
+
+model Chest {
+  id        String   @id @default(uuid())
+  chestType String   @unique
+  nameKey   String
+  odds      Json
+  costGems  Int?
+  costKeys  Int?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("chests")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STORE
+// ─────────────────────────────────────────────────────────────────────────────
+
+model StoreProduct {
+  id           String   @id @default(uuid())
+  skuAndroid   String?  @unique
+  skuIos       String?  @unique
+  nameKey      String
+  descKey      String?
+  priceUsd     Float
+  localPrices  Json?
+  contents     Json
+  isActive     Boolean  @default(true)
+  isConsumable Boolean  @default(true)
+  segment      String?
+  countries    String[]
+  minVersion   String?
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  purchases PlayerPurchase[]
+
+  @@map("store_products")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NOTIFICATIONS & CAMPAIGNS
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Notification {
+  id        String    @id @default(uuid())
+  userId    String
+  type      String
+  titleKey  String?
+  bodyKey   String?
+  title     String?
+  body      String?
+  data      Json?
+  isRead    Boolean   @default(false)
+  sentAt    DateTime?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId, isRead])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+model MailCampaign {
+  id          String    @id @default(uuid())
+  name        String
+  subject     String
+  templateId  String
+  segment     String?
+  countries   String[]
+  sentCount   Int       @default(0)
+  openCount   Int       @default(0)
+  clickCount  Int       @default(0)
+  bounceCount Int       @default(0)
+  status      String    @default("draft")
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  createdBy   String
+
+  @@index([createdAt])
+  @@map("mail_campaigns")
+}
+
+model SmsCampaign {
+  id          String    @id @default(uuid())
+  name        String
+  message     String
+  segment     String?
+  countries   String[]
+  sentCount   Int       @default(0)
+  status      String    @default("draft")
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdAt   DateTime  @default(now())
+  createdBy   String
+
+  @@map("sms_campaigns")
+}
+
+model CommunicationPreference {
+  id            String   @id @default(uuid())
+  userId        String   @unique
+  pushEnabled   Boolean  @default(true)
+  mailEnabled   Boolean  @default(false)
+  smsEnabled    Boolean  @default(false)
+  marketingPush Boolean  @default(true)
+  marketingMail Boolean  @default(false)
+  marketingSms  Boolean  @default(false)
+  updatedAt     DateTime @updatedAt
+
+  @@map("communication_preferences")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LEGAL & CONSENT
+// ─────────────────────────────────────────────────────────────────────────────
+
+model LegalText {
+  id          String    @id @default(uuid())
+  type        String
+  version     String
+  language    String
+  content     String
+  hash        String
+  isActive    Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  acceptances LegalAcceptance[]
+
+  @@unique([type, version, language])
+  @@map("legal_texts")
+}
+
+model LegalAcceptance {
+  id          String    @id @default(uuid())
+  userId      String
+  legalTextId String
+  ipAddress   String?
+  deviceId    String?
+  platform    Platform?
+  appVersion  String?
+  language    String?
+  country     String?
+  acceptedAt  DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  legalText LegalText @relation(fields: [legalTextId], references: [id])
+
+  @@index([userId])
+  @@index([acceptedAt])
+  @@map("legal_acceptances")
+}
+
+model LegalEvidenceExport {
+  id          String    @id @default(uuid())
+  userId      String
+  requestedBy String?
+  fileUrl     String?
+  exportedAt  DateTime  @default(now())
+  expiresAt   DateTime?
+
+  @@index([userId])
+  @@map("legal_evidence_exports")
+}
+
+model PrivacyRequest {
+  id            String               @id @default(uuid())
+  userId        String
+  type          PrivacyRequestType
+  status        PrivacyRequestStatus @default(pending)
+  createdAt     DateTime             @default(now())
+  completedAt   DateTime?
+  resultUrl     String?
+  assignedAdmin String?
+
+  user      User           @relation(fields: [userId], references: [id])
+  exportJob DataExportJob?
+  deleteJob DataDeleteJob?
+
+  @@index([userId])
+  @@index([status])
+  @@map("privacy_requests")
+}
+
+model DataExportJob {
+  id               String    @id @default(uuid())
+  privacyRequestId String    @unique
+  status           String    @default("pending")
+  startedAt        DateTime?
+  completedAt      DateTime?
+  fileUrl          String?
+  fileSize         Int?
+  expiresAt        DateTime?
+
+  request PrivacyRequest @relation(fields: [privacyRequestId], references: [id])
+
+  @@map("data_export_jobs")
+}
+
+model DataDeleteJob {
+  id                      String    @id @default(uuid())
+  privacyRequestId        String    @unique
+  status                  String    @default("pending")
+  startedAt               DateTime?
+  completedAt             DateTime?
+  deletedTables           String[]
+  deletedCount            Int?
+  irreversibleConfirmedAt DateTime?
+  confirmedByAdmin        String?
+
+  request PrivacyRequest @relation(fields: [privacyRequestId], references: [id])
+
+  @@map("data_delete_jobs")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SUPPORT & MODERATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+model SupportTicket {
+  id         String                @id @default(uuid())
+  userId     String
+  subject    String
+  category   String
+  priority   SupportTicketPriority @default(medium)
+  status     SupportTicketStatus   @default(open)
+  assignedTo String?
+  messages   Json                  @default("[]")
+  resolvedAt DateTime?
+  closedAt   DateTime?
+  createdAt  DateTime              @default(now())
+  updatedAt  DateTime              @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+  @@map("support_tickets")
+}
+
+model ModerationReport {
+  id           String    @id @default(uuid())
+  reporterId   String
+  targetUserId String
+  type         String
+  reason       String
+  evidence     Json?
+  status       String    @default("pending")
+  reviewedBy   String?
+  reviewNote   String?
+  createdAt    DateTime  @default(now())
+  reviewedAt   DateTime?
+
+  @@index([targetUserId])
+  @@index([status])
+  @@map("moderation_reports")
+}
+
+model Ban {
+  id        String    @id @default(uuid())
+  userId    String
+  type      BanType
+  reason    String
+  evidence  String?
+  bannedBy  String
+  matchId   String?
+  startsAt  DateTime  @default(now())
+  endsAt    DateTime?
+  isActive  Boolean   @default(true)
+  liftedBy  String?
+  liftedAt  DateTime?
+  liftNote  String?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, isActive])
+  @@map("bans")
+}
+
+model Mute {
+  id        String    @id @default(uuid())
+  userId    String
+  reason    String
+  mutedBy   String
+  startsAt  DateTime  @default(now())
+  endsAt    DateTime?
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("mutes")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ANTI-CHEAT & FRAUD
+// ─────────────────────────────────────────────────────────────────────────────
+
+model AntiCheatFlag {
+  id         String   @id @default(uuid())
+  userId     String
+  matchId    String?
+  flagType   String
+  severity   String   @default("low")
+  data       Json?
+  reviewed   Boolean  @default(false)
+  reviewedBy String?
+  reviewNote String?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([createdAt])
+  @@map("anti_cheat_flags")
+}
+
+model FraudFlag {
+  id         String   @id @default(uuid())
+  userId     String
+  flagType   String
+  score      Float
+  data       Json?
+  resolved   Boolean  @default(false)
+  resolvedBy String?
+  createdAt  DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("fraud_flags")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADMIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+model AdminUser {
+  id               String    @id @default(uuid())
+  email            String    @unique
+  passwordHash     String
+  name             String
+  role             AdminRole @default(support)
+  isActive         Boolean   @default(true)
+  twoFactorEnabled Boolean   @default(false)
+  twoFactorSecret  String?
+  /// sha256 hashes of the one-time 2FA recovery codes still unused
+  recoveryCodes    Json?
+  /// Bumped on logout / password change / deactivation: every access+refresh token carrying an older version is rejected.
+  tokenVersion     Int       @default(0)
+  lastLoginAt      DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@map("admin_users")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  adminId    String?
+  userId     String?
+  action     String
+  targetType String?
+  targetId   String?
+  oldValue   Json?
+  newValue   Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([adminId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SYSTEM
+// ─────────────────────────────────────────────────────────────────────────────
+
+model FeatureFlag {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Boolean  @default(false)
+  description String?
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@map("feature_flags")
+}
+
+model AbTest {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  description String?
+  variants    Json
+  targetPct   Float     @default(0.1)
+  metric      String
+  status      String    @default("draft")
+  startAt     DateTime?
+  endAt       DateTime?
+  result      Json?
+  createdAt   DateTime  @default(now())
+
+  @@map("ab_tests")
+}
+
+model RemoteConfig {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Json
+  description String?
+  environment String   @default("production")
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@map("remote_configs")
+}
+
+model SystemSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+
+  @@map("system_settings")
+}
+
+model LocalizationKey {
+  id        String   @id @default(uuid())
+  key       String
+  language  String
+  value     String
+  namespace String   @default("game")
+  version   Int      @default(1)
+  updatedAt DateTime @updatedAt
+
+  @@unique([key, language])
+  @@index([namespace])
+  @@map("localization_keys")
+}
+
+model AssetVersion {
+  id          String   @id @default(uuid())
+  bundleName  String   @unique
+  version     String
+  hash        String
+  publishedAt DateTime @default(now())
+  publishedBy String?
+
+  @@map("asset_versions")
+}
+
+model AssetBundle {
+  id            String   @id @default(uuid())
+  bundleName    String
+  buildVersion  String
+  assetHash     String
+  crc           String
+  fileSize      Int
+  cdnUrl        String
+  minAppVersion String
+  maxAppVersion String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  createdBy     String?
+
+  @@unique([bundleName, buildVersion])
+  @@index([bundleName, isActive])
+  @@map("asset_bundles")
+}
+
+model Backup {
+  id          String    @id @default(uuid())
+  type        String
+  status      String    @default("pending")
+  filePath    String?
+  fileSize    Int?
+  checksum    String?
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  expiresAt   DateTime?
+  createdBy   String?
+
+  @@index([startedAt(sort: Desc)])
+  @@map("backups")
+}
+
+model CrashReport {
+  id          String    @id @default(uuid())
+  userId      String?
+  matchId     String?
+  platform    Platform?
+  appVersion  String?
+  osVersion   String?
+  deviceModel String?
+  stackTrace  String
+  groupHash   String?
+  count       Int       @default(1)
+  createdAt   DateTime  @default(now())
+
+  @@index([groupHash])
+  @@index([createdAt])
+  @@map("crash_reports")
+}
+
+model AnalyticsEvent {
+  id         String    @id @default(uuid())
+  userId     String?
+  sessionId  String?
+  eventType  String
+  properties Json?
+  platform   Platform?
+  appVersion String?
+  country    String?
+  createdAt  DateTime  @default(now())
+
+  @@index([eventType])
+  @@index([createdAt])
+  @@map("analytics_events")
+}
+
+model EventLog {
+  id            String    @id @default(uuid())
+  eventType     String
+  payload       Json
+  sourceService String
+  createdAt     DateTime  @default(now())
+  processedAt   DateTime?
+  retryCount    Int       @default(0)
+
+  @@index([eventType])
+  @@index([createdAt])
+  @@map("event_log")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LIVE CONTENT (server-side patches: game data the owner edits in the panel, published as numbered releases)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Working copy ("draft") of every game data file the panel may edit. `path` is relative to the game's StreamingAssets folder.
+model ContentFile {
+  id        String   @id @default(uuid())
+  path      String   @unique
+  category  String   @default("other") // balance | civilization | localization | ui | audio | other
+  content   String   @db.Text // raw JSON text, kept verbatim
+  baseHash  String // sha256 of the version that ships inside the client build (to show "changed")
+  baseContent String   @db.Text               // the copy that ships inside the client build (diff / restore target)
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+
+  @@index([category])
+  @@map("content_files")
+}
+
+/// One published snapshot of ALL content files. Clients download the ACTIVE release of their channel.
+model ContentRelease {
+  id           String               @id @default(uuid())
+  version      Int                  @unique @default(autoincrement())
+  channel      String               @default("live") // live | staging
+  note         String?
+  manifestHash String // sha256 over (path:hash) of every file; the multiplayer "same data" check
+  isActive     Boolean              @default(false)
+  createdBy    String?
+  createdAt    DateTime             @default(now())
+  activatedAt  DateTime?
+  files        ContentReleaseFile[]
+
+  @@index([channel, isActive])
+  @@map("content_releases")
+}
+
+model ContentReleaseFile {
+  id        String         @id @default(uuid())
+  releaseId String
+  path      String
+  hash      String
+  size      Int
+  content   String         @db.Text
+  release   ContentRelease @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+
+  @@unique([releaseId, path])
+  @@map("content_release_files")
+}
+
+/// News / popup / banner shown in the game (main menu "News" panel, launch popups, in-match banners).
+model Announcement {
+  id         String    @id @default(uuid())
+  kind       String    @default("news") // news | popup | banner
+  title      Json // { "en": "...", "tr": "..." }
+  body       Json // { "en": "...", "tr": "..." }
+  platforms  String[]  @default([]) // empty = all (android | ios | windows)
+  minVersion String? // only for clients >= this version
+  maxVersion String?
+  priority   Int       @default(0)
+  startsAt   DateTime  @default(now())
+  endsAt     DateTime?
+  isActive   Boolean   @default(true)
+  createdBy  String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([isActive, startsAt])
+  @@map("announcements")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SECURITY (admin sessions with rotating refresh tokens, security event log, IP firewall)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// One panel sign-in. `id` is the 256-bit random session id carried in every access token (claim `sid`); a NEW one is created on every login and
+/// it dies on logout. The refresh token is opaque, stored only as a hash, rotated on every use; presenting an old one again = theft -> whole session revoked.
+model AdminSession {
+  id              String    @id
+  adminId         String
+  refreshHash     String    @unique
+  prevRefreshHash String?
+  ip              String?
+  userAgent       String?
+  limited         Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  lastUsedAt      DateTime  @default(now())
+  expiresAt       DateTime
+  revokedAt       DateTime?
+  revokedReason   String?
+
+  @@index([adminId, revokedAt])
+  @@index([prevRefreshHash])
+  @@map("admin_sessions")
+}
+
+model SecurityEvent {
+  id        String   @id @default(uuid())
+  type      String
+  severity  String   @default("info")   // info | warn | high | critical
+  ip        String?
+  userAgent String?
+  adminId   String?
+  userId    String?
+  detail    Json?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([type, createdAt])
+  @@index([ip])
+  @@map("security_events")
+}
+
+model IpBlock {
+  id        String    @id @default(uuid())
+  ip        String    @unique
+  reason    String
+  until     DateTime?
+  auto      Boolean   @default(false)
+  createdBy String?
+  createdAt DateTime  @default(now())
+
+  @@map("ip_blocks")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LIVE SESSIONS & MODERATION COMMANDS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// One app session of a player (opened on the first sync, closed when no sync arrives for 2 minutes). Source of "hours played", sessions per day, platform/IP history.
+model GameSession {
+  id           String    @id @default(uuid())
+  userId       String
+  startedAt    DateTime  @default(now())
+  lastBeatAt   DateTime  @default(now())
+  endedAt      DateTime?
+  seconds      Int       @default(0)
+  menuSeconds  Int       @default(0)
+  matchSeconds Int       @default(0)
+  platform     String?
+  appVersion   String?
+  deviceId     String?
+  ip           String?
+
+  @@index([userId, startedAt])
+  @@index([ip])
+  @@index([deviceId])
+  @@map("game_sessions")
+}
+
+/// An instruction for ONE player's running game: kick, ban notice, message, force-update... Delivered through the long-poll /session/sync (near instant).
+model PlayerCommand {
+  id          String    @id @default(uuid())
+  userId      String
+  type        String
+  payload     Json?
+  createdBy   String?
+  createdAt   DateTime  @default(now())
+  deliveredAt DateTime?
+
+  @@index([userId, deliveredAt])
+  @@map("player_commands")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GIFTS / GRANTS / ECONOMY LEDGER (everything an admin can hand to a player)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Mail-box item: rewards waiting for a player to claim (admin gift, compensation, event prize ...). `rewards` shape: see GrantService (wallet / items / packs / bonuses / xp).
+model Gift {
+  id         String    @id @default(uuid())
+  userId     String
+  title      Json                          // { "en": "...", "tr": "..." }
+  body       Json
+  rewards    Json
+  status     String    @default("pending") // pending | claimed | cancelled | expired
+  source     String    @default("admin")
+  createdBy  String?
+  createdAt  DateTime  @default(now())
+  expiresAt  DateTime?
+  claimedAt  DateTime?
+
+  @@index([userId, status])
+  @@index([createdAt])
+  @@map("gifts")
+}
+
+/// Temporary advantage for the player's own games: extra starting resources / starting units. Applied by the game client at match start, `uses` counts down.
+model PlayerBonus {
+  id         String    @id @default(uuid())
+  userId     String
+  kind       String                         // starting_resources | starting_units
+  payload    Json                           // starting_resources: { food, wood, gold, stone }  starting_units: [{ type, count }]
+  appliesTo  String[]  @default([])         // empty = offline / casual only; add "ranked" to allow ranked
+  usesLeft   Int       @default(1)
+  expiresAt  DateTime?
+  source     String?
+  createdBy  String?
+  createdAt  DateTime  @default(now())
+
+  @@index([userId, usesLeft])
+  @@map("player_bonuses")
+}
+
+/// Every change of a player's wallet, with who/why. Support, anti-fraud and the panel's economy pages read it.
+model EconomyLedger {
+  id           String   @id @default(uuid())
+  userId       String
+  currency     String                       // coins | gems | chestKeys | eventTokens | bpXp
+  amount       Int                          // + gain / - spend
+  balanceAfter Int
+  reason       String
+  source       String                       // admin_grant | gift | purchase | match | event | refund | revoke
+  adminId      String?
+  refId        String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([source, createdAt])
+  @@map("economy_ledger")
+}
+
+/// A banned device or network address: new accounts created from it are refused (ban evasion protection). Set by an admin or automatically by the cheat engine.
+model DeviceBan {
+  id        String    @id @default(uuid())
+  deviceId  String?
+  ip        String?
+  reason    String
+  until     DateTime?
+  auto      Boolean   @default(false)
+  createdBy String?
+  createdAt DateTime  @default(now())
+
+  @@index([deviceId])
+  @@index([ip])
+  @@map("device_bans")
+}

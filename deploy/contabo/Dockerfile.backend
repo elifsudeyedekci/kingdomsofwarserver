@@ -1,0 +1,33 @@
+# Build context = repository root:  docker build -f deploy/contabo/Dockerfile.backend --target app .
+FROM node:20-alpine AS build
+RUN apk add --no-cache openssl
+WORKDIR /repo
+COPY admin-backend/package*.json admin-backend/
+RUN cd admin-backend && npm ci
+COPY database database
+COPY admin-backend admin-backend
+RUN cd admin-backend && npx prisma generate --schema=../database/schema.prisma && npm run build
+
+# one-shot tool image: migrations + first admin (needs prisma CLI + ts-node, i.e. the dev dependencies)
+FROM build AS tools
+WORKDIR /repo/admin-backend
+CMD ["sh", "-c", "npx prisma migrate deploy --schema=../database/schema.prisma"]
+
+FROM node:20-alpine AS app
+RUN apk add --no-cache openssl tini
+WORKDIR /app
+ENV NODE_ENV=production
+COPY admin-backend/package*.json ./
+RUN npm ci --omit=dev
+COPY --from=build /repo/admin-backend/node_modules/.prisma ./node_modules/.prisma
+COPY --from=build /repo/admin-backend/dist ./dist
+# shipped game data: the panel's "import shipped data" button reads it from here (GAME_DATA_DIR)
+COPY game-data/Data/Balance /game-data/Data/Balance
+COPY game-data/Data/Civilizations /game-data/Data/Civilizations
+COPY game-data/Data/Localization /game-data/Data/Localization
+COPY game-data/Data/UI /game-data/Data/UI
+ENV GAME_DATA_DIR=/game-data
+USER node
+EXPOSE 3001
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["node", "dist/main"]

@@ -1,0 +1,1932 @@
+{
+ "source": "ReferenceAttributes map_gen/map_gen_layout/skirmish_maps (CONFIRMED data: names, descriptions, terrain-type weights, tags, distributions). Layout scripts are absent, so geometry is approximated by the nearest KoW generator + hills/trees/water parameters derived from the weights (INFERRED). | layout-derived hills/trees/water for 73 maps from the executed reference Lua layouts (INFERRED classification by terrain-type name).",
+ "maps": [
+  {
+   "id": "acropolis",
+   "name": "Acropolis",
+   "nameTr": "Akropolis",
+   "descTr": "Oyuncuların her biri sınırlı kaynaklara sahip küçük bir platonun tepesinden başlar. İmparatorluğunu büyütmek için platonu genişlet.",
+   "kind": "dry_arabia",
+   "hills": 0,
+   "trees": 1,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "elevation",
+    "more_food"
+   ],
+   "distribution": "global_dist_acropolis",
+   "icon": "ui/images/map_gen_layout/acropolis_icon"
+  },
+  {
+   "id": "african_waters",
+   "name": "African Waters",
+   "nameTr": "Afrika Suları",
+   "descTr": "Oyuncuların hem alanı hem de kaynakları güvence altına almak için savaşmaları gerektiğinden daha en başta anında çatışma yaşa.",
+   "kind": "four_lakes",
+   "hills": 0.23,
+   "trees": 1,
+   "water": 0,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "casual"
+   ],
+   "chars": [
+    "elevation",
+    "limited_naval",
+    "more_food"
+   ],
+   "distribution": "global_dist_african_waters",
+   "icon": "ui/images/map_gen_layout/african_waters_icon"
+  },
+  {
+   "id": "altai",
+   "name": "Altai",
+   "nameTr": "Altay",
+   "descTr": "Birçok düğüm noktası oluşturan engebeli dağlık bir bölge. ",
+   "kind": "continental",
+   "hills": 1,
+   "trees": 0.45,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "choke_point",
+    "elevation",
+    "points_of_interest",
+    "lanes"
+   ],
+   "distribution": "global_tactical_v2_dist_altai",
+   "icon": "ui/images/map_gen_layout/altai_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "ancient_spires",
+   "name": "Ancient Spires",
+   "nameTr": "Antik Çan Kuleleri",
+   "descTr": "Uzun kaya tepeleri alanı kaplayarak arazi boyunca ilginç patikalar oluşturuyor. ",
+   "kind": "four_lakes",
+   "hills": 1,
+   "trees": 0.43,
+   "water": 0.31,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "limited_naval",
+    "choke_point"
+   ],
+   "distribution": "global_tactical_no_grass_splats",
+   "icon": "ui/images/map_gen_layout/ancient_spires_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "archipelago",
+   "name": "Archipelago",
+   "nameTr": "Takımada",
+   "descTr": "Büyük bir okyanusun ortasındaki küçük adalar grubu.",
+   "kind": "thousand_pools",
+   "hills": 0.05,
+   "trees": 1.33,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "naval",
+    "competitive"
+   ],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_naval_dist_no_stealth_forest",
+   "icon": "ui/images/map_gen_layout/archipelago_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "arid_plains",
+   "name": "Arid Plains",
+   "nameTr": "Batık Topraklar",
+   "descTr": "Engebeli ve açık arazideki çökmüş kraterlerde böğürtlenler ve yaban hayatı baş gösteriyor.",
+   "kind": "dry_arabia",
+   "hills": 0.06,
+   "trees": 0.87,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "open",
+    "more_food"
+   ],
+   "distribution": "global_tactical_arid_plains",
+   "icon": "ui/images/map_gen_layout/sunkenlands_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "ascension",
+   "name": "Ascension",
+   "nameTr": "Yükseliş",
+   "descTr": "Dik bir tepenin zirvesinde zenginlikler bulunur. Nehir tarafından parçalara ayrılan bu haritada takımların tepeye tırmanıp kaynakları ele geçirmesi gerekir.",
+   "kind": "danube_river",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0.21,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "limited_naval"
+   ],
+   "chars": [
+    "river",
+    "elevation",
+    "open"
+   ],
+   "distribution": "global_dist_ascension",
+   "icon": "ui/images/map_gen_layout/ascension_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "atacama",
+   "name": "Atacama",
+   "nameTr": "Atacama",
+   "descTr": "En güçlü savaş beyleri bile Atacama Çölü'nün acımasız ve korunaksız koşulları karşısında zorlanır.",
+   "kind": "dry_arabia",
+   "hills": 0.34,
+   "trees": 0.94,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "less_wood",
+    "open"
+   ],
+   "distribution": "global_dist_atacama",
+   "icon": "ui/images/map_gen_layout/atacama_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "black_forest",
+   "name": "Black Forest",
+   "nameTr": "Kara Orman",
+   "descTr": "Sık ormanlar bu haritada gezinmeyi zorlaştırıyor.",
+   "kind": "black_forest",
+   "hills": 0,
+   "trees": 1.95,
+   "water": 0.1,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "more_wood",
+    "choke_point"
+   ],
+   "distribution": "global_tactical_no_trees",
+   "icon": "ui/images/map_gen_layout/blackforest_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "boulder_bay",
+   "name": "Boulder Bay",
+   "nameTr": "Kaya Körfezi",
+   "descTr": "Derin bir okyanus ağzı haritayı tek bir dar geçitle ikiye ayırır.",
+   "kind": "thousand_pools",
+   "hills": 0.65,
+   "trees": 0.4,
+   "water": 0.27,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "naval"
+   ],
+   "chars": [
+    "naval",
+    "choke_point",
+    "elevation"
+   ],
+   "distribution": "global_tactical_v2_naval_hybrid_dist",
+   "icon": "ui/images/map_gen_layout/boulder_bay_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "canal",
+   "name": "Canal",
+   "nameTr": "Kanal",
+   "descTr": "Üsten üsse verimli topraklar üzerinden uzanan ve hem kaynak hem de taarruz için yol açan geniş bir kanal.",
+   "kind": "danube_river",
+   "hills": 0.27,
+   "trees": 0.54,
+   "water": 0.58,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "limited_naval"
+   ],
+   "chars": [
+    "limited_naval",
+    "less_wood"
+   ],
+   "distribution": "global_tactical_canal",
+   "icon": "ui/images/map_gen_layout/canal",
+   "layoutDerived": true
+  },
+  {
+   "id": "canyon",
+   "name": "Canyon",
+   "nameTr": "Kanyon",
+   "descTr": "Oyuncuların başlangıç bölgelerini ayıran tek şey bu derin uçurum. Geçitler üstünde savaş vermeye hazır ol.",
+   "kind": "mountain_pass",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0.58,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "choke_point",
+    "elevation"
+   ],
+   "distribution": "global_tactical_v2_dist_canyon",
+   "icon": "ui/images/map_gen_layout/canyon_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "carmelites",
+   "name": "Carmelites",
+   "nameTr": null,
+   "descTr": null,
+   "kind": "lipany",
+   "hills": 0.7,
+   "trees": 1.3,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [],
+   "distribution": "global_tactical_no_trees",
+   "icon": "ui/images/map_gen_layout/no_thumbnail",
+   "layoutDerived": true
+  },
+  {
+   "id": "channel",
+   "name": "Channel",
+   "nameTr": "Kanal",
+   "descTr": "İki kara parçasını dar bir okyanus kanalı ayırıyor.",
+   "kind": "four_lakes",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 0.75,
+   "dry": false,
+   "naval": true,
+   "tags": [],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/channel_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "clearing",
+   "name": "Clearing",
+   "nameTr": "Dağ Açıklığı",
+   "descTr": "Derin dağ açıklığının kontrolünü ele al. Sınırlı alan ve kaynaklarla savaş çok zorlu geçecek.",
+   "kind": "highview",
+   "hills": 0.85,
+   "trees": 0.65,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "chaos"
+   ],
+   "chars": [
+    "more_wood",
+    "no_settlements"
+   ],
+   "distribution": "global_dist_clearing",
+   "icon": "ui/images/map_gen_layout/mountain_clearing_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "cliffsanity",
+   "name": "Cliffsanity",
+   "nameTr": "Uçuruma Doğru",
+   "descTr": "Sayısız uçurumun arasından geçen dar yolları keşfet. Gözün hazinelerde olsun.",
+   "kind": "mountain_pass",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "choke_point",
+    "elevation"
+   ],
+   "distribution": "global_dist_cliffsanity_pickups",
+   "icon": "ui/images/map_gen_layout/cliffsanity_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "cliffside",
+   "name": "Cliffside",
+   "nameTr": "Uçurum Kenarı",
+   "descTr": "Haritadaki tepeler ve geçitler, zengin Taş ve Altın kaynaklarını gözler önüne seriyor. Diğer tarafta kim bilir neler var?",
+   "kind": "highview",
+   "hills": 0.13,
+   "trees": 1,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "elevation",
+    "more_gold"
+   ],
+   "distribution": "global_dist_cliffside",
+   "icon": "ui/images/map_gen_layout/cliffside_icon"
+  },
+  {
+   "id": "confluence",
+   "name": "Confluence",
+   "nameTr": "Kavşak",
+   "descTr": "İki nehir haritanın ortasında kesişiyor.",
+   "kind": "danube_river",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 0.59,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "casual",
+    "limited_naval"
+   ],
+   "chars": [
+    "river"
+   ],
+   "distribution": "global_tactical_v2_dist_high_trees",
+   "icon": "ui/images/map_gen_layout/confluence_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "continental",
+   "name": "Continental",
+   "nameTr": "Kıtasal",
+   "descTr": "Okyanusla çevrili büyük bir kara kütlesi. Avlanma imkânı çok az ancak denizde bol miktarda balık var.",
+   "kind": "continental",
+   "hills": 0.11,
+   "trees": 0.46,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "naval"
+   ],
+   "chars": [
+    "naval",
+    "more_settlements"
+   ],
+   "distribution": "global_dist_continental",
+   "icon": "ui/images/map_gen_layout/continental_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "craters",
+   "name": "Craters",
+   "nameTr": "Kraterler",
+   "descTr": "Kaynak bakımından zengin olan meteor kraterleri düz zeminde izler bırakır. Her oyuncu, içi balıklarla dolu bir krater gölüne sahiptir.",
+   "kind": "hill_and_dale",
+   "hills": 1,
+   "trees": 0.63,
+   "water": 0.09,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "open"
+   ],
+   "distribution": "global_tactical_v2_dist_craters",
+   "icon": "ui/images/map_gen_layout/craters_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "dry_arabia",
+   "name": "Dry Arabia",
+   "nameTr": "Kurak Arabistan",
+   "descTr": "Klasik Age of Empires Arabistan haritasını temel alan, açık bir harita.",
+   "kind": "dry_arabia",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive",
+    "core"
+   ],
+   "chars": [
+    "open"
+   ],
+   "distribution": "global_tactical_v2_dist_low_trees",
+   "icon": "ui/images/map_gen_layout/dryarabia_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "dry_river",
+   "name": "Dry River",
+   "nameTr": "Taşlı Nehir",
+   "descTr": "Karşıt birlikler arasındaki vadinin aşağılarında uzanan, bir zamanlar ulu olan bir nehrin kuruyan kalıntılarından yeni bir yaşam doğuyor.",
+   "kind": "danube_river",
+   "hills": 0.39,
+   "trees": 0.78,
+   "water": 1,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "open",
+    "less_wood"
+   ],
+   "distribution": "global_tactical_no_trees",
+   "icon": "ui/images/map_gen_layout/dry_river",
+   "layoutDerived": true
+  },
+  {
+   "id": "dunes",
+   "name": "Dunes",
+   "nameTr": "Kır",
+   "descTr": "Açık ve affetmez tabiat, hızlı genişleme gerektirir ve herkesi her yönden baskınlara açık bırakır.",
+   "kind": "dry_arabia",
+   "hills": 0.68,
+   "trees": 1.05,
+   "water": 0.01,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "less_wood",
+    "elevation",
+    "open"
+   ],
+   "distribution": "global_dist_dunes",
+   "icon": "ui/images/map_gen_layout/prairie_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "dungeon",
+   "name": "Dungeon",
+   "nameTr": "Zindan",
+   "descTr": "Kaynakların bulunduğu \"odalarla\" ve \"geçitlerle\" dolu labirentlerden oluşan dar geçit.",
+   "kind": "continental",
+   "hills": 0.35,
+   "trees": 0.42,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "closed"
+   ],
+   "chars": [
+    "choke_point",
+    "points_of_interest"
+   ],
+   "distribution": "global_tactical_v2_dist_dungeon",
+   "icon": "ui/images/map_gen_layout/dungeon_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "enlightened_horizon",
+   "name": "Enlightened Horizon",
+   "nameTr": "Muhteşem Ufuklar",
+   "descTr": "Bulunduğun yerin konforundan kurtul. Zenginliklerle ve kutsal topraklarla dolu, ele geçirilmeyi bekleyen uzak topraklara yolculuk et.",
+   "kind": "dry_arabia",
+   "hills": 0.37,
+   "trees": 0.47,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "chaos",
+    "competitive"
+   ],
+   "chars": [
+    "open",
+    "more_gold",
+    "elevation",
+    "points_of_interest"
+   ],
+   "distribution": "global_tactical_enlightened_horizon",
+   "icon": "ui/images/map_gen_layout/enlightened_horizon_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "fangs",
+   "name": "Fangs",
+   "nameTr": "Dişler",
+   "descTr": "Gizemli ormanlarla çevrili görkemli zirveler dört bir yana dağılmış durumda. Ormandaki kurtlara karşı dikkatli ol.",
+   "kind": "highview",
+   "hills": 0.06,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "chaos"
+   ],
+   "chars": [
+    "elevation",
+    "points_of_interest"
+   ],
+   "distribution": "global_dist_fangs",
+   "icon": "ui/images/map_gen_layout/fangs_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "forest_mountain",
+   "name": "Forest Mountain",
+   "nameTr": "Köklü Ormanlar",
+   "descTr": "Oyuncuların, düşmanların etrafını sarması ve ortadaki tepeyi kontrol etmesi için orman labirentlerinde yolunu bulması gereken sık bir orman. Ormanda bolca kaynak bulunur ve genişlemeye ve sürpriz saldırılara olanak sağlar.",
+   "kind": "highview",
+   "hills": 0.08,
+   "trees": 1.42,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "closed",
+    "competitive"
+   ],
+   "chars": [
+    "elevation",
+    "more_wood"
+   ],
+   "distribution": "global_dist_forest_mountain",
+   "icon": "ui/images/map_gen_layout/highwoods_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "forest_ponds",
+   "name": "Forest Ponds",
+   "nameTr": "Orman Göletleri",
+   "descTr": "Her köşede dört su kaynağı ve merkezde bir büyük orman bulunur, manevra kabiliyetini sınırlar.",
+   "kind": "four_lakes",
+   "hills": 0.27,
+   "trees": 0.71,
+   "water": 0.65,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "more_wood",
+    "more_settlements",
+    "limited_naval"
+   ],
+   "distribution": "global_dist_forest_ponds",
+   "icon": "ui/images/map_gen_layout/forest_ponds_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "four_lakes",
+   "name": "Four Lakes",
+   "nameTr": "Dört Göl",
+   "descTr": "Dört gölle çevrili bir arazi, karadan ve sudan sayısız saldırı altındadır. ",
+   "kind": "four_lakes",
+   "hills": 1,
+   "trees": 0.5,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "open",
+    "limited_naval"
+   ],
+   "distribution": "global_dist_four_lakes",
+   "icon": "ui/images/map_gen_layout/four_lakes_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "french_pass",
+   "name": "French Pass",
+   "nameTr": "Fransız Geçidi",
+   "descTr": "Haritanın ortasındaki vadide kümelenmiş Altın kaynakları bulunuyor.",
+   "kind": "continental",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "elevation",
+    "more_gold"
+   ],
+   "distribution": "global_tactical_v2_dist_no_mountain_trees",
+   "icon": "ui/images/map_gen_layout/frenchpass_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "glade",
+   "name": "Glade",
+   "nameTr": "Kayran",
+   "descTr": "Ormanların oluşturduğu ilk sıradaki surlar güven hissiyatı verse de kısa süre içinde saklandığın yerden çıkman ve kaynaklar için savaşman gerek.",
+   "kind": "black_forest",
+   "hills": 0.05,
+   "trees": 1.55,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "choke_point",
+    "more_wood",
+    "no_settlements"
+   ],
+   "distribution": "global_dist_glade",
+   "icon": "ui/images/map_gen_layout/glade",
+   "layoutDerived": true
+  },
+  {
+   "id": "golden_heights",
+   "name": "Golden Heights",
+   "nameTr": "Altın Tepeler",
+   "descTr": "Ötedeki berrak gölün manzarasında düşman birlikler, altın gibi ışıldayan uçurumun altına yerleşirler.",
+   "kind": "four_lakes",
+   "hills": 1,
+   "trees": 2,
+   "water": 0.13,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "more_gold",
+    "elevation",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_v2_dist_small_trees",
+   "icon": "ui/images/map_gen_layout/golden_heights_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "golden_pit",
+   "name": "Golden Pit",
+   "nameTr": "Altın Çukur",
+   "descTr": "Merkezi çukur, çok sayıda büyük altın yatağı içerir. Altın yataklarını fethetmek zafer için büyük önem teşkil eder.",
+   "kind": "highview",
+   "hills": 0.63,
+   "trees": 1,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "more_gold",
+    "more_stone"
+   ],
+   "distribution": "global_dist_golden_pit",
+   "icon": "ui/images/map_gen_layout/golden_pit_icon"
+  },
+  {
+   "id": "gorge",
+   "name": "Gorge",
+   "nameTr": "Derin Vadi",
+   "descTr": "Derin vadideyken düşmanlarla aranda uzanan açık bir arazi vardır. Dağın yanında bulunan derin vadideki merkezî savaştan kopup ayrılanları ise küçük ormanlar ve bol miktarda kaynak bekler. ",
+   "kind": "highview",
+   "hills": 0.06,
+   "trees": 1,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "elevation",
+    "open"
+   ],
+   "distribution": "global_tactical_gorge",
+   "icon": "ui/images/map_gen_layout/gorge_icon"
+  },
+  {
+   "id": "haunted_gulch",
+   "name": "Haunted Gulch",
+   "nameTr": "Perili Kanyon",
+   "descTr": "Takımlar, aralarında küçük bir Gizlilik Ormanı bulunan dağlık vadilerle ayrılmıştır.",
+   "kind": "black_forest",
+   "hills": 0.26,
+   "trees": 1.6,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "choke_point"
+   ],
+   "distribution": "global_tactical_v2_dist_high_trees",
+   "icon": "ui/images/map_gen_layout/haunted_gulch_icon"
+  },
+  {
+   "id": "hedgemaze",
+   "name": "Hedgemaze",
+   "nameTr": "Bahçe Labirenti",
+   "descTr": "Boşluğun ortasında başla ve düşmanlarından önce hazinelere ulaşmak için sarmaşıkların arasındaki labirentte yolunu bulmaya çalış.",
+   "kind": "dry_arabia",
+   "hills": 0.28,
+   "trees": 2,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "closed",
+    "casual"
+   ],
+   "chars": [
+    "more_wood",
+    "choke_point",
+    "points_of_interest",
+    "lanes"
+   ],
+   "distribution": "global_tactical_no_trees",
+   "icon": "ui/images/map_gen_layout/hedgemaze_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "hidden_valley",
+   "name": "Hidden Valley",
+   "nameTr": "Saklı Vadi",
+   "descTr": "İki büyük dağı kutsal bir vadi ayırıyor. Korkuyu geride bırakanları ağaçların ardında sırlar ve hazineler bekliyor.",
+   "kind": "dry_arabia",
+   "hills": 1,
+   "trees": 0.47,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "closed",
+    "competitive"
+   ],
+   "chars": [
+    "open",
+    "elevation",
+    "lanes"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/hidden_valley_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "hideout",
+   "name": "Hideout",
+   "nameTr": "Saklanma Yeri",
+   "descTr": "Başlangıçta güvenli olsa da oyuncular çabucak uzak kaynakları güvence altına almak için saklandıkları yerin dışına çıkmalıdır.",
+   "kind": "black_forest",
+   "hills": 0,
+   "trees": 0.87,
+   "water": 0.03,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "more_wood"
+   ],
+   "distribution": "global_dist_hideout",
+   "icon": "ui/images/map_gen_layout/hideout_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "highland",
+   "name": "Highland",
+   "nameTr": "Çalılıklar",
+   "descTr": "Kutsal gölün kontrolünü ele alarak düşmanı yok et veya onu şaşırtmak için ordularını geniş ormanların ve uçurum kenarlarının etrafına gönder.",
+   "kind": "four_lakes",
+   "hills": 0,
+   "trees": 1.4,
+   "water": 0,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "naval",
+    "casual"
+   ],
+   "chars": [
+    "naval",
+    "more_wood"
+   ],
+   "distribution": "global_dist_highland",
+   "icon": "ui/images/map_gen_layout/highland_icon"
+  },
+  {
+   "id": "highview",
+   "name": "Highview",
+   "nameTr": "Yüksek Görünüm",
+   "descTr": "Gizlilik Ormanlarının düzlüklere yayıldığı tepeli bir harita.",
+   "kind": "highview",
+   "hills": 0.15,
+   "trees": 1.35,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "more_wood",
+    "elevation",
+    "open",
+    "points_of_interest"
+   ],
+   "distribution": "global_tactical_v2_dist_low_trees",
+   "icon": "ui/images/map_gen_layout/highview_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "hill_and_dale",
+   "name": "Hill And Dale",
+   "nameTr": "Dere Tepe",
+   "descTr": "Oyuncular bir savunma tepesinde veya bol kaynaklı bir vadide başlar.",
+   "kind": "hill_and_dale",
+   "hills": 0.62,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "choke_point",
+    "elevation"
+   ],
+   "distribution": "global_tactical_v2_dist_hill_dale",
+   "icon": "ui/images/map_gen_layout/hillanddale_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "himeyama",
+   "name": "Himeyama",
+   "nameTr": "Himeyama",
+   "descTr": "Kısıtlı kaynakla bir tepenin üzerinde başla ve değerli kaynakları ortaya çıkarmak için vadinin derinliklerine uzanan bir yolculuğa çık. Tabii dikkatli ol, zira düşmanların da aynı hazinelerin peşinde.",
+   "kind": "continental",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0.02,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "less_gold",
+    "less_stone",
+    "open"
+   ],
+   "distribution": "global_dist_himeyama",
+   "icon": "ui/images/map_gen_layout/himeyama_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "king_of_hill",
+   "name": "King Of Hill",
+   "nameTr": "Tepenin Kralı",
+   "descTr": "Haritanın merkezindeki kaynaklar için savaş! ",
+   "kind": "dry_arabia",
+   "hills": 0.83,
+   "trees": 1.82,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "closed",
+    "competitive"
+   ],
+   "chars": [
+    "elevation",
+    "more_stone_gold",
+    "no_settlements"
+   ],
+   "distribution": "global_tactical_dist_no_high_trees",
+   "icon": "ui/images/map_gen_layout/king_of_the_hill_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "lake_side",
+   "name": "Lake Side",
+   "nameTr": "Göl Kenarı",
+   "descTr": "Dağlık bölgenin kalbinde uzanan bir göl. Gölün iki yakasındaki farklı birlikler kaçınılmaz bir çatışmaya hazırlanıyor.",
+   "kind": "four_lakes",
+   "hills": 1,
+   "trees": 0.54,
+   "water": 0.94,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "elevation",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_lake_side",
+   "icon": "ui/images/map_gen_layout/lake_side_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "land_megarandom",
+   "name": "Land Megarandom",
+   "nameTr": "Mega Rastgele Arazi",
+   "descTr": "Su içermeyen tamamen rastgele oluşum. Her seferinde farklı bir deneyim!",
+   "kind": "dry_arabia",
+   "hills": 0,
+   "trees": 0.5,
+   "water": 0,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "chaos",
+    "nomad_friendly"
+   ],
+   "chars": [
+    "open",
+    "elevation",
+    "resource_bounty",
+    "choke_point",
+    "nomad_friendly",
+    "points_of_interest"
+   ],
+   "distribution": "global_tactical_arid_plains",
+   "icon": "ui/images/map_gen_layout/megarandom_land_icon"
+  },
+  {
+   "id": "lipany",
+   "name": "Lipany",
+   "nameTr": "Lipany",
+   "descTr": "Oyuncuları bu nispeten açık haritanın kalanından ayıran tek şey birkaç kayalık. ",
+   "kind": "lipany",
+   "hills": 0.04,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "closed",
+    "competitive"
+   ],
+   "chars": [
+    "open"
+   ],
+   "distribution": "global_tactical_v2_dist_lipany",
+   "icon": "ui/images/map_gen_layout/lipany_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "mediterranean",
+   "name": "Mediterranean",
+   "nameTr": "Baltık",
+   "descTr": "Büyük bir merkezi göl, çevredeki açık bir arazinin etrafını çevreler.",
+   "kind": "four_lakes",
+   "hills": 0.43,
+   "trees": 0.4,
+   "water": 0.67,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "naval",
+    "competitive"
+   ],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_dist_mediterranean",
+   "icon": "ui/images/map_gen_layout/qinghai_lake_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "megarandom",
+   "name": "Megarandom",
+   "nameTr": "Mega Rastgele",
+   "descTr": "Tamamen rastgele oluşum - her seferinde farklı bir deneyim! ",
+   "kind": "danube_river",
+   "hills": 0.3,
+   "trees": 0.63,
+   "water": 0.31,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "chaos",
+    "nomad_friendly"
+   ],
+   "chars": [
+    "choke_point",
+    "elevation",
+    "naval",
+    "resource_bounty",
+    "nomad_friendly",
+    "river"
+   ],
+   "distribution": "global_tactical_v2_dist_megarandom",
+   "icon": "ui/images/map_gen_layout/megarandom_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "michi",
+   "name": "Michi",
+   "nameTr": "Michi",
+   "descTr": "Haritanın dört bir yanına yayılan sık ormanlar takımları birbirinden ayırır. Rastgele Yerleşim ile birlikte haritayı tek bir orman hattı ikiye ayırır.",
+   "kind": "black_forest",
+   "hills": 0.1,
+   "trees": 2,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "closed"
+   ],
+   "chars": [
+    "choke_point",
+    "more_wood"
+   ],
+   "distribution": "global_tactical_v2_dist_michi",
+   "icon": "ui/images/map_gen_layout/michi_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "migration",
+   "name": "Migration",
+   "nameTr": "Göç",
+   "descTr": "Başlangıçta güvenli olsa da oyuncular çok geçmeden hem alan hem de kaynaklar için daha zengin topraklara göç etmelidir.",
+   "kind": "thousand_pools",
+   "hills": 0,
+   "trees": 1,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "naval",
+    "competitive"
+   ],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_dist_migration",
+   "icon": "ui/images/map_gen_layout/migration_icon"
+  },
+  {
+   "id": "moats",
+   "name": "Moats",
+   "nameTr": "Hisarlar",
+   "descTr": "Gelişmekte olan medeniyetler kendilerini küçük savunma hisarlarına hapsetmişler ve yaklaşan üstünlük mücadelesini bekliyorlar.",
+   "kind": "dry_arabia",
+   "hills": 0,
+   "trees": 0.72,
+   "water": 0.18,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "casual",
+    "closed"
+   ],
+   "chars": [
+    "open",
+    "choke_point"
+   ],
+   "distribution": "global_dist_moats",
+   "icon": "ui/images/map_gen_layout/forts_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "mongolian_heights",
+   "name": "Mongolian Heights",
+   "nameTr": "Moğol Tepeleri",
+   "descTr": "Age of Empires II'deki Moğolistan'ın fikren devamı olan bu haritada plato ve vadilerden oluşan labirent, bir nehirle ikiye ayrılıyor. ",
+   "kind": "mongolian_heights",
+   "hills": 0.83,
+   "trees": 0.4,
+   "water": 0.21,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "choke_point",
+    "river",
+    "elevation",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_v2_dist_small_trees",
+   "icon": "ui/images/map_gen_layout/mongolianheights_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "mountain_lakes",
+   "name": "Mountain Lakes",
+   "nameTr": "Dağ Gölleri",
+   "descTr": "Vahşi ve engebeli tabiatla araziyi kendi avantajına kullanmak zafere ulaşmak için çok önemli olacaktır.",
+   "kind": "four_lakes",
+   "hills": 0.94,
+   "trees": 0.66,
+   "water": 0.21,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "casual"
+   ],
+   "chars": [
+    "elevation",
+    "limited_naval"
+   ],
+   "distribution": "global_dist_mountain_lakes",
+   "icon": "ui/images/map_gen_layout/mountain_lakes_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "mountain_pass",
+   "name": "Mountain Pass",
+   "nameTr": "Dağ Geçidi",
+   "descTr": "Dar geçitleri olan bir sıradağ haritanın ortasından geçiyor.",
+   "kind": "mountain_pass",
+   "hills": 0.66,
+   "trees": 0.89,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "elevation",
+    "choke_point"
+   ],
+   "distribution": "global_tactical_v2_dist_mountain_pass",
+   "icon": "ui/images/map_gen_layout/mountainpass_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "mystical_river",
+   "name": "Mystical River",
+   "nameTr": "Sihirli Nehir",
+   "descTr": null,
+   "kind": "danube_river",
+   "hills": 0.06,
+   "trees": 1,
+   "water": 0,
+   "dry": true,
+   "naval": true,
+   "tags": [],
+   "chars": [
+    "open",
+    "river",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/dryarabia_icon"
+  },
+  {
+   "id": "nagari",
+   "name": "Nagari",
+   "nameTr": "Nagari",
+   "descTr": "Göller kolayca savunulabilen bir çift sıradağın arasında uzanır.",
+   "kind": "four_lakes",
+   "hills": 0.28,
+   "trees": 0.51,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "choke_point",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_v2_dist_lake",
+   "icon": "ui/images/map_gen_layout/nagari_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "narrows",
+   "name": "Narrows",
+   "nameTr": "Dar Geçitler",
+   "descTr": "Birkaç tarafı derin okyanusla çevrili büyük bir yarımada. ",
+   "kind": "thousand_pools",
+   "hills": 0.82,
+   "trees": 0.4,
+   "water": 0.62,
+   "dry": false,
+   "naval": true,
+   "tags": [],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/narrows_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "nomadic_ridges",
+   "name": "Nomadic Ridges",
+   "nameTr": "Göçebe Tepesi",
+   "descTr": "Sığ nehrin üzerinde yükselen, tepelerle dolu vadi. Kaynaklar eşit dağıtıldığı için en iyi deneyimi Göçebe modunda sunar.",
+   "kind": "hill_and_dale",
+   "hills": 1,
+   "trees": 0.4,
+   "water": 0.27,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "nomad_friendly"
+   ],
+   "chars": [
+    "nomad_friendly"
+   ],
+   "distribution": "global_dist_nomadic_ridges",
+   "icon": "ui/images/map_gen_layout/nomadic_ridges_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "nomadic_tarns",
+   "name": "Nomadic Tarns",
+   "nameTr": "Göçebe Gölleri",
+   "descTr": "Topraklar, göllere bakan görkemli dağlarla çevrilidir. Kaynaklar eşit olarak dağıtıldığı için en çok Göçebe modunda işe yarar.",
+   "kind": "continental",
+   "hills": 0.42,
+   "trees": 0.4,
+   "water": 1,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "nomad_friendly"
+   ],
+   "chars": [
+    "nomad_friendly"
+   ],
+   "distribution": "global_dist_nomadic_tarns",
+   "icon": "ui/images/map_gen_layout/nomadic_tarns_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "oasis",
+   "name": "Oasis",
+   "nameTr": "Vaha",
+   "descTr": "Haritadaki ağaçların çoğu küçük bir merkez gölün yakınında bulunuyor. ",
+   "kind": "four_lakes",
+   "hills": 0.51,
+   "trees": 2,
+   "water": 0.11,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "limited_naval",
+    "more_wood"
+   ],
+   "distribution": "global_tactical_v2_dist_oasis",
+   "icon": "ui/images/map_gen_layout/oasis_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "ocean_gateway",
+   "name": "Ocean Gateway",
+   "nameTr": "Okyanus Geçidi",
+   "descTr": "Okyanusa giden tek yol dağların arasındaki dar geçitlerden geçer.",
+   "kind": "thousand_pools",
+   "hills": 0.83,
+   "trees": 0.4,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "naval"
+   ],
+   "chars": [
+    "choke_point",
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_dist_ocean_gateway",
+   "icon": "ui/images/map_gen_layout/ocean_gateway_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "pegee",
+   "name": "Pegee",
+   "nameTr": "Peagee",
+   "descTr": "Ormanlar takımları tamamen kuşatarak savaşlar başlamadan önce inşa etmek için zaman veriyor. ",
+   "kind": "black_forest",
+   "hills": 0.86,
+   "trees": 1.98,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "choke_point",
+    "more_wood"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/peagee_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "pit",
+   "name": "Pit",
+   "nameTr": "Çukur",
+   "descTr": "Bu açık haritanın kenarları tepelik ve ortası bir vadi şeklindedir.",
+   "kind": "lipany",
+   "hills": 1,
+   "trees": 1.28,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "closed"
+   ],
+   "chars": [
+    "open",
+    "lanes"
+   ],
+   "distribution": "global_tactical_v2_dist_no_dense_trees",
+   "icon": "ui/images/map_gen_layout/pit_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "plains",
+   "name": "Plains",
+   "nameTr": "Ovalar",
+   "descTr": "Her oynayışında değişen kaynaklarla oldukça düz, açık bir harita!",
+   "kind": "continental",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [],
+   "distribution": "global_default_dist",
+   "icon": "ui/images/map_gen_layout/plains_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "pond_island",
+   "name": "Pond Island",
+   "nameTr": "Gölet Adası",
+   "descTr": null,
+   "kind": "four_lakes",
+   "hills": 0.22,
+   "trees": 0.57,
+   "water": 0.37,
+   "dry": false,
+   "naval": true,
+   "tags": [],
+   "chars": [],
+   "distribution": "global_dist_pond_island",
+   "icon": null,
+   "layoutDerived": true
+  },
+  {
+   "id": "ponds",
+   "name": "Ponds",
+   "nameTr": "Sulak Alanlar",
+   "descTr": "Ormanlık araziler çok sayıda zengin gölete ev sahipliği yapmaktadır ancak ormanlarda dolaşan kurtlara dikkat et.",
+   "kind": "black_forest",
+   "hills": 0.14,
+   "trees": 0.73,
+   "water": 0.17,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "more_food",
+    "more_wood"
+   ],
+   "distribution": "global_dist_ponds",
+   "icon": "ui/images/map_gen_layout/ponds_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "relic_river",
+   "name": "Relic River",
+   "nameTr": "Kutsal Nehir",
+   "descTr": "Değişen mevsimle birlikte nehir balıkları akıntıyla göç ettikçe etrafta nehir yataklarındaki gizli kadim eserlerle ve kutsal mekânlarla ilgili söylentiler dolanmaya başladı. Değerli altınları ve taşları bulmak için yüksek noktaları keşfet.",
+   "kind": "danube_river",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 1,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "river",
+    "elevation",
+    "resource_bounty"
+   ],
+   "distribution": "global_dist_relic_river",
+   "icon": "ui/images/map_gen_layout/relic_river_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "rhinelands",
+   "name": "Rhinelands",
+   "nameTr": "Renanya",
+   "descTr": "Bolca kaynak ve birçok nehir geçişiyle bereketli bir nehir vadisi. ",
+   "kind": "danube_river",
+   "hills": 0.21,
+   "trees": 1,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "more_stone_gold_food",
+    "river"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/rhinelands_icon"
+  },
+  {
+   "id": "river_kingdom",
+   "name": "River Kingdom",
+   "nameTr": "Nehir Krallığı",
+   "descTr": "Oyuncular bir nehrin kolları arasındaki küçük adalarda başlar.",
+   "kind": "danube_river",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 1,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "river"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/river_kingdom_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "rolling_rivers",
+   "name": "Rolling Rivers",
+   "nameTr": "Tuna Nehri",
+   "descTr": "Hafif engebeli tepeler arasında bir nehir kıvrılır.",
+   "kind": "danube_river",
+   "hills": 1,
+   "trees": 0.9,
+   "water": 0.3,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "river",
+    "elevation",
+    "limited_naval"
+   ],
+   "distribution": "global_tactical_v2_dist_river",
+   "icon": "ui/images/map_gen_layout/danube_river_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "rugged",
+   "name": "Rugged",
+   "nameTr": "Engebeli",
+   "descTr": "Yüksek platolar ve sayısız uçurumlarla dolup taşan güvenilmez topraklar. Zengin altın ve taş madenlerini kontrol etmek için yüksek noktaları ele geçir ancak dar uçurum patikalarından geçerken düşman pusularına dikkat et.",
+   "kind": "hill_and_dale",
+   "hills": 1,
+   "trees": 0.95,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "chaos"
+   ],
+   "chars": [
+    "elevation"
+   ],
+   "distribution": "global_dist_rugged",
+   "icon": "ui/images/map_gen_layout/rugged_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "sacred_crest",
+   "name": "Sacred Crest",
+   "nameTr": "Kutsal Taç",
+   "descTr": null,
+   "kind": "highview",
+   "hills": 0,
+   "trees": 1,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [],
+   "distribution": "global_dist_sacred_crest",
+   "icon": null
+  },
+  {
+   "id": "sacred_mountains",
+   "name": "Sacred Mountains",
+   "nameTr": "Saklı Ormanlar",
+   "descTr": "Dört bir yanı tekinsiz ve karanlık bir ormanla çevrili, inişli çıkışlı tepelerden ve vadilerden oluşan hareketli bir araziyi keşfet.",
+   "kind": "highview",
+   "hills": 1,
+   "trees": 0.59,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "elevation",
+    "open"
+   ],
+   "distribution": "global_tactical_sacred_mountains",
+   "icon": "ui/images/map_gen_layout/flankwoods",
+   "layoutDerived": true
+  },
+  {
+   "id": "savanna_woodlands",
+   "name": "Savanna Woodlands",
+   "nameTr": "Bataklık",
+   "descTr": "Düşmanlarını pusuya düşürmek için gizli ormanlarda saklan ama bataklığın etrafında yaşayan tehlikeli, vahşi canlılara dikkat et.",
+   "kind": "dry_arabia",
+   "hills": 0.07,
+   "trees": 0.87,
+   "water": 0.4,
+   "dry": true,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "more_food",
+    "less_wood"
+   ],
+   "distribution": "global_dist_savannah",
+   "icon": "ui/images/map_gen_layout/savanna_woodlands_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "shadow_lake",
+   "name": "Shadow Lake",
+   "nameTr": "Saklı Nehir",
+   "descTr": "Bu toprakların büyük bir kısmını ortadaki büyük göl oluşturur ve çevresini saran gizlilik ormanları pusu ve sürpriz saldırılar için idealdir. Zafere ulaşmak için gölü ve stratejik orman açıklıklarını kontrol etmek çok önemlidir.",
+   "kind": "four_lakes",
+   "hills": 0.98,
+   "trees": 0.64,
+   "water": 0.57,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "naval"
+   ],
+   "chars": [
+    "naval",
+    "no_settlements"
+   ],
+   "distribution": "global_dist_the_shadow_lake",
+   "icon": "ui/images/map_gen_layout/shadow_lake_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "snake",
+   "name": "Snake",
+   "nameTr": "Yılan Nehri",
+   "descTr": "Kıvrımlı bir nehir, rakip takımların etrafından dolanıyor.",
+   "kind": "danube_river",
+   "hills": 1,
+   "trees": 0.42,
+   "water": 0.35,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "river"
+   ],
+   "distribution": "global_dist_snake",
+   "icon": "ui/images/map_gen_layout/snake_river_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "socotra",
+   "name": "Socotra",
+   "nameTr": "Sokotra",
+   "descTr": "Farklı medeniyetler küçük bir adada bir araya gelip kendilerine küçük bir alan kapmak için mücadele ederken ortaya kaos çıkar",
+   "kind": "four_lakes",
+   "hills": 0.58,
+   "trees": 0.54,
+   "water": 1,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "chaos",
+    "competitive"
+   ],
+   "chars": [
+    "open",
+    "no_settlements"
+   ],
+   "distribution": "global_tactical_gorge",
+   "icon": "ui/images/map_gen_layout/socotra_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "taylor_strait",
+   "name": "Taylor Strait",
+   "nameTr": "Taylor Boğazı",
+   "descTr": null,
+   "kind": "hill_and_dale",
+   "hills": 0,
+   "trees": 0.62,
+   "water": 1,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [],
+   "distribution": "global_tactical_v2_dist",
+   "icon": null,
+   "layoutDerived": true
+  },
+  {
+   "id": "team_islands",
+   "name": "Team Islands",
+   "nameTr": "Savaşan Adalar",
+   "descTr": "Takımlar adalarda birlikte başlar. ",
+   "kind": "thousand_pools",
+   "hills": 0.03,
+   "trees": 0.4,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "casual",
+    "naval"
+   ],
+   "chars": [
+    "naval"
+   ],
+   "distribution": "global_tactical_v2_dist_warring_islands",
+   "icon": "ui/images/map_gen_layout/warring_islands_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "the_divide",
+   "name": "The Divide",
+   "nameTr": "Çorak Topraklar",
+   "descTr": "Bu haritanın ortasında çorak topraklar ile bir miktar mineral ve tepeden başka bir şey bulunmaz. Eteklerindeki sık ormanlar ise kaynak ve koruma sağlar.",
+   "kind": "continental",
+   "hills": 1,
+   "trees": 0.64,
+   "water": 0.01,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "competitive",
+    "open"
+   ],
+   "chars": [
+    "less_wood",
+    "open",
+    "no_settlements"
+   ],
+   "distribution": "global_dist_the_divide",
+   "icon": "ui/images/map_gen_layout/wasteland_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "turtle",
+   "name": "Turtle",
+   "nameTr": "Kaplumbağa",
+   "descTr": "Takımlar kendi savunulabilir dağ vadilerine yerleştirilir. ",
+   "kind": "continental",
+   "hills": 0.59,
+   "trees": 0.4,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [],
+   "chars": [
+    "choke_point"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/turtle_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "turtle_ridge",
+   "name": "Turtle Ridge",
+   "nameTr": "Kaplumbağa Sırtı",
+   "descTr": "Koruyucu dağların arasında yer alan ve bol kaynaklarla kutsanmış uygarlıklar, hem etkileyici tahkimatlar inşa etmek hem de düşmanlarınınkini alt edecek devasa ordular hazırlamak için yeterli zamana sahipler. Savaşlar başlasın!",
+   "kind": "continental",
+   "hills": 0.63,
+   "trees": 2,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "closed"
+   ],
+   "chars": [
+    "more_stone_gold_food",
+    "no_settlements",
+    "choke_point"
+   ],
+   "distribution": "global_dist_turtle_ridge",
+   "icon": "ui/images/map_gen_layout/turtle_ridge_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "underhill",
+   "name": "Underhill",
+   "nameTr": "Carmel",
+   "descTr": "Yaban hayatıyla dolup taşan yüksek dağ sırtlarının eteklerine göz alıcı altınlar dağılmış. Altın kıtlığı uygarlıkların ilerleyişini zorlaştırırken çevredeki gruplar ele geçirebildiğini kadar ele geçirmeye çalışıyor.",
+   "kind": "continental",
+   "hills": 1,
+   "trees": 0.68,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "elevation",
+    "open",
+    "less_gold"
+   ],
+   "distribution": "global_tactical_sacred_mountains",
+   "icon": "ui/images/map_gen_layout/carmel",
+   "layoutDerived": true
+  },
+  {
+   "id": "volcanic_island",
+   "name": "Volcanic Island",
+   "nameTr": "Volkanik Ada",
+   "descTr": "Bir zamanlar ateş soluyan bu dağ, artık her tarafı sarmalayan yemyeşil bitki örtüsü ve sığlıkların dört bir yanına saçılmış taşlarıyla fethedilmeyi bekliyor.",
+   "kind": "thousand_pools",
+   "hills": 0,
+   "trees": 0.6,
+   "water": 1,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "limited_naval",
+    "competitive"
+   ],
+   "chars": [
+    "less_wood",
+    "open",
+    "more_stone",
+    "limited_naval"
+   ],
+   "distribution": "global_dist_volcanic_island",
+   "icon": "ui/images/map_gen_layout/volcanic_island_icon"
+  },
+  {
+   "id": "waterholes",
+   "name": "Waterholes",
+   "nameTr": "Su Birikintileri",
+   "descTr": "Ekonomik avantaj elde edip rakiplerine yürüyerek veya at sırtında hükmetmek için birçok gölü fethet.",
+   "kind": "four_lakes",
+   "hills": 0.38,
+   "trees": 0.62,
+   "water": 0.31,
+   "dry": false,
+   "naval": true,
+   "tags": [
+    "competitive",
+    "limited_naval"
+   ],
+   "chars": [
+    "limited_naval"
+   ],
+   "distribution": "global_dist_waterholes",
+   "icon": "ui/images/map_gen_layout/waterholes_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "waterlanes",
+   "name": "Waterlanes",
+   "nameTr": "Nehir Vadisi",
+   "descTr": "Düşmanlarınla aranda yalnızca sığ bir geçidin olduğu ve müttefiklerinden ayrı olduğun bu diyarda, düşmanlarına üstünlük kurmak için denize açılmalı ve koridorları kontrol etmelisin!",
+   "kind": "four_lakes",
+   "hills": 0,
+   "trees": 0.4,
+   "water": 0.89,
+   "dry": true,
+   "naval": true,
+   "tags": [
+    "naval",
+    "casual"
+   ],
+   "chars": [
+    "open",
+    "limited_naval",
+    "lanes"
+   ],
+   "distribution": "global_dist_clearing",
+   "icon": "ui/images/map_gen_layout/waterlanes_icon",
+   "layoutDerived": true
+  },
+  {
+   "id": "westlake",
+   "name": "Westlake",
+   "nameTr": "Batı Gölü",
+   "descTr": "Haritanın merkezinde sığ ve üstünden geçilebilir bir göl bulunmaktadır. Gölün ortasında ise bir kutsal mekân yer alır. Göl, rıhtım inşa edebilmek için fazla sığdır.",
+   "kind": "continental",
+   "hills": 0,
+   "trees": 1,
+   "water": 0,
+   "dry": false,
+   "naval": false,
+   "tags": [
+    "open",
+    "competitive"
+   ],
+   "chars": [
+    "open"
+   ],
+   "distribution": "global_tactical_v2_dist",
+   "icon": "ui/images/map_gen_layout/west_lake_icon"
+  }
+ ]
+}

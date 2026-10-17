@@ -1,0 +1,94 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kowdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kowuser
+      POSTGRES_PASSWORD: kowpassword
+      POSTGRES_DB: kingdoms_of_war
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kowuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: kowredis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./admin-backend
+      dockerfile: Dockerfile
+    container_name: kowbackend
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./admin-backend/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://kowuser:kowpassword@postgres:5432/kingdoms_of_war?schema=public
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+  admin-panel:
+    build:
+      context: ./admin-panel
+      dockerfile: Dockerfile
+    container_name: kowadminpanel
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:3001
+
+  landing-website:
+    build:
+      context: ./landing-website
+      dockerfile: Dockerfile
+    container_name: kowlanding
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: kownginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - admin-panel
+      - landing-website
+
+volumes:
+  postgres_data:
+  redis_data:

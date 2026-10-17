@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "title": "Gamepad support in matches",
+      "date": "2026-10-13",
+      "body": "Play with a controller: the left stick pans the camera, the right stick moves the cursor, A selects, X or RT gives orders, B stops, Y finds idle villagers."
+    },
+    {
+      "title": "Custom game rules",
+      "date": "2026-10-13",
+      "body": "Skirmish setup now has a population limit and switches for the Wonder, Sacred Site and Relic victories."
+    },
+    {
+      "title": "Observer mode",
+      "date": "2026-10-13",
+      "body": "After a defeat or in a replay, press Tab to follow each player and see their age, population and resources."
+    },
+    {
+      "title": "Audio mixer",
+      "date": "2026-10-13",
+      "body": "Voices, interface sounds and ambience now have their own volume sliders next to Master, Music and Effects."
+    }
+  ]
+}

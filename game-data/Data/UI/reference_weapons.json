@@ -1,0 +1,19 @@
+{
+  "_note": "INFERRED unit type -> hand-held reference models (art/civilizations/common/weapons/...). The reference links weapons to units through attribute data that is not decoded; the picks follow the unit roles. hand: r = right palm socket, l = left palm socket. Dev/test only.",
+  "root": "art/civilizations/common/weapons/",
+  "socket": { "r": "metarig_rarmpalm", "l": "metarig_larmpalm" },
+  "units": [
+    { "type": "spearman", "items": [ { "id": "melee/spear_basic", "hand": "r" } ] },
+    { "type": "man-at-arms", "items": [ { "id": "melee/sword_broad", "hand": "r" }, { "id": "defense/shield_heater", "hand": "l" } ] },
+    { "type": "archer", "items": [ { "id": "ranged/bow_short", "hand": "l" } ] },
+    { "type": "crossbowman", "items": [ { "id": "ranged/bow_cross", "hand": "r" } ] },
+    { "type": "handcannoneer", "items": [ { "id": "ranged/cannon_hand", "hand": "r" } ] },
+    { "type": "monk", "items": [ { "id": "melee/staff_crozier", "hand": "r" } ] },
+    { "type": "villager", "items": [ { "id": "tools/hammer_construction", "hand": "r" } ] },
+    { "type": "trader", "items": [ { "id": "tools/basket_back", "hand": "r" } ] },
+    { "type": "horseman", "items": [ { "id": "melee/spear_cavalry_charge", "hand": "r" } ] },
+    { "type": "knight", "items": [ { "id": "melee/lance_basic", "hand": "r" }, { "id": "defense/shield_heater", "hand": "l" } ] },
+    { "type": "lancer", "items": [ { "id": "melee/lance_basic", "hand": "r" } ] },
+    { "type": "scout", "items": [ { "id": "melee/sword_short", "hand": "r" } ] }
+  ]
+}

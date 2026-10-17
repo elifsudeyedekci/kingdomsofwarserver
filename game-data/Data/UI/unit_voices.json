@@ -1,0 +1,25 @@
+{
+  "source": "File names of the reference speech banks (SoundSpeech*/civ_<civ>/<civ>_<unit>/<civ>_<unit>_<category>_i<intensity>_c<..>_NN.wem). The category part of the name is the line type (select, acknowledge, attack, movesu, stop, structurebuild, resourcegather ...).",
+  "civs": {
+    "ottomans": "ottoman", "english": "english", "french": "french", "mongols": "mongols", "chinese": "chinese", "rus": "rus",
+    "holy_roman_empire": "hre", "abbasid": "abbasid", "delhi": "sultanate", "malians": "malian", "byzantines": "byzantine", "japanese": "japanese",
+    "ayyubids": "abbasid", "jeanne_darc": "french", "order_of_the_dragon": "hre", "zhu_xis_legacy": "chinese", "house_of_lancaster": "english",
+    "golden_horde": "mongols", "macedonian_dynasty": "byzantine", "sengoku_daimyo": "japanese", "tughlaq_dynasty": "sultanate"
+  },
+  "units": {
+    "villager": ["villagermale", "villagerfemale"], "scout": ["scout"], "spearman": ["spearman"], "archer": ["archer"], "man-at-arms": ["manatarms"],
+    "knight": ["knight"], "crossbowman": ["crossbowman"], "horseman": ["horseman"], "handcannoneer": ["handcannon"], "monk": ["monk"],
+    "siege-ram": ["seige"], "mangonel": ["seigeranged"], "trebuchet": ["seigeranged"]
+  },
+  "actions": {
+    "select": ["select", "selectgc", "selectgmr", "acknowledge"],
+    "move": ["movesu", "movegc", "movegmr", "acknowledge", "acknowledgegmr"],
+    "attack": ["attack", "attackgc", "attackgmr", "engage"],
+    "attackmove": ["attackmovesu", "attackmovegc", "attackmovegmr", "attack"],
+    "gather": ["resourcegather", "resourcehunt", "resourcemine", "acknowledge"],
+    "build": ["structurebuild", "acknowledge"],
+    "garrison": ["garrison", "acknowledge"],
+    "stop": ["stop", "acknowledge"],
+    "hold": ["hold", "stop", "acknowledge"]
+  }
+}

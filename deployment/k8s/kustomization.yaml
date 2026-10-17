@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kingdoms-of-war
+
+resources:
+- namespace.yaml
+- configmap.yaml
+- secret.yaml
+- postgres/pvc.yaml
+- postgres/deployment.yaml
+- postgres/service.yaml
+- redis/pvc.yaml
+- redis/deployment.yaml
+- redis/service.yaml
+- admin-backend/deployment.yaml
+- admin-backend/service.yaml
+- admin-panel/deployment.yaml
+- admin-panel/service.yaml
+- landing-website/deployment.yaml
+- landing-website/service.yaml
+- ingress.yaml
+- hpa.yaml
+
+commonLabels:
+  project: kingdoms-of-war
+  managed-by: kustomize

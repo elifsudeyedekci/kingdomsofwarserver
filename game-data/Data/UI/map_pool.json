@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "note": "Map pools per game mode (data-driven). A pool lists map ids from SkirmishSettings.Maps ('*' = every map). A pool that is missing or empty falls back to every map. There is deliberately NO ranked pool: ranked play needs the online service (matchmaking, veto rules, rotation), which does not exist yet and must not be invented here.",
+  "pools": [
+    { "id": "skirmish", "maps": ["*"] },
+    { "id": "multiplayer", "maps": ["*"] }
+  ]
+}

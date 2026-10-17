@@ -1,0 +1,4 @@
+# Never commit real secrets
+secrets.yaml
+*.secret.yaml
+*.secret.yml

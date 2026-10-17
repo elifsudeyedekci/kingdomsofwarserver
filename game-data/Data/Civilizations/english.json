@@ -1,0 +1,130 @@
+{
+  "id": "english",
+  "nameKey": "civ.english.name",
+  "descKey": "civ.english.desc",
+  "colorPrimary": "#C8102E",
+  "colorSecondary": "#012169",
+  "playstyle": "defensive-economic",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "network-of-castles",
+      "nameKey": "bonus.network-of-castles",
+      "desc": "Nearby castles and towers empower each other, increasing firing speed by 20% and triggering a rallying call that briefly buffs nearby infantry attack speed when a tower or keep is attacked"
+    },
+    {
+      "id": "villager-build-speed",
+      "nameKey": "bonus.villager-build-speed",
+      "desc": "Villagers build 15% faster than other civilizations"
+    },
+    {
+      "id": "farm-resource-bonus",
+      "nameKey": "bonus.farm-resource-bonus",
+      "desc": "Farms provide +75 food yield before depleting, rewarding long-term economic investment"
+    },
+    {
+      "id": "longbowman-range-mastery",
+      "nameKey": "bonus.longbowman-range-mastery",
+      "desc": "Longbowmen have +1 range compared to standard archers and can build Archery Ranges in the field"
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "abbey-of-kings",
+        "nameKey": "landmark.abbey-of-kings",
+        "bonus": "Villagers and infantry can garrison inside for rapid healing (30 HP/s). Emits a +2 attack aura to all nearby military units within 10 tiles"
+      },
+      {
+        "id": "berkshire-palace",
+        "nameKey": "landmark.berkshire-palace",
+        "bonus": "Town Center gains +25% HP, +2 attack, and can train all Age 2 military units 25% faster. Acts as a secondary defensive anchor early game"
+      }
+    ],
+    "age3": [
+      {
+        "id": "kings-palace",
+        "nameKey": "landmark.kings-palace",
+        "bonus": "Generates 1 gold per second passively. Allows recruitment of the King hero unit who inspires nearby troops with +15% attack and defense aura"
+      },
+      {
+        "id": "white-tower",
+        "nameKey": "landmark.white-tower",
+        "bonus": "All towers and keeps gain +5 range and +10% attack speed. All tower weapon upgrades (Springald, Cannon) are researched for free"
+      }
+    ],
+    "age4": [
+      {
+        "id": "council-hall",
+        "nameKey": "landmark.council-hall",
+        "bonus": "Longbowmen train in pairs for the cost of 1.5x a single unit. All ranged units gain +2 range. Enables the Wynguard Army formation ability"
+      },
+      {
+        "id": "wynguard-palace",
+        "nameKey": "landmark.wynguard-palace",
+        "bonus": "Produces a free Wynguard Ranger and Wynguard Footman pack every 3 minutes automatically. Wynguard units have +20% HP and attack compared to standard equivalents"
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "longbowman",
+      "age": 2,
+      "cost": {"food": 60, "gold": 20},
+      "hp": 70,
+      "attack": 10,
+      "range": 6,
+      "speed": 1.2,
+      "armorType": "light",
+      "special": "Has 1 extra range compared to standard archers. Can construct Archery Ranges in the field. Volley ability fires a burst of arrows in a targeted area dealing area damage"
+    },
+    {
+      "id": "man-at-arms",
+      "age": 2,
+      "cost": {"food": 100, "gold": 20},
+      "hp": 130,
+      "attack": 12,
+      "range": 0,
+      "speed": 1.0,
+      "armorType": "heavy",
+      "special": "Available one age earlier than equivalent heavy infantry for other civilizations. High armor value makes them exceptionally resilient against arrow fire"
+    },
+    {
+      "id": "wynguard-ranger",
+      "age": 4,
+      "cost": {"food": 80, "gold": 40},
+      "hp": 110,
+      "attack": 14,
+      "range": 5,
+      "speed": 1.25,
+      "armorType": "light",
+      "special": "Elite longbowman variant exclusive to English Age 4. Deals bonus damage to cavalry and can apply a slowing poison on hit"
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "enclosures",
+      "age": 3,
+      "cost": {"gold": 150, "food": 100},
+      "effect": "Farms generate +1 food per minute passively without needing a villager assigned, simulating the English enclosure movement"
+    },
+    {
+      "id": "network-of-castles-upgrade",
+      "age": 4,
+      "cost": {"gold": 300},
+      "effect": "Doubles the empowerment radius of the Network of Castles passive bonus. Castles now also grant nearby units a +5% damage resistance aura"
+    },
+    {
+      "id": "setup-camp",
+      "age": 2,
+      "cost": {"food": 75, "wood": 50},
+      "effect": "Longbowmen gain the ability to set up camp, increasing attack speed by 15% while stationary. Activates automatically after standing still for 3 seconds"
+    }
+  ],
+  "ageUpCosts": {
+    "age2": {"food": 400},
+    "age3": {"food": 800, "gold": 200},
+    "age4": {"food": 1200, "gold": 600}
+  }
+}

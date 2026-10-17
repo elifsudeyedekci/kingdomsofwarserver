@@ -1,0 +1,135 @@
+{
+  "id": "chinese",
+  "nameKey": "civ.chinese.name",
+  "descKey": "civ.chinese.desc",
+  "colorPrimary": "#DE2910",
+  "colorSecondary": "#FFD700",
+  "playstyle": "economic-defensive",
+  "startingUnits": ["villager", "villager", "villager", "scout"],
+  "startingBuildings": ["town-center"],
+  "passiveBonuses": [
+    {
+      "id": "great-wall-armor",
+      "nameKey": "bonus.chinese.great_wall_armor",
+      "desc": "Units within 2 tiles of a Wall segment gain +2 armor."
+    },
+    {
+      "id": "dynasty-system",
+      "nameKey": "bonus.chinese.dynasty_system",
+      "desc": "Advancing through Dynasties (Tang, Song, Yuan, Ming) unlocks cumulative empire-wide bonuses."
+    }
+  ],
+  "landmarks": {
+    "age2": [
+      {
+        "id": "barbican-of-sun",
+        "nameKey": "Chinese Barbican of the Sun",
+        "bonus": "Defensive towers and walls deal +50% ranged damage. Fortified positions gain a free Tower garrison."
+      },
+      {
+        "id": "astronomical-clocktower",
+        "nameKey": "Chinese Astronomical Clocktower",
+        "bonus": "Siege units are produced 50% faster and move 15% faster. Clocktower acts as a Siege Workshop."
+      }
+    ],
+    "age3": [
+      {
+        "id": "imperial-palace",
+        "nameKey": "Chinese Imperial Palace",
+        "bonus": "Generates 2 gold per second. Nearby units fight with +10% attack speed."
+      },
+      {
+        "id": "great-wall-gatehouse",
+        "nameKey": "Chinese Great Wall Gatehouse",
+        "bonus": "All Wall segments gain +100% HP and towers connected to walls gain +2 range."
+      }
+    ],
+    "age4": [
+      {
+        "id": "spirit-way",
+        "nameKey": "Chinese Spirit Way",
+        "bonus": "All unit production costs reduced by 10%. Fallen units near Spirit Way generate Influence for the next Dynasty."
+      },
+      {
+        "id": "enclave-of-emperor",
+        "nameKey": "Chinese Enclave of the Emperor",
+        "bonus": "Periodically spawns a free Imperial Guard unit. Imperial Guard units within range gain +15% attack."
+      }
+    ]
+  },
+  "uniqueUnits": [
+    {
+      "id": "fire-lancer",
+      "age": 2,
+      "cost": { "food": 120, "gold": 30 },
+      "hp": 110,
+      "attack": 18,
+      "range": 0,
+      "speed": 1.5,
+      "armorType": "light",
+      "special": "Charge attack deals 3x damage on first strike. Bonus damage to structures and siege."
+    },
+    {
+      "id": "zhuge-nu",
+      "age": 2,
+      "cost": { "food": 60, "gold": 20 },
+      "hp": 80,
+      "attack": 8,
+      "range": 4,
+      "speed": 1.1,
+      "armorType": "light",
+      "special": "Fires 2 bolts per attack. Slow move speed. Bonus damage to unarmored units."
+    },
+    {
+      "id": "imperial-guard",
+      "age": 4,
+      "cost": { "food": 100, "gold": 40 },
+      "hp": 220,
+      "attack": 22,
+      "range": 0,
+      "speed": 1.25,
+      "armorType": "heavy",
+      "special": "Elite infantry spawned free by the Enclave of the Emperor. +20% damage during active Dynasty bonus."
+    }
+  ],
+  "uniqueTech": [
+    {
+      "id": "pyrotechnics",
+      "age": 2,
+      "cost": { "food": 150, "gold": 75 },
+      "effect": "Fire Lancer charge damage increased to 4x. Triggers a brief area fire on impact."
+    },
+    {
+      "id": "extra-reign",
+      "age": 3,
+      "cost": { "food": 300, "gold": 200 },
+      "effect": "Dynasty bonuses persist for 60 seconds after transitioning to the next Dynasty instead of ending immediately."
+    },
+    {
+      "id": "imperial-examination",
+      "age": 4,
+      "cost": { "food": 500, "gold": 300 },
+      "effect": "All technology research speed increased by 20%. Researching a technology generates 50 gold."
+    }
+  ],
+  "ageUpCosts": {
+    "age2": { "food": 400 },
+    "age3": { "food": 800, "gold": 200 },
+    "age4": { "food": 1200, "gold": 600 }
+  },
+  "dynasties": {
+    "dynastyOrder": ["tang", "song", "yuan", "ming"],
+    "tang": {
+      "bonus": "Villagers gather food +15% faster."
+    },
+    "song": {
+      "bonus": "+2 population capacity per House built."
+    },
+    "yuan": {
+      "bonus": "Cavalry units move +15% faster."
+    },
+    "ming": {
+      "bonus": "All units gain +10% maximum HP."
+    }
+  }
+}

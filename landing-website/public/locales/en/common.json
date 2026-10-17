@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "features": "Features",
+    "civilizations": "Civilizations",
+    "download": "Download"
+  },
+  "hero": {
+    "title": "Conquer. Build. Rule.",
+    "subtitle": "The ultimate medieval RTS experience on mobile",
+    "downloadCta": "Download Free",
+    "learnMore": "Learn More"
+  },
+  "features": {
+    "title": "Epic Multiplayer Warfare",
+    "realtime": "Real-time multiplayer",
+    "realtimeDesc": "Battle up to 8 players in real-time",
+    "civs": "10 Unique Civilizations",
+    "civsDesc": "Each with distinct units and bonuses",
+    "strategy": "Deep Strategy",
+    "strategyDesc": "Master resources, tech trees, and formations"
+  },
+  "civs": {
+    "title": "Choose Your Civilization",
+    "abbasid": "Abbasid Dynasty",
+    "chinese": "Chinese",
+    "delhi": "Delhi Sultanate",
+    "english": "English",
+    "french": "French",
+    "hre": "Holy Roman Empire",
+    "malians": "Malians",
+    "mongols": "Mongols",
+    "ottomans": "Ottomans",
+    "rus": "Rus"
+  },
+  "download": {
+    "title": "Download Now",
+    "ios": "App Store",
+    "android": "Google Play",
+    "comingSoon": "Coming Soon"
+  },
+  "footer": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "contact": "Contact"
+  }
+}
