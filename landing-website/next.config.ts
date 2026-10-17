@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  output: 'export',
+  trailingSlash: true,
+  images: { unoptimized: true },
+  poweredByHeader: false,
+  experimental: { globalNotFound: true },
 };
-
 export default nextConfig;

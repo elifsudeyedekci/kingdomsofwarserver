@@ -68,13 +68,25 @@ services:
     security_opt: ["no-new-privileges:true"]
     networks: [internal]
 
+  website:                       # public marketing site (static files served by a tiny Caddy), proxied by the main Caddy below
+    build:
+      context: ../..
+      dockerfile: deploy/contabo/Dockerfile.website
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/data, /config]
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    security_opt: ["no-new-privileges:true"]
+    networks: [internal]
+
   caddy:                         # automatic HTTPS (Let's Encrypt); DNS of both domains must already point at this server
     image: caddy:2-alpine
     restart: unless-stopped
     ports: ["80:80", "443:443"]
-    environment: { API_DOMAIN: "${API_DOMAIN}", PANEL_DOMAIN: "${PANEL_DOMAIN}", ACME_EMAIL: "${ACME_EMAIL}" }
+    environment: { API_DOMAIN: "${API_DOMAIN}", PANEL_DOMAIN: "${PANEL_DOMAIN}", SITE_DOMAIN: "${SITE_DOMAIN:?set in .env.production}", ACME_EMAIL: "${ACME_EMAIL}" }
     volumes: [./Caddyfile:/etc/caddy/Caddyfile:ro, caddy_data:/data, caddy_config:/config]
-    depends_on: [backend, panel]
+    depends_on: [backend, panel, website]
     networks: [internal]
 
   backup:                        # daily pg_dump at 03:15, keeps BACKUP_KEEP_DAYS, reports to the panel (Yedekleme page)

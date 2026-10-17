@@ -28,3 +28,13 @@
 	import secure
 	reverse_proxy panel:3000
 }
+
+{$SITE_DOMAIN} {
+	import secure
+	reverse_proxy website:80
+}
+
+www.{$SITE_DOMAIN} {
+	import secure
+	redir https://{$SITE_DOMAIN}{uri} permanent
+}

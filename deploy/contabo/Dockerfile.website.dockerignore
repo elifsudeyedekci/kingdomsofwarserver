@@ -1,0 +1,8 @@
+*
+!landing-website
+!deploy/contabo/Caddyfile.website
+**/node_modules
+**/.next
+**/out
+**/.env
+**/.env.*

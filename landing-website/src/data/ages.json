@@ -1,0 +1,126 @@
+[
+ {
+  "n": 1,
+  "name": {
+   "tr": "Karanlık Çağ",
+   "en": "Dark Age",
+   "de": "Dunkles Zeitalter",
+   "fr": "Âge sombre",
+   "es": "Edad Oscura",
+   "pt": "Era das Trevas",
+   "ru": "Тёмные века",
+   "ja": "暗黒時代",
+   "ko": "암흑 시대",
+   "zh": "黑暗时代",
+   "ar": "العصر المظلم",
+   "id": "Zaman Kegelapan"
+  },
+  "desc": {
+   "tr": "Başlangıç çağı. Temel ekonomik ve askeri birliklere erişilebilir.",
+   "en": "The starting age. Basic economic and military units are available.",
+   "de": "Das Startzeitalter. Grundlegende Wirtschafts- und Militäreinheiten stehen zur Verfügung.",
+   "fr": "L'âge de départ. Les unités économiques et militaires de base sont disponibles.",
+   "es": "La era inicial. Están disponibles unidades económicas y militares básicas.",
+   "pt": "A era inicial. Unidades econômicas e militares básicas estão disponíveis.",
+   "ru": "Начальная эпоха. Доступны базовые экономические и военные юниты.",
+   "ja": "開始の時代。基本的な経済・軍事ユニットが使用可能。",
+   "ko": "시작 시대. 기본 경제 및 군사 유닛을 사용할 수 있음.",
+   "zh": "起始时代。可使用基础经济和军事单位。",
+   "ar": "العصر الابتدائي. تتوفر الوحدات الاقتصادية والعسكرية الأساسية.",
+   "id": "Zaman awal. Unit ekonomi dan militer dasar tersedia."
+  }
+ },
+ {
+  "n": 2,
+  "name": {
+   "tr": "Feodal Çağ",
+   "en": "Feudal Age",
+   "de": "Feudalzeitalter",
+   "fr": "Âge féodal",
+   "es": "Edad Feudal",
+   "pt": "Era Feudal",
+   "ru": "Феодальная эпоха",
+   "ja": "封建時代",
+   "ko": "봉건 시대",
+   "zh": "封建时代",
+   "ar": "العصر الإقطاعي",
+   "id": "Zaman Feodal"
+  },
+  "desc": {
+   "tr": "İkinci çağ. Daha fazla askeri birlik ve ekonomi binasına erişim sağlanır.",
+   "en": "The second age. Access to more military units and economic buildings.",
+   "de": "Das zweite Zeitalter. Zugang zu weiteren Militäreinheiten und Wirtschaftsgebäuden.",
+   "fr": "Le deuxième âge. Accès à davantage d'unités militaires et de bâtiments économiques.",
+   "es": "La segunda era. Acceso a más unidades militares y edificios económicos.",
+   "pt": "A segunda era. Acesso a mais unidades militares e edificações econômicas.",
+   "ru": "Вторая эпоха. Открываются новые военные юниты и экономические здания.",
+   "ja": "第二の時代。より多くの軍事ユニットと経済建物が利用可能になる。",
+   "ko": "두 번째 시대. 더 많은 군사 유닛과 경제 건물에 접근 가능.",
+   "zh": "第二个时代。可获得更多军事单位和经济建筑。",
+   "ar": "العصر الثاني. الوصول إلى مزيد من الوحدات العسكرية والمباني الاقتصادية.",
+   "id": "Zaman kedua. Akses ke lebih banyak unit militer dan bangunan ekonomi."
+  }
+ },
+ {
+  "n": 3,
+  "name": {
+   "tr": "Kale Çağı",
+   "en": "Castle Age",
+   "de": "Burgzeitalter",
+   "fr": "Âge du château",
+   "es": "Edad del Castillo",
+   "pt": "Era dos Castelos",
+   "ru": "Эпоха замков",
+   "ja": "城塞時代",
+   "ko": "성 시대",
+   "zh": "城堡时代",
+   "ar": "عصر القلاع",
+   "id": "Zaman Kastil"
+  },
+  "desc": {
+   "tr": "Üçüncü çağ. Güçlü askeri birlikler ve tahkimatlar kullanılabilir hale gelir.",
+   "en": "The third age. Powerful military units and fortifications become available.",
+   "de": "Das dritte Zeitalter. Mächtige Militäreinheiten und Befestigungen werden verfügbar.",
+   "fr": "Le troisième âge. De puissantes unités militaires et des fortifications deviennent disponibles.",
+   "es": "La tercera era. Se desbloquean poderosas unidades militares y fortificaciones.",
+   "pt": "A terceira era. Poderosas unidades militares e fortificações ficam disponíveis.",
+   "ru": "Третья эпоха. Становятся доступны мощные военные юниты и укрепления.",
+   "ja": "第三の時代。強力な軍事ユニットと要塞が使用可能になる。",
+   "ko": "세 번째 시대. 강력한 군사 유닛과 요새를 사용할 수 있게 됨.",
+   "zh": "第三个时代。强大的军事单位和防御工事变为可用。",
+   "ar": "العصر الثالث. تصبح الوحدات العسكرية القوية والتحصينات متاحة.",
+   "id": "Zaman ketiga. Unit militer dan benteng yang kuat mulai tersedia."
+  }
+ },
+ {
+  "n": 4,
+  "name": {
+   "tr": "İmparatorluk Çağı",
+   "en": "Imperial Age",
+   "de": "Kaiserliches Zeitalter",
+   "fr": "Âge impérial",
+   "es": "Edad Imperial",
+   "pt": "Era Imperial",
+   "ru": "Имперская эпоха",
+   "ja": "帝国時代",
+   "ko": "제국 시대",
+   "zh": "帝国时代",
+   "ar": "العصر الإمبراطوري",
+   "id": "Zaman Kekaisaran"
+  },
+  "desc": {
+   "tr": "Son çağ. En güçlü birliklere, teknolojilere ve harikalar dünyasına erişim açılır.",
+   "en": "The final age. Access to the most powerful units, technologies, and wonders.",
+   "de": "Das letzte Zeitalter. Zugang zu den mächtigsten Einheiten, Technologien und Wundern.",
+   "fr": "L'âge final. Accès aux unités, technologies et merveilles les plus puissantes.",
+   "es": "La era final. Acceso a las unidades, tecnologías y maravillas más poderosas.",
+   "pt": "A era final. Acesso às unidades, tecnologias e maravilhas mais poderosas.",
+   "ru": "Финальная эпоха. Открываются самые мощные юниты, технологии и чудеса света.",
+   "ja": "最終の時代。最も強力なユニット、技術、そして驚異的建造物が利用可能になる。",
+   "ko": "마지막 시대. 가장 강력한 유닛, 기술, 불가사의에 접근 가능.",
+   "zh": "最终时代。可使用最强大的单位、科技和奇观。",
+   "ar": "العصر الأخير. الوصول إلى أقوى الوحدات والتقنيات والعجائب.",
+   "id": "Zaman terakhir. Akses ke unit, teknologi, dan keajaiban paling kuat."
+  }
+ }
+]
